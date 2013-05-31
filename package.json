@@ -8,7 +8,7 @@
     "express-middleware-readme.md": "~0.3.0",
     "ejs-locals": "~1.0.2",
     "express": "~3.0.3",
-    "xmpp-ftw": "~0.12.1-buddycloud6",
+    "xmpp-ftw": "*",
     "cloneextend": "0.0.3"
   },
   "repository": {

@@ -1,0 +1,38 @@
+{
+  "name": "xmpp-ftw-demo",
+  "version": "0.1.0",
+  "description": "XMPP-FTW Demo/Example System",
+  "main": "index.js",
+  "dependencies": {
+    "socket.io": "~0.9.13",
+    "express-middleware-readme.md": "~0.3.0",
+    "ejs-locals": "~1.0.2",
+    "express": "~3.0.3",
+    "xmpp-ftw": "~0.12.1-buddycloud6",
+    "cloneextend": "0.0.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lloydwatkin/xmpp-ftw-demo.git"
+  },
+  "keywords": [
+    "xmpp",
+    "json",
+    "websocket",
+    "socket.io",
+    "engine.io",
+    "stanza",
+    "federated",
+    "server",
+    "translate"
+  ],
+  "author": "Steven Lloyd Watkin <lloyd@evilprofessor.co.uk>",
+  "license": "Apache 2.0",
+  "engines": {
+    "node": "0.8.x"
+  },
+  "subdomain": "xmpp-ftw",
+  "scripts": {
+    "start": "node index.js"
+  }
+}

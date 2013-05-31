@@ -1,0 +1,9 @@
+node_modules
+.settings
+.project
+.classpath
+npm-debug.log
+examples/public/google*
+*.geany
+*~
+xmpp-ftw.js

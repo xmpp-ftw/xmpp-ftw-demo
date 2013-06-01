@@ -618,7 +618,10 @@
         <pre class="out callback" message="xmpp.discover.info">
         socket.emit(
             'xmpp.discover.info',
-            { "of": "evilprofessor.co.uk" },
+            { 
+                "of": "evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates" */
+            },
             function(error, data) { console.log(error, data) }
         )
         </pre>

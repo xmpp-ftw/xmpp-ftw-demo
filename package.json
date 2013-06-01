@@ -33,6 +33,7 @@
   },
   "subdomain": "xmpp-ftw",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "develop": "nodemon --watch lib --watch index.js --watch node_modules index.js"
   }
 }

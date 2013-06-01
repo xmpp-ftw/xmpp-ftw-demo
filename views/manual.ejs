@@ -599,7 +599,10 @@
         <pre class="out callback" message="xmpp.discover.items">
         socket.emit(
             'xmpp.discover.items',
-            { "of": "evilprofessor.co.uk" },
+            { 
+                "of": "evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates" */
+            },
             function(error, data) { console.log(error, data) }
         )
         </pre>

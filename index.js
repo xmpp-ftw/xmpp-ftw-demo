@@ -8,7 +8,7 @@ var server = require('http').createServer(app)
 server.listen(3000)
 var io = require('socket.io').listen(server)
 
-version = require('./package.json').version
+version = require('xmpp-ftw/package.json').version
 
 io.configure(function(){
     io.set('transports', [

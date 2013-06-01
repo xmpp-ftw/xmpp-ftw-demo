@@ -680,12 +680,16 @@
             'xmpp.pubsub.create',
             { 
                 "to": "pubsub.evilprofessor.co.uk",
-                "node": "xmpp-ftw updates"
+                "node": "xmpp-ftw updates",
+             /* "options": [] */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
         
+        <p><strong>options</options> should be formatted as a data form 
+        in order to add node configuration options at creation time.</p>
+
         <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
         `<em>data</em>` will be <b>true</b>.</p>
 
@@ -738,7 +742,8 @@
         
         <pre class="example">
         {
-            "subscription": "subscribed"
+            "subscription": "subscribed",
+         /* "id" : "subscription-id" */
         }
         </pre>
         
@@ -748,6 +753,7 @@
         <pre class="example">
         {
             "subscription": "unconfigured",
+         /* "id": "subscription-id", */
             "configuration": { "required": true }
         }
         </pre>
@@ -778,6 +784,23 @@
         <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
         Once supported I will return and test.</p>
         
+        <h4>Get default subscription configuration options</h4>
+
+        <pre class="out callback" message="xmpp.pubsub.subscription.config.default">
+        socket.emit(
+            'xmpp.pubsub.subscription.config.defualt",
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+
+        </pre>
+
+        <p>The response should then contain a
+        <a href="/data-form" title="XEP-0004 Data Forms">data form</a>.</p>
+ 
         <h4>Update subscription options</h4>
         
         <pre class="out callback" message="xmpp.pubsub.subscription.config.set">
@@ -805,7 +828,8 @@
             {
                 "to": "pubsub.evilprofessor.co.uk",
                 "node": "xmpp-ftw updates",
-             /* "jid": "lloyd@evilprofessor.co.uk/sky" */
+             /* "jid": "lloyd@evilprofessor.co.uk/sky", */
+             /* "id": "subscription-id" */
             },
             function(error, data) { console.log(error, data) }
         )
@@ -826,13 +850,17 @@
                 "node": "xmpp-ftw updates",
                 "content": "We can now post to a pub-sub node!",
              /* "id": "1" */
+             /* "options": [] */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
         
-        <p>Providing a '<em>id</em>' attribute will allow you to set post ID# rather than 
-        accept a server auto-generated value.</p>
+        <p>Providing a '<em>id</em>' attribute will allow you to 
+        set post ID# rather than accept a server auto-generated value.</p>
+
+        <p><strong>options</option> should be formatted as a data form 
+        and allows the user to set publish options.</p>
         
         <p>A successful post will result in the following response:</p>
         
@@ -863,8 +891,9 @@
             from: 'pubsub.evilprofessor.co.uk',
             node: 'weather',
             id:   '201305301825',
-         /* item: ...as parsed by xmpp-ftw-item-parser... */
-         /* headers: [ { name: 'SubID', value: '123-abc' } ] */
+         /* entry: ...as parsed by xmpp-ftw-item-parser... */
+         /* headers: [ { name: 'SubID', value: '123-abc' } ], */
+         /* publisher: "lloyd@evilprofessor.co.uk" */ 
         }
         </pre>
 
@@ -903,6 +932,36 @@
             node: 'weather',
             from: 'pubsub.evilprofessor.co.uk',
             id: '201305301825'
+        }
+        </pre>
+
+        <h3>Purge node items</h3>
+
+        <pre class="out callback" message="xmpp.pubsub.purge">
+        socket.emit(
+            'xmpp.pubsub.purge', 
+            {
+
+            }, 
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>If purge is sucessful then `<em>data</em>` will be 
+        <strong>true</strong>.</p>
+
+        <h4>Notification of purged node</h4>
+
+        <pre class="in" message="xmpp.pubsub.push.purge">
+        socket.on('xmpp.pubsub.purge', function(data) { console.log(data) } 
+        </pre>
+ 
+        <p>With the payload as follows:</p>
+
+        <pre class="example">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates"
         }
         </pre>
 
@@ -977,14 +1036,53 @@
             {
                 "to": "pubsub.evilprofessor.co.uk",
                 "node": "xmpp-ftw updates",
-             /* "id": "1" ...OR... [ "1", "3", "5" ] */
+             /* "id": "1" ...OR... [ "1", "3", "5" ], */
+             /* "max_items": 10 */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
         
         <p>If a single item is required then the '<em>id</em>' attribute should be populated.</p>
+
+        <pre class="example">
+        [
+            { id: 123, entry: {} }
+        ]
+        </pre>
+
+        <p>Where <strong>entry</strong> is parsed by 
+        `xmpp-ftw-item-parser`.</p>
+
+        <h3>Subscriptions</h3>
+
+        <h4>Get subscriptions</h4>
+
+        <pre class="out callback" message="xmpp.pubsub.subscriptions">
+        socket.emit(
+            'xmpp.pubsub.subscriptions',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates", */
+             /* "owner": true */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
         
+        <p>Setting <b>owner</b> to true will return information about all 
+        subscriptions to that node. This is provided you are the owner of 
+        the node, otherwise an error will be returned.</p>
+
+        <p>A successful response will then be as follows:</p>
+
+        <pre class="example">
+        [
+            { node: "xmpp-ftw updates", jid: "lloyd@evilprofessor.co.uk", subscription: "subscribed" }
+            { node: "weather", jid: "lloyd@evilprofessor.co.uk", subscription: "pending", id: "123" }
+        ]
+        </pre>
+
         <h3>Affiliations</h3>
         
         <h4>Get node affiliations</h4>
@@ -994,26 +1092,30 @@
             'xmpp.pubsub.affiliations',
             {
                 "to": "pubsub.evilprofessor.co.uk",
-                "node": "xmpp-ftw updates"
+             /* "node": "xmpp-ftw updates", */
+             /* "owner": true" */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
         
+        <p>Setting <strong>owner</strong to true allows the user to 
+        get a list of all node affiliations provided they are the owner 
+        of the node (otherwise an error is returned.</p>
+
         <p>A successful response will then be as follows:</p>
         
         <pre class="example">
-        {
-            affiliations: [
-                { 
-                    jid: { user: "lloyd", domain: "evilprofessor.co.uk", resource: "laptop" },
-                    affiliation: 'owner'
-                },
-                {
-                    jid: { user: "dev-kitty-1", domain: "evilprofessor.co.uk", resource: "lap" },
-                    affiliation: 'member'
-                }
-            ]
+        [
+            { 
+                jid: { user: "lloyd", domain: "evilprofessor.co.uk", resource: "laptop" },
+                affiliation: 'owner'
+           },
+           {
+                jid: { user: "dev-kitty-1", domain: "evilprofessor.co.uk", resource: "lap" },
+                affiliation: 'member'
+           }
+       ]
         }
         </pre>
         

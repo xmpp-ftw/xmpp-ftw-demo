@@ -639,7 +639,7 @@
             { "kind": "feature", "var": "vcard-temp" },
             { "kind": "feature", "var": "http://jabber.org/protocol/commands" },
             { "kind": "feature", "var": "jabber:iq:roster" },
-            { "kind": "x", "form": [] }
+            { "kind": "x", "form": {} }
         ]
         </pre>
         
@@ -778,7 +778,7 @@
         
         <pre class="example">
         {
-            "fields": []
+            "fields": {}
         }
         </pre>
         
@@ -831,6 +831,48 @@
             subscription: "subscribed",
         }      
         </pre> 
+
+        <h4>Subscription authorisation request</h4>
+
+        <p>If required, and if supported by the server, a node owner 
+        will receive a subscription authorisation request as follows:</p>
+
+        <pre class="in callback" message="xmpp.pubsub.push.authorisation">
+        socket.on('xmpp.pubsub.push.authorisation', function(data, callback) {
+            console.log(data)
+            callback( /* see below */
+        })
+        </pre>
+  
+        <p>With the data in the following format:</p>
+
+        <pre class="example">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            id: "approve1",
+            form: {}
+        }
+        </pre>
+         
+        <ul>
+        <li>The `<em>form</em>` property being parsed as a standard 
+        <a href="/data-form" title="Data form">data form</a>.</li>
+        <li>The data form will contain node information, therefore this 
+        is not included in the standard fields.</li>
+        </ul>
+
+        <p>In order to reply to a subscription authorisation request the 
+        callback function should be used as follows (actual field data 
+        will depend on received data form):</p>
+
+        <pre class="example">
+        [
+            { var: "pubsub#node", value: "xmpp-ftw updates" },
+            { var: "pubsub#subscriber_jid": value: "megan@evilprofessor.co.uk" },
+            { var: "pubsub#allow", value: "true" }
+        ]
+        </pre>
+
         <h3>Unsubscribe from a node</h3>
         
         <pre class="out callback" message="xmpp.pubsub.unsubscribe">
@@ -1030,7 +1072,7 @@
         {
             from: 'pubsub.evilprofessor.co.uk',
             node: 'weather',
-         /* configuration: [] */
+         /* configuration: {} */
         }
         </pre>
 

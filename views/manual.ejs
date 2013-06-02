@@ -719,6 +719,7 @@
             from: "pubsub.evilprofessor.co.uk",
             node: "xmpp-ftw updates",
          /* redirect: "xmpp:pubsub.evilprofessor.co.uk?;node=xmpp-ftw-news" */
+        }
         </pre>
  
         <h3>Subscribe to a node</h3>
@@ -819,7 +820,17 @@
         
         <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
         Once supported I will return and test.</p>
-        
+       
+        <h4>Subscription notification</h4>
+
+        <pre class="in" message="xmpp.pubsub.push.subscription">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates",
+            jid: "megan@evilprofessor.co.uk",
+            subscription: "subscribed",
+        }      
+        </pre> 
         <h3>Unsubscribe from a node</h3>
         
         <pre class="out callback" message="xmpp.pubsub.unsubscribe">

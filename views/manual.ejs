@@ -272,7 +272,7 @@
             {
                 "jid": "user@evilprofessor.co.uk",
              /* "name": "Example user", */
-             /* "groups: [ "example-users" ] */
+             /* "groups": [ "example-users" ] */
             },
             function(error, data) { console.log(error, data) }
         )
@@ -295,7 +295,7 @@
                jid: { user: 'user', domain: 'evilprofessor.co.uk' },
                subscription: 'both',
                name: 'Example user',
-               group: 'Buddies',
+               groups: [ 'Buddies', 'XMPP' ]
             /* ask = 'subscribe' */
           } ]
         </pre>
@@ -314,23 +314,30 @@
                jid: { user: 'user', domain: 'evilprofessor.co.uk' },
                subscription: 'both',
                name: 'Example user',
-               group: 'Buddies',
+               groups: [ 'Buddies' ],
             /* ask = 'subscribe' */
           }
         </pre>
         
         <h3>Add a user to a roster group</h3>
         
-        <pre class="out" message="xmpp.roster.group">
+        <p><strong>Note:</strong> Existing groups will be erased, therefore 
+        you must include all roster groups in this list.</p>
+
+        <pre class="out callback" message="xmpp.roster.group">
         socket.emit(
             'xmpp.roster.group',
             {
                 "jid": "user@evilprofessor.co.uk",
-                "group": "buddies"
-            }
+                "groups": [ "buddies", "colleagues" ]
+            }, 
+            function(error, data) { console.log(error, data) }
         )
         </pre>
         
+        <p>On success `<em>data</em>` will simply be 
+        <strong>true</strong>.</p>
+
         <h2>Multi-user chat (MUC) [XEP-0045]</h2>
         
         <h3>Join a room</h3>

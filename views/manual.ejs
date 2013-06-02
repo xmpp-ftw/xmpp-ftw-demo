@@ -1152,8 +1152,17 @@
         <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
         `<em>data</em>` will be <b>true</b>.</p>
         
-        <p><b>Note:</b> Whilst specification allows user to update several affiliation 
-        changes at once, only on per message is supported here. If required it can be 
-        added later.</p>
+        <p><b>Note:</b> Whilst specification allows user to update several 
+        affiliation changes at once, only on per message is supported 
+        here. If required it can be added later.</p>
         
+        <h4>Notification of affiliation changes</h4>
+
+        <pre class="in" message="xmpp.pubsub.push.affiliation">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates",
+            jid: "bad-person@evilprofessor.co.uk",
+            affiliation: "none"
+        </pre>        
 <% include ./partials/footer %>

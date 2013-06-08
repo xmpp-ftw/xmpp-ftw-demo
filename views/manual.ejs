@@ -157,7 +157,12 @@
         {
             from: 'user2@evilprofessor.co.uk',
             content: 'Hello fine Sir!',
-            format: 'plain'
+            format: 'plain',
+         /* delay: { 
+                from: 'evilprofessor.co.uk',
+                when: '2013-06-03T19:56Z',
+                reason: 'Offline storage'
+            } */
         }        
         </pre>
 
@@ -258,7 +263,10 @@
         <pre class="in" message="xmpp.presence.error">
         {
             "error":"remote-server-not-found",
-            "from":"user@niceprofessor.co.uk"
+            "from": {
+                "user": "user",
+                "domain": "niceprofessor.co.uk"
+            }
         }
         </pre>
 
@@ -302,8 +310,8 @@
         
         <h3>New incoming Roster request</h3>
         
-        <pre class="in" message="xmpp.roster.add">
-        socket.on('xmpp.roster.add', function(data) {
+        <pre class="in" message="xmpp.roster.push">
+        socket.on('xmpp.roster.push', function(data) {
             console.log(data);
         })
         </pre>

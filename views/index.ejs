@@ -45,6 +45,42 @@ within minutes. Please show nodejitsu some ❤. For more details see
   </li>
 </ul>
 
+<h2>Architecture</h2>
+
+<p>XMPP-FTW is made up of a group of modules. The main XMPP-FTW module 
+includes code for handling login/logout, presence, chat, and roster. In 
+addition to this it also includes small amounts of code to handle common 
+occurances in XMPP e.g. data forms (XEP-0004).</p>
+
+<p>All other code is (or is in the process of being) broken into 
+separate modules. The current status of the modules is listed below:</p>
+
+<p>
+    <a href="https://github.com/lloydwatkin/xmpp-ftw" target="_blank">
+    <img class="build-status" 
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" />
+    </a> The main XMPP-FTW repo. Handles authentication, roster, presence, 
+    and chat. Includes small pieces of code that are seen frequently in 
+    XMPP (e.g. data form parsing)
+</p>
+<p>
+    <a href="https://github.com/lloydwatkin/xmpp-ftw-disco" target="_blank">
+    <img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-disco.png" />
+    </a> DISCO (XEP-0030) extension for XMPP-FTW
+</p>
+
+<h3>Additional components</h3>
+
+<p>There are also several smaller components which can be used seperately to 
+XMPP-FTW which perform useful utility tasks. These are listed below:</p>
+
+<p>
+    <a href="https://github.com/lloydwatkin/xmpp-ftw-item-parser" target="_blank">
+    <img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-item-parser.png" />
+    </a> An extension used for building and parsing commmon pubsub stanzas
+</p>
 <h1>Blog posts/Talks</h1>
 
 <ul>

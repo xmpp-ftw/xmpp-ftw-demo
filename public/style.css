@@ -295,3 +295,9 @@ div.example-data {
     float: left;
     width: 150px;
 }
+
+img.build-status {
+  float: left;
+  margin-bottom: 30px;
+  margin-right: 5px;
+}

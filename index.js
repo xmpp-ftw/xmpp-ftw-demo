@@ -20,7 +20,7 @@ io.configure(function(){
 })
 
 var muc = require('xmpp-ftw/lib/multi-user-chat')
-var disco = require('xmpp-ftw/lib/disco')
+var disco = require('xmpp-ftw-disco')
 var pubsub = require('xmpp-ftw/lib/pubsub')
 var superfeedr = require('xmpp-ftw/lib/extensions/superfeedr')
 var buddycloud = require('xmpp-ftw/lib/extensions/buddycloud')

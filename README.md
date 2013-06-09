@@ -18,6 +18,20 @@ setup is only for trying xmpp-ftw out and may be slow as we need to go client â†
 
 [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-demo.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw-demo)
 
+# Components
+
+XMPP-FTW is built up of smaller components (although is currently in tne process of bieng split).
+
+The main module XMPP-FTW has code for login, roster, and presence as well as a few utilities that are used through most of XMPP.
+
+* XMPP-FTW: [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw)
+* DISCO (XEP-0030): [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-disco.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw-disco)
+
+## Additional
+
+* Item parser - builder and parser for "common" pubsub payloads
+  * [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-item-parser.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw-item-parser)
+
 # Run the demos locally
 
 * npm i xmpp-ftw-demo

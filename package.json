@@ -9,7 +9,8 @@
     "ejs-locals": "~1.0.2",
     "express": "~3.0.3",
     "xmpp-ftw": "*",
-    "cloneextend": "0.0.3"
+    "cloneextend": "0.0.3",
+    "xmpp-ftw-disco": "~0.1.0"
   },
   "repository": {
     "type": "git",

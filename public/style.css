@@ -296,6 +296,10 @@ div.example-data {
     width: 150px;
 }
 
+p.project-status {
+  min-height: 35px;
+}
+
 img.build-status {
   float: left;
   margin-bottom: 30px;

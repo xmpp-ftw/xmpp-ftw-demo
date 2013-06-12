@@ -19,7 +19,7 @@ io.configure(function(){
     ])
 })
 
-var muc = require('xmpp-ftw/lib/multi-user-chat')
+var muc = require('xmpp-ftw-muc')
 var disco = require('xmpp-ftw-disco')
 var pubsub = require('xmpp-ftw/lib/pubsub')
 var superfeedr = require('xmpp-ftw/lib/extensions/superfeedr')

@@ -11,7 +11,8 @@
     "xmpp-ftw": "*",
     "cloneextend": "0.0.3",
     "xmpp-ftw-disco": "*",
-    "node-stringprep": "~0.1.7"
+    "node-stringprep": "~0.1.7",
+    "xmpp-ftw-muc": "*"
   },
   "repository": {
     "type": "git",

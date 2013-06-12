@@ -27,6 +27,7 @@ The main module XMPP-FTW has code for login, roster, and presence as well as a f
 * XMPP-FTW: [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw)
 * DISCO (XEP-0030): [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-disco.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw-disco)
 * Multi User Chat / MUC (XEP-0045)  [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-muc.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw-muc)
+* Publish-Subscribe / PubSub (XEP-0060)  [![Build Status](https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-pubsub.png)](http://travis-ci.org/lloydwatkin/xmpp-ftw-pubsub)
 
 ## Additional
 

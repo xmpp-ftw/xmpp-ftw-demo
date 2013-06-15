@@ -501,6 +501,7 @@
         </pre>
         
         <p>Example:</p>
+
         <pre class="example">
         {
             'instructions': 'Reply with the following form',
@@ -519,7 +520,17 @@
             }
         }
         </pre>
-        
+
+        <p>If the user is already registerd then the response will look 
+        as follows:</p>
+
+        <pre class="example">
+        {
+            registered: true,
+            nick: 'lloydwatkin'
+        }
+        </pre>
+
         <h4>Perform registration</h4>
         
         <pre class="out callback" message="xmpp.muc.register">

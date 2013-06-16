@@ -457,20 +457,51 @@
         '<abbr title="urn:ietf:params:xml:ns:xmpp-stanzas">xmpp-stanzas</abbr>' namespaced 
         element, otherwise it will grab the 'type' attribute from the error tag.</p>
 
+        <h3>Retrieve a list of users with specified role</h3>
+
+        <pre class="out callback" message="xmpp.muc.role.get">
+        socket.emit(
+            'xmpp.muc.role.get', 
+            {   
+                "room": "xmpp@muc.evilprofessor.co.uk",
+                "role": "participant"
+            }, 
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Response will look as follows:</p>
+
+        <pre class="example">
+        [
+            {
+                affiliation: 'member',
+                jid: {
+                    user: 'megan',
+                    domain: 'evilprofessor.co.uk',
+                    resource: 'home'
+                },
+                nick: 'livelifevegan',
+                role: 'participant'
+            }
+        ]
+        </pre>
+
         <h3>Change a user's role</h3>
         
-        <pre class="out callback" message="xmpp.muc.role">
+        <pre class="out callback" message="xmpp.muc.role.set">
         socket.emit(
-            'xmpp.muc.role', 
+            'xmpp.muc.role.set', 
             {
                 "room": "test@conference.evilprofessor.co.uk",
                 "nick": "TheirNickname",
-                "role": "participant"
+                "role": "participant",
+             /* "reason": "Trusted friend" */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        <p>Success will be true and error `null` if all is ok.</p>
+        <p>`<em>data</em>` will be true and error <i>null</i> if all is ok.</p>
         
         <h3>Change a user's affiliation</h3>
         

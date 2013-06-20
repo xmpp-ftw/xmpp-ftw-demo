@@ -22,7 +22,7 @@ io.configure(function(){
 var muc = require('xmpp-ftw-muc')
 var disco = require('xmpp-ftw-disco')
 var pubsub = require('xmpp-ftw-pubsub')
-var superfeedr = require('xmpp-ftw/lib/extensions/superfeedr')
+var superfeedr = require('xmpp-ftw-superfeedr')
 var buddycloud = require('xmpp-ftw/lib/extensions/buddycloud')
 
 io.sockets.on('connection', function(socket) {

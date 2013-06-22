@@ -832,12 +832,11 @@
         
         <pre class="example">
         {
-            "fields": {}
+            "description": "Subscription options",
+            "title": "Node subscription",
+            "fields": []
         }
         </pre>
-        
-        <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
-        Once supported I will return and test.</p>
         
         <h4>Get default subscription configuration options</h4>
 
@@ -855,6 +854,12 @@
 
         <p>The response should then contain a
         <a href="/data-form" title="XEP-0004 Data Forms">data form</a>.</p>
+
+        <pre class="example">
+        { 
+            "fields": []
+        }
+        </pre>
  
         <h4>Update subscription options</h4>
         
@@ -872,9 +877,6 @@
         <p>See <a href="/data-forms" title="XEP-0004 Data Forms">data forms</a> for details about 
         formatting the outgoing message.</p>
         
-        <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
-        Once supported I will return and test.</p>
-       
         <h4>Notification of subscription change</h4>
 
         <pre class="in" message="xmpp.pubsub.push.subscription">

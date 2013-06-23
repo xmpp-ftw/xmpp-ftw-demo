@@ -14,7 +14,8 @@
     "node-stringprep": "~0.1.7",
     "xmpp-ftw-muc": "*",
     "xmpp-ftw-pubsub": "*",
-    "xmpp-ftw-superfeedr": "*"
+    "xmpp-ftw-superfeedr": "*",
+    "xmpp-ftw-buddycloud": "*"
   },
   "repository": {
     "type": "git",

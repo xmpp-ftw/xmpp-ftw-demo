@@ -1,5 +1,5 @@
 window.onload = function() {
-    socket = io.connect('//' + window.document.location.host);
+    socket = io.connect('//' + window.document.location.host)
 
     socket.on('error', function(error) { console.log(error) } )
 

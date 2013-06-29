@@ -192,7 +192,7 @@ $(document).ready(function() {
     getMessages('/manual/multi-user-chat', 2000)
     getMessages('/manual/publish-subscribe', 2000)
     getMessages('/manual/extensions', 2000)
-    getMessages('/manual/core)
+    getMessages('/manual/core')
     getMessages()
 
     socket = io.connect('//' + window.document.location.host);

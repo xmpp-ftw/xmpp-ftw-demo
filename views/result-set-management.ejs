@@ -3,5 +3,74 @@
 %>
 <% include ./partials/head %>
 
+    <div id="toc"></div>
 
+    <h2>Usage</h2>
+
+    <p>Only certain messages will make use or return 
+    data about RSM. These will be listed in the manual with that entry.</p>
+
+    <h2>XML to JSON</h2>
+
+    <p>RSM elements found in XMPP stanzas can be parsed and returned to the 
+    user as the third (optional) parameter in a callback, e.g.</p>
+
+    <pre class="example">
+    socket.emit('xmpp.pubsub.retrieve', data, function(error, items, rsm) { })
+    </pre>
+
+    <p>A RSM element such as this...</p>
+
+    <pre class="xml">
+    ...
+        &lt;set xmlns="http://jabber.org/protocol/rsm"&gt;
+            &lt;count&gt;99&lt;/max&gt;
+            &lt;first&gt;item-123&lt;/first&gt;
+            &lt;last&gt;item-173&lt;/last&gt;
+        &lt;/set&gt;
+    ...
+    </pre>
+
+    <p>Will be turned into the following:</p>
+
+    <pre class="example">
+    {
+        count: 99
+        first: "item-123",
+        last: "item-173"
+    }
+    </pre>
+ 
+    <h2>JSON to XML</h2>
+  
+    <p>In order to make use of RSM users must pass an <em>rsm</em> key as 
+    part of outgoing data. Please see the following examples:</p>
+
+    <pre class="example">
+    var data = {
+       rsm: {
+           max: 20,
+           before: 'item-21'
+       }
+    }
+    </pre>
+
+    <p>In XML this becomes:</p>
+
+    <pre class="xml">
+    ...
+        &lt;set xmlns="http://jabber.org/protocol/rsm"&gt;
+            &lt;max&gt;20&lt;/max&gt;
+            &lt;before&gt;item-21&lt;/before&gt;
+        &lt;/set&gt;
+    ...
+    </pre>
+
+    <p>The keys which can be used in the <strong>rsm</strong> key are: 
+    <em>before, after, max,</em> and <em>index</em>.</p>
+
+    <p>By passing a value of <strong>true</strong> for either <em>before</em> 
+    or <em>after</em> will result in a self closing element being sent. This 
+    can be used to select the last and first pages respectively.</p>
+ 
 <% include ./partials/footer %>

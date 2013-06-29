@@ -35,6 +35,7 @@ body {
 
 .footer-column-double {
     width: 66%;
+    margin-left: 33%;
 }
 
 h1, h2 {

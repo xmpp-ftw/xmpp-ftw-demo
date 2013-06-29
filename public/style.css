@@ -24,6 +24,19 @@ body {
     position: relative;
 }
 
+.container { 
+   overflow: auto;
+}
+
+.footer-column {
+    width: 33%;
+    float: left;
+}
+
+.footer-column-double {
+    width: 66%;
+}
+
 h1, h2 {
     border-bottom: 2px dashed #15b2e7;
     padding-bottom: 15px;
@@ -304,4 +317,23 @@ img.build-status {
   float: left;
   margin-bottom: 30px;
   margin-right: 5px;
+}
+
+/* Table styles */
+
+table td {
+  padding: 5px;
+}
+
+table thead th {
+  border-bottom: 5px #15b2e7 dashed;
+  padding-bottom: 10px;
+}
+
+
+table {
+  border: 5px #15b2e7 dashed;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
 }

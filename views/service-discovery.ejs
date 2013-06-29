@@ -1,0 +1,85 @@
+<% 
+    pageTitle = "XEP-0030 Service Discovery (DISCO)"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+ 
+        <h3>Discover Entities <em>disco#items</em></h3>
+        
+        <pre class="out callback" message="xmpp.discover.items">
+        socket.emit(
+            'xmpp.discover.items',
+            { 
+                "of": "evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Example response:</p>
+        
+        <pre class="example">
+        [
+            { jid: "conference.evilprofessor.co.uk" },
+            { jid: "conference.evilprofessor.co.uk", node: "posts" }
+        ]
+        </pre>
+
+        <h3>Discover Features <em>disco#info</em></h3>
+        
+        <pre class="out callback" message="xmpp.discover.info">
+        socket.emit(
+            'xmpp.discover.info',
+            { 
+                "of": "evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Example response:</p>
+        
+        <pre class="example">
+        [
+            { "kind": "identity", "type": "pep", "name": "Prosody", "category": "pubsub" },
+            { "kind": "identity", "type": "im", "name": "Prosody", "category": "server" },
+            { "kind": "feature", "var": "jabber:iq:register" },
+            { "kind": "feature", "var": "vcard-temp" },
+            { "kind": "feature", "var": "http://jabber.org/protocol/commands" },
+            { "kind": "feature", "var": "jabber:iq:roster" },
+            { "kind": "x", "form": {} }
+        ]
+        </pre>
+        
+        <h3>Features your client supports</h3>
+        
+        <p>
+        <pre class="in callback" message="xmpp.discover.client">
+        socket.on('xmpp.discover.client', function(data, callback) {
+            console.log(data)
+            callback(/*...see example below...*/)
+        })
+        </pre>
+        
+        <p>Example data sent from server:</p>
+        
+        <pre class="example">
+        {
+            from: 'lloyd@evilprofessor.co.uk/laptop'
+        }
+        </pre>
+        
+        <p>Example reply data (pass as argument to callback):</p>
+        
+        <pre class="example">
+        [
+            { "kind": "identity", "type": "pc", "name": "xmpp-ftw", "category": "client" },
+            { "kind": "feature", "var": "http://jabber.org/protocol/disco#info" },
+            { "kind": "feature", "var": "http://jabber.org/protocol/muc" }
+        ]
+        </pre>
+
+<% include ./partials/footer %>

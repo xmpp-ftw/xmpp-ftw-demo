@@ -1,0 +1,545 @@
+<% 
+    pageTitle = "XEP-0060 Publish-Subscribe (PubSub)"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+        
+        <h3>Create a node</h3>
+        
+        <pre class="out callback" message="xmpp.pubsub.create">
+        socket.emit(
+            'xmpp.pubsub.create',
+            { 
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+             /* "options": [] */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p><strong>options</strong> should be formatted as a data form 
+        in order to add node configuration options at creation time.</p>
+
+        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
+        `<em>data</em>` will be <b>true</b>.</p>
+
+        <p>In order to maintain simplicity create-and-configure a node is not currently supported.</p>
+        
+        <h3>Delete a node</h3>
+        
+        <pre class="out callback" message="xmpp.pubsub.delete">
+        socket.emit(
+            'xmpp.pubsub.delete',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+             /* "redirect": "xmpp:pubsub.evilprofessor.co.uk?;node=xmpp-ftw-news" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <h4>Notification of a delete</h4>
+
+        <p>On successful node delete notifications are sent out to all 
+        subscribed users.</p>
+
+        <pre class="in" message="xmpp.pubsub.push.delete">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates",
+         /* redirect: "xmpp:pubsub.evilprofessor.co.uk?;node=xmpp-ftw-news" */
+        }
+        </pre>
+ 
+        <h3>Subscribe to a node</h3>
+        
+        <pre class="out callback" message="xmpp.pubsub.subscribe">
+        socket.emit(
+            'xmpp.pubsub.subscribe',
+            {
+                "node": "xmpp-ftw updates",
+                "to": "pubsub.evilprofessor.co.uk",
+             /* "jid": "lloyd@evilprofessor.co.uk/sky" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If no JID is provided this defaults to the jid used to log in to the 
+        server with.</p>
+        
+        <p>If a subscription is successful then the response will look like the following:</p>
+        
+        <pre class="example">
+        {
+            "subscription": "subscribed",
+         /* "id" : "subscription-id" */
+        }
+        </pre>
+        
+        <p>Alternatively if configuration options are available the `<em>configuration</em>` key will be present. 
+        If configuration is required then the `<em>required</em>` sub-key will be <b>true</b>:</p>
+        
+        <pre class="example">
+        {
+            "subscription": "unconfigured",
+         /* "id": "subscription-id", */
+            "configuration": { "required": true }
+        }
+        </pre>
+        
+        <h4>Get subscription options</h4>
+        
+        <pre class="out callback" message="xmpp.pubsub.subscription.config.get">
+        socket.emit(
+            'xmpp.pubsub.subscription.config.get',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+             /* "jid": "lloyd@evilprofessor.co.uk/sky" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>The response should then contain a 
+        <a href="/data-form" title="XEP-0004 Data Forms">data form</a>.</p>
+        
+        <pre class="example">
+        {
+            "description": "Subscription options",
+            "title": "Node subscription",
+            "fields": []
+        }
+        </pre>
+        
+        <h4>Get default subscription configuration options</h4>
+
+        <pre class="out callback" message="xmpp.pubsub.subscription.config.default">
+        socket.emit(
+            'xmpp.pubsub.subscription.config.default",
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+
+        </pre>
+
+        <p>The response should then contain a
+        <a href="/data-form" title="XEP-0004 Data Forms">data form</a>.</p>
+
+        <pre class="example">
+        { 
+            "fields": []
+        }
+        </pre>
+ 
+        <h4>Update subscription options</h4>
+        
+        <pre class="out callback" message="xmpp.pubsub.subscription.config.set">
+        socket.emit(
+            'xmpp.pubsub.subscription.config.set',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+                "form": []
+             /* "jid": "lloyd@evilprofessor.co.uk/sky" */
+        )
+        </pre>
+        
+        <p>See <a href="/data-forms" title="XEP-0004 Data Forms">data forms</a> for details about 
+        formatting the outgoing message.</p>
+        
+        <h4>Notification of subscription change</h4>
+
+        <pre class="in" message="xmpp.pubsub.push.subscription">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates",
+            jid: "megan@evilprofessor.co.uk",
+            subscription: "subscribed",
+        }      
+        </pre> 
+
+        <h4>Subscription authorisation request</h4>
+
+        <p>If required, and if supported by the server, a node owner 
+        will receive a subscription authorisation request as follows:</p>
+
+        <pre class="in callback" message="xmpp.pubsub.push.authorisation">
+        socket.on('xmpp.pubsub.push.authorisation', function(data, callback) {
+            console.log(data)
+            callback( /* see below */
+        })
+        </pre>
+  
+        <p>With the data in the following format:</p>
+
+        <pre class="example">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            id: "approve1",
+            form: {}
+        }
+        </pre>
+         
+        <ul>
+        <li>The `<em>form</em>` property being parsed as a standard 
+        <a href="/data-form" title="Data form">data form</a>.</li>
+        <li>The data form will contain node information, therefore this 
+        is not included in the standard fields.</li>
+        </ul>
+
+        <p>In order to reply to a subscription authorisation request the 
+        callback function should be used as follows (actual field data 
+        will depend on received data form):</p>
+
+        <pre class="example">
+        [
+            { var: "pubsub#node", value: "xmpp-ftw updates" },
+            { var: "pubsub#subscriber_jid": value: "megan@evilprofessor.co.uk" },
+            { var: "pubsub#allow", value: "true" }
+        ]
+        </pre>
+
+        <h3>Unsubscribe from a node</h3>
+        
+        <pre class="out callback" message="xmpp.pubsub.unsubscribe">
+        socket.emit(
+            'xmpp.pubsub.unsubscribe',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+             /* "jid": "lloyd@evilprofessor.co.uk/sky", */
+             /* "id": "subscription-id" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If there is no error `<em>data</em>` will simply be <b>true</b>.
+
+        <h3>Publishing</h3>
+        
+        <p>For information on publishing formats see the page on 
+        <a href="/publishing">publishing</a>.</p>
+        
+        <pre class="out callback" message="xmpp.pubsub.publish">
+        socket.emit(
+            'xmpp.pubsub.publish',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+                "content": "We can now post to a pub-sub node!",
+             /* "id": "1" */
+             /* "options": [] */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Providing a '<em>id</em>' attribute will allow you to 
+        set post ID# rather than accept a server auto-generated value.</p>
+
+        <p><strong>options</strong> should be formatted as a data form 
+        and allows the user to set publish options.</p>
+        
+        <p>A successful post will result in the following response:</p>
+        
+        <pre class="example">
+        {
+            "id": "1"
+        }
+        </pre>
+ 
+        <h4>Notification of new messages</h4>
+
+        <p>When an item is published to a node that your user is 
+        subscribed to then a message will be received with item 
+        details.</p>
+
+        <pre class="in" message="xmpp.pubsub.push.item">
+        socket.on('xmpp.pubsub.push.item', function(data) {
+            console.log(data)
+        })        
+        </pre>
+
+        <p>The item itself is parsed by `<em>xmpp-ftw-item-parser</em>` 
+        and is held in the <strong>item</strong> key if the payload 
+        is included.</p>
+
+        <pre class="example">
+        {
+            from: 'pubsub.evilprofessor.co.uk',
+            node: 'weather',
+            id:   '201305301825',
+         /* entry: ...as parsed by xmpp-ftw-item-parser... */
+         /* headers: [ { name: 'SubID', value: '123-abc' } ], */
+         /* publisher: "lloyd@evilprofessor.co.uk" */ 
+        }
+        </pre>
+
+        <h3>Delete an item</h3>
+        
+        <pre class="out callback" message="xmpp.pubsub.item.delete">
+        socket.emit(
+            'xmpp.pubsub.item.delete',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+                "id": "1"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If deletion is sucessful then `<em>data</em>` will simply be <b>true</b>.</p>
+        
+        <h4>Item deletion notification</h4>
+
+        <p>If an item is successfully deleted from a node then all 
+        subscribers will be notified of this event (configuration 
+        dependent).</p>
+ 
+        <pre class="in" message="xmpp.pubsub.push.retract">
+        socket.on('xmpp.pubsub.push.retract', function(data) {
+            console.log(data)
+        })
+        </pre>
+
+        <p>With the payload as follows:</p>
+ 
+        <pre class="example">
+        {
+            node: 'weather',
+            from: 'pubsub.evilprofessor.co.uk',
+            id: '201305301825'
+        }
+        </pre>
+
+        <h3>Purge node items</h3>
+
+        <pre class="out callback" message="xmpp.pubsub.purge">
+        socket.emit(
+            'xmpp.pubsub.purge', 
+            {
+
+            }, 
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>If purge is sucessful then `<em>data</em>` will be 
+        <strong>true</strong>.</p>
+
+        <h4>Notification of purged node</h4>
+
+        <pre class="in" message="xmpp.pubsub.push.purge">
+        socket.on('xmpp.pubsub.purge', function(data) { console.log(data) } 
+        </pre>
+ 
+        <p>With the payload as follows:</p>
+
+        <pre class="example">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates"
+        }
+        </pre>
+
+        <h3>Node Configuration</h3>
+        
+        <h4>Get node configuration</h4>
+        
+        <pre class="out callback" message="xmpp.pubsub.config.get">
+        socket.emit(
+            'xmpp.pubsub.config.get',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
+        Once supported I will return and test.</p>
+        
+        <h4>Set node configuration</h4>
+        
+        <pre class="out callback" message="xmpp.pubsub.config.set">
+        socket.emit(
+            'xmpp.pubsub.config.set',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+                "form": []
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If configuration update is sucessful then `<em>data</em>` will simply be <b>true</b>.</p>
+        
+        <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
+        Once supported I will return and test.</p>
+       
+        <h5>Node configuration update notification</h5>
+
+        <p>On update of a node's configuration then a notification will be 
+        sent to all node subscribers.</p>
+
+        <pre class="in" message="xmpp.pubsub.push.configuration">
+        socket.on('xmpp.pubsub.push.configuration', function(data) {
+            console.log(data)
+        })
+        </pre> 
+
+        <p>With data looking as follows:</p>
+
+        <pre class="example">
+        {
+            from: 'pubsub.evilprofessor.co.uk',
+            node: 'weather',
+         /* configuration: {} */
+        }
+        </pre>
+
+        <p><strong>configuration</strong> if provided will match the parsing 
+        of other <a href="/data-forms" title="Data forms">data forms</a>.</p>
+
+        <h3>Item Retrieval</h3>
+        
+        <h4>Get item(s)</h4>
+        
+        <pre class="out callback" message="xmpp.pubsub.retrieve">
+        socket.emit(
+            'xmpp.pubsub.retrieve',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+             /* "id": "1" ...OR... [ "1", "3", "5" ], */
+             /* "max_items": 10 */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If a single item is required then the '<em>id</em>' attribute should be populated.</p>
+
+        <pre class="example">
+        [
+            { id: 123, entry: {} }
+        ]
+        </pre>
+
+        <p>Where <strong>entry</strong> is parsed by 
+        `xmpp-ftw-item-parser`.</p>
+
+        <h3>Subscriptions</h3>
+
+        <h4>Get subscriptions</h4>
+
+        <pre class="out callback" message="xmpp.pubsub.subscriptions">
+        socket.emit(
+            'xmpp.pubsub.subscriptions',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates", */
+             /* "owner": true */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Setting <strong>owner</strong> to true will return information 
+        about all 
+        subscriptions to that node. This is provided you are the owner of 
+        the node, otherwise an error will be returned.</p>
+
+        <p>A successful response will then be as follows:</p>
+
+        <pre class="example">
+        [
+            { node: "xmpp-ftw updates", jid: "lloyd@evilprofessor.co.uk", subscription: "subscribed" }
+            { node: "weather", jid: "lloyd@evilprofessor.co.uk", subscription: "pending", id: "123" }
+        ]
+        </pre>
+
+        <h3>Affiliations</h3>
+        
+        <h4>Get node affiliations</h4>
+        
+        <pre class="out callback" message="xmpp.pubsub.affiliations">
+        socket.emit(
+            'xmpp.pubsub.affiliations',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+             /* "node": "xmpp-ftw updates", */
+             /* "owner": true" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Setting <strong>owner</strong> to true allows the user to 
+        get a list of all node affiliations provided they are the owner 
+        of the node (otherwise an error is returned.</p>
+
+        <p>A successful response will then be as follows:</p>
+        
+        <pre class="example">
+        [
+            { 
+                jid: { user: "lloyd", domain: "evilprofessor.co.uk", resource: "laptop" },
+                affiliation: 'owner'
+           },
+           {
+                jid: { user: "dev-kitty-1", domain: "evilprofessor.co.uk", resource: "lap" },
+                affiliation: 'member'
+           }
+       ]
+        }
+        </pre>
+        
+        <p>Note: I <strong>can not currently test this</strong> as Prosody 0.9 does not support it. 
+        Once supported I will return and test.</p>
+        
+        <h4>Set node affiliation</h4>
+      
+        <pre class="out callback" message="xmpp.pubsub.affiliation">
+        socket.emit(
+            'xmpp.pubsub.affiliation',
+            {
+                "to": "pubsub.evilprofessor.co.uk",
+                "node": "xmpp-ftw updates",
+                "jid": "troll@underthebrid.ge",
+                "affiliation": "outcast"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
+        `<em>data</em>` will be <b>true</b>.</p>
+        
+        <p><b>Note:</b> Whilst specification allows user to update several 
+        affiliation changes at once, only on per message is supported 
+        here. If required it can be added later.</p>
+        
+        <h4>Notification of affiliation changes</h4>
+
+        <pre class="in" message="xmpp.pubsub.push.affiliation">
+        {
+            from: "pubsub.evilprofessor.co.uk",
+            node: "xmpp-ftw updates",
+            jid: "bad-person@evilprofessor.co.uk",
+            affiliation: "none"
+        </pre>        
+
+<% include ./partials/footer %>

@@ -25,6 +25,15 @@ var pubsub = require('xmpp-ftw-pubsub')
 var superfeedr = require('xmpp-ftw-superfeedr')
 var buddycloud = require('xmpp-ftw-buddycloud')
 
+var versions = {
+    'xmpp-ftw': require('xmpp-ftw/package.json').version,
+    'xmpp-ftw-disco': require('xmpp-ftw-disco/package.json').version,
+    'xmpp-ftw-muc': require('xmpp-ftw-muc/package.json').version,
+    'xmpp-ftw-pubsub': require('xmpp-ftw-pubsub/package.json').version,
+    'xmpp-ftw-superfeedr': require('xmpp-ftw-superfeedr/package.json').version,
+    'xmpp-ftw-buddycloud': require('xmpp-ftw-buddycloud/package.json').version
+}
+
 io.sockets.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket);
      xmppFtw.addListener(new muc())
@@ -75,11 +84,6 @@ app.get('/', function(req, res) {
     res.render('index', options)
 })
 
-app.get('/manual', function(req, res) {
-    var options = cloneextend.clone(configuration)
-    res.render('manual', options)
-})
-
 app.get('/demo', function(req, res) {
     var options = cloneextend.clone(configuration)
     res.render('demo', options)
@@ -90,20 +94,65 @@ app.get('/chat', function(req, res) {
     res.render('chat', options)
 })
 
+
+app.get('/manual', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    options.versions = versions
+    res.render('manual', options)
+})
+
+app.get('/manual/core', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('core', options)
+})
+
+app.get('/manual/multi-user-chat', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('multi-user-chat', options)
+})
+
+app.get('/manual/publish-subscribe', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('publish-subscribe', options)
+})
+
+app.get('/manual/service-discovery', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('service-discovery', options)
+})
+
 app.get('/data-forms', function(req, res) {
+    res.redirect('/manual/data-forms')
+})
+
+app.get('/manual/data-forms', function(req, res) {
     var options = cloneextend.clone(configuration)
     res.render('data-forms', options)
 })
 
+app.get('/manual/result-set-management', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('result-set-management', options)
+})
+
 app.get('/extensions', function(req, res) {
+    res.redirect('/manual/extensions')
+})
+
+app.get('/manual/extensions', function(req, res) {
     var options = cloneextend.clone(configuration)
     res.render('extensions', options)
 })
 
 app.get('/publishing', function(req, res) {
-    var options = cloneextend.clone(configuration)
-    res.render('publishing', options)
+    res.redirect('/manual/item-parser')
 })
+
+app.get('/manual/item-parser', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('item-parser', options)
+})
+
 
 app.get('/*', function(req, res) {
     res.send(404)

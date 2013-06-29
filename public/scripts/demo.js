@@ -188,7 +188,11 @@ var clearForm = function() {
 $(document).ready(function() {
     console.log("Page loaded...")
 
-    getMessages('/extensions', 2000)
+    getMessages('/manual/service-discovery', 2000)
+    getMessages('/manual/multi-user-chat', 2000)
+    getMessages('/manual/publish-subscribe', 2000)
+    getMessages('/manual/extensions', 2000)
+    getMessages('/manual/core)
     getMessages()
 
     socket = io.connect('//' + window.document.location.host);

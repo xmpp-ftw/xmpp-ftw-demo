@@ -1,10 +1,10 @@
 window.onload = function() {
-    socket = io.connect('//' + window.document.location.host);
+    socket = io.connect('//' + window.document.location.host)
 
     socket.on('error', function(error) { console.log(error) } )
 
     socket.on('connect', function(data) {
-        console.log('connected');
+        console.log('connected')
     })
 
     socket.on('connect.fail', function(reason) {

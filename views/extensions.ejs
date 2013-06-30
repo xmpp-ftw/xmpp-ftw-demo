@@ -238,6 +238,23 @@
         socket.emit('xmpp.buddycloud.presence', {})
         </pre>
 
+        <h3>Publishing to a node</h3>
+
+        <pre class="out callback" message="xmpp.buddycloud.publish">
+        socket.emit(
+            'xmpp.buddycloud.publish',
+            {
+                "node": "/user/lloyd@buddycloud.org/posts",
+                "content": {
+                    "atom": {
+                        "content": "Posting from XMPP-FTW"
+                    },
+                    "in-reply-to": { "ref": "1234-5678-9087-6543" }
+                }
+            },
+            function(error, data) { console.log(error, data) }
+        </pre>
+
         <h3>Subscribe to a node</h3>
 
         <pre class="out callback" message="xmpp.buddycloud.subscribe">

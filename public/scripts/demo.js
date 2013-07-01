@@ -20,7 +20,10 @@ var parsePage = function(data) {
         $(ele).find('pre.out').each(function(i, message) {
             var example = $(message).text().split($(message).attr('message') + "',")[1]
             if (example) {
-                example = example.split('function(error, data) { console.log(error, data) }')[0].trim().slice(0, -1)
+                var splitString = (-1 === example.indexOf(', rsm)')) ?
+                    'function(error, data) { console.log(error, data) }' :
+                    'function(error, data) { console.log(error, data, rsm) }'
+                example = example.split(splitString)[0].trim().slice(0, -1)
             }
             var out = {
                 value: $(message).attr('message'),
@@ -76,7 +79,9 @@ var addMessage = function(message, direction, data, callback) {
             + '<div class="data"></div>'
             + '</div>')
     html.addClass(direction)
-    html.find('.data').html(JSON.stringify(data, undefined, 2).replace(/\n/g, "<br/>"))
+    html.find('.data').html(
+        JSON.stringify(data, undefined, 2).replace(/\n/g, "<br/>")
+    )
     html.find('.message').html(message)
     
     var id = messageCount
@@ -160,7 +165,7 @@ $('#send').on('click', function() {
     console.debug('OUT: ', '(id=' + id + ')', message, parsed)
     if (true == callback) {
         console.time('id=' + id)
-        socket.emit(message, parsed, function(error, data) {
+        socket.emit(message, parsed, function(error, data, rsm) {
             var callback = $('#' + id).find('.callback')
             if (error) {
                 callback.addClass('error')
@@ -168,8 +173,12 @@ $('#send').on('click', function() {
             } else {
                 callback.addClass('success')
                 callback.html(JSON.stringify(data, null, 2).replace(/\n/g, '<br/>'))
+                if (null != rsm) {
+                    callback.addClass('rsm')
+                    callback.attr('title', JSON.stringify(rsm))
+                }
             }
-            console.log('Response', '(id=' + id + ')', error, data)
+            console.log('Response', '(id=' + id + ')', error, data, rsm)
             console.timeEnd('id=' + id)
         })
     } else {

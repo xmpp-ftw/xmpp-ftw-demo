@@ -338,3 +338,12 @@ table {
   padding: 10px;
   border-radius: 5px;
 }
+
+.rsm {
+  background-image: url('/img/page.png');
+  background-repeat: no-repeat;
+  background-position-x: 223px;
+  background-position-y: 5px;
+  background-size: 20px;
+  cursor: help;
+}

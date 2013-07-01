@@ -22,7 +22,7 @@ var parsePage = function(data) {
             if (example) {
                 var splitString = (-1 === example.indexOf(', rsm)')) ?
                     'function(error, data) { console.log(error, data) }' :
-                    'function(error, data) { console.log(error, data, rsm) }'
+                    'function(error, data, rsm) { console.log(error, data, rsm) }'
                 example = example.split(splitString)[0].trim().slice(0, -1)
             }
             var out = {

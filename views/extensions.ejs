@@ -333,6 +333,53 @@
         }
         </pre>
 
+        <h4>Retrieve recent items</h4>
+
+        <p>Retrieve recent items for subscribed nodes by requesting using 
+        the following event name (this message supports 
+        <a href="/manual/result-set-management" 
+           title="Result set management">RSM</a>):</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.items.recent">
+        socket.emit(
+            'xmpp.buddycloud.items.recent',
+            {
+              /* "max": 50, */
+              /* "since": "2013-07-01 16:02:00" */
+            },
+            function(error, data, rsm) { console.log(error, data, rsm) }
+        )
+        </pre>
+
+        <p>Whilst both <em>max</em> and <em>since</em> are optional it is 
+        suggested values are provided. <em>max</em> will default to 
+        <strong>30</strong> if not set, whilst <em>since</em> will default 
+        to <strong>1st January 2000</strong> if not set. <em>since</em> will 
+        accept any string which can be parsed by <code>Date.parse()</code>.</p>
+
+        <p>Output data has the following format:</p>
+
+        <pre class="example">
+        [
+            {
+                node: '/user/lloyd@evilprofessor.co.uk/posts',
+                id: 'item-1',
+                entry: //... a parsed by xmpp-ftw-item-parser ...//
+            },
+            {
+                node: '/user/megan@evilprofessor.co.uk/posts',
+                id: 'item-3',
+                entry: //... a parsed by xmpp-ftw-item-parser ...//
+            },
+            {
+                node: '/user/lloyd@evilprofessor.co.uk/posts',
+                id: 'item-5',
+                entry: //... a parsed by xmpp-ftw-item-parser ...//
+            },      
+
+        ]
+        </pre>
+
         <h4>Delete an item</h4>
   
         <pre class="out callback" message="xmpp.buddycloud.item.delete">

@@ -380,6 +380,32 @@
         ]
         </pre>
 
+        <h4>Item Replies</h4>
+
+        <p>Retrieve all replies to a post as follows (RSM supported):</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.items.replies">
+        socket.emit(
+            'xmpp.buddycloud.items.replies',
+            {
+                "node": "/user/lloyd@evilprofessor.co.uk/posts",
+                "id": "1234-5678-9012-3456"
+            },
+            function(error, data, rsm) { console.log(error, data, rsm) }
+        )
+        </pre>
+
+        <p>Responses then look like the following:</p>
+
+        <pre class="example">
+        [
+            { 
+                id: '1234-5678-9012-3457',
+                entry: //... as parsed by xmpp-ftw-item-parser ...//
+            }
+        ]
+        </pre>
+
         <h4>Delete an item</h4>
   
         <pre class="out callback" message="xmpp.buddycloud.item.delete">

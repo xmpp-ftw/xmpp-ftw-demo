@@ -441,9 +441,15 @@
         <p>If a single item is required then the '<em>id</em>' 
         attribute should be populated.</p>
 
+        <p>The response then appears as follows:</p>
+
         <pre class="example">
         [
-            { id: 123, entry: {} }
+            {
+                id: 'item-123',
+                entry: {},
+             /* publisher: 'romeo@example.com' */
+            }
         ]
         </pre>
 

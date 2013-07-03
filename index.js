@@ -152,8 +152,12 @@ app.get('/manual/item-parser', function(req, res) {
     var options = cloneextend.clone(configuration)
     res.render('item-parser', options)
 })
-
-
 app.get('/*', function(req, res) {
     res.send(404)
+})
+
+process.on('uncaughtException', function(error) {
+    // Try and prevent issues crashing the whole system 
+    // for other users too
+    console.error(error)
 })

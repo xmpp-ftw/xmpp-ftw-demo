@@ -251,7 +251,9 @@
             function(error, data) { console.log(error, data) }
         </pre>
 
-        <h3>Subscribe to a node</h3>
+        <h3>Subscriptions</h3>
+
+        <h4>Subscribe to a node</h4>
 
         <pre class="out callback" message="xmpp.buddycloud.subscribe">
         socket.emit(
@@ -272,7 +274,7 @@
         }
         </pre>
 
-        <h3>Unsubscribe from a node</h3>
+        <h4>Unsubscribe from a node</h4>
 
         <pre class="out callback" message="xmpp.buddycloud.unsubscribe">
         socket.emit(
@@ -286,6 +288,78 @@
       
         <p>If there is no `<em>error</em>` then `<em>data</em>` will 
         simply be true.</p>
+
+        <h4>Get subscriptions</h4>
+
+        <p>This method supports RSM.</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.subscriptions">
+        socket.emit(
+            'xmpp.buddycloud.subscriptions',
+            {
+             /* "node": "xmpp-ftw updates", */
+             /* "owner": true */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Setting <strong>owner</strong> to true will return information 
+        about all subscriptions to that node. This is provided you are 
+        the owner of the node, otherwise an error will be returned.</p>
+
+        <p>A successful response will then be as follows:</p>
+
+        <pre class="example">
+        [
+            { 
+                node: "/user/lloyd@evilprofessor.co.uk/posts", 
+                jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
+                subscription: "subscribed"
+            },
+            { 
+                node: "/user/megan@evilprofessor.co.uk/posts",
+                jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
+                subscription: "pending"
+            }
+        ]
+        </pre>
+
+        <h3>Affiliations</h3>
+        
+        <h4>Get node affiliations</h4>
+        
+        <p>This method supports RSM.</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.affiliations">
+        socket.emit(
+            'xmpp.buddycloud.affiliations',
+            {
+             /* "node": "/user/lloyd@evilprofessor.co.uk/posts", */
+             /* "owner": true" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Setting <strong>owner</strong> to true allows the user to 
+        get a list of all node affiliations provided they are the owner 
+        of the node (otherwise an error is returned.</p>
+
+        <p>A successful response will then be as follows:</p>
+        
+        <pre class="example">
+        [
+           { 
+                jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
+                affiliation: 'owner'
+           },
+           {
+                jid: { user: "dev-kitty-1", domain: "evilprofessor.co.uk" },
+                affiliation: 'member'
+           }
+        ]
+        </pre>
 
         <h3>Items</h3>
 

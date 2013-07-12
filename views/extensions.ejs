@@ -234,6 +234,25 @@
         socket.emit('xmpp.buddycloud.presence', {})
         </pre>
 
+        <h3>Create a node</h3>
+
+        <pre class="out callback" message="xmpp.buddycloud.create">
+        socket.emit(
+            'xmpp.buddycloud.create',
+            { 
+                "node": "xmpp-ftw updates",
+             /* "options": [] */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p><strong>options</strong> should be formatted as a data form 
+        in order to add node configuration options at creation time.</p>
+
+        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
+        `<em>data</em>` will be <b>true</b>.</p>
+
         <h3>Publishing to a node</h3>
 
         <pre class="out callback" message="xmpp.buddycloud.publish">

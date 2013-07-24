@@ -402,6 +402,9 @@
         possible to inject your own parser.  Additonal features of the 
         item will be come available as this project adds support.</p>
 
+        <p>Unlike `xmpp-ftw-pubsub` items will always include a 
+        <strong>node</strong> key.</p>
+
         <h4>Notification of new messages</h4>
 
         <p>When an item is published to a node that your user is
@@ -419,8 +422,8 @@
 
         <pre class="example">
         {
-            from: 'pubsub.evilprofessor.co.uk',
-            node: 'weather',
+            from: 'channels.evilprofessor.co.uk',
+            node: '/user/weather@server.com/posts',
             id:   '201305301825',
             item: ...as parsed by xmpp-ftw-item-parser...
         }
@@ -494,6 +497,7 @@
         [
             {
                 id: '1234-5678-9012-3457',
+                node: "/user/lloyd@evilprofessor.co.uk/posts",
                 entry: //... as parsed by xmpp-ftw-item-parser ...//
             }
         ]
@@ -521,6 +525,7 @@
             { 
                 id: '1234-5678-9012-3457',
                 entry: //... as parsed by xmpp-ftw-item-parser ...//
+                node: "/user/lloyd@evilprofessor.co.uk/posts",
             }
         ]
         </pre>

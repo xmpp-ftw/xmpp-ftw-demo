@@ -22,6 +22,7 @@ io.configure(function(){
 var muc = require('xmpp-ftw-muc')
 var disco = require('xmpp-ftw-disco')
 var pubsub = require('xmpp-ftw-pubsub')
+var register = require('xmpp-ftw-register')
 var superfeedr = require('xmpp-ftw-superfeedr')
 var buddycloud = require('xmpp-ftw-buddycloud')
 
@@ -31,14 +32,16 @@ var versions = {
     'xmpp-ftw-muc': require('xmpp-ftw-muc/package.json').version,
     'xmpp-ftw-pubsub': require('xmpp-ftw-pubsub/package.json').version,
     'xmpp-ftw-superfeedr': require('xmpp-ftw-superfeedr/package.json').version,
-    'xmpp-ftw-buddycloud': require('xmpp-ftw-buddycloud/package.json').version
+    'xmpp-ftw-buddycloud': require('xmpp-ftw-buddycloud/package.json').version,
+    'xmpp-ftw-register': require('xmpp-ftw-register/package.json').version
 }
 
 io.sockets.on('connection', function(socket) {
-     var xmppFtw = new xmpp.Xmpp(socket);
+     var xmppFtw = new xmpp.Xmpp(socket)
      xmppFtw.addListener(new muc())
      xmppFtw.addListener(new disco())
      xmppFtw.addListener(new pubsub())
+     xmppFtw.addListener(new register())
      xmppFtw.addListener(new superfeedr())
      xmppFtw.addListener(new buddycloud())
 })
@@ -114,6 +117,11 @@ app.get('/manual/multi-user-chat', function(req, res) {
 app.get('/manual/publish-subscribe', function(req, res) {
     var options = cloneextend.clone(configuration)
     res.render('publish-subscribe', options)
+})
+
+app.get('/manual/in-band-registration', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('in-band-registration', options)
 })
 
 app.get('/manual/service-discovery', function(req, res) {

@@ -14,6 +14,7 @@
     "node-stringprep": "~0.1.7",
     "xmpp-ftw-muc": "*",
     "xmpp-ftw-pubsub": "*",
+    "xmpp-ftw-register": "*",
     "xmpp-ftw-superfeedr": "*",
     "xmpp-ftw-buddycloud": "*"
   },

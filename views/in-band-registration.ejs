@@ -1,0 +1,42 @@
+<% 
+    pageTitle = "XEP-0077 In-Band Registration"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+ 
+        <h3>Get registration information</h3>
+        
+        <pre class="out callback" message="xmpp.register.get">
+        socket.emit(
+            'xmpp.register.get',
+            { 
+                "to": "evilprofessor.co.uk"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>Example response:</p>
+        
+        <pre class="example">
+        {
+          instructions: 'Please provider username, email, password',
+          email: true,
+          username: true,
+          password: true
+        }
+        </pre>
+
+        <p>For an already registered entity the response may look like this:</p>
+        
+        <pre class="example">
+        {
+            email: 'lloyd@evilprofessor.co.uk',
+            username: 'lloydwatkin',
+            password: 'xmpp-ftw-password',
+            registered: true
+        }
+        </pre>
+
+<% include ./partials/footer %>

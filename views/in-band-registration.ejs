@@ -28,6 +28,10 @@
         }
         </pre>
 
+        <p>Registration information can also be returned with a 
+        <a href="/manual/data-forms">data form</a> which will be 
+        provided under the <em>form</em> key.</p>
+
         <p>For an already registered entity the response may look like this:</p>
         
         <pre class="example">
@@ -38,5 +42,35 @@
             registered: true
         }
         </pre>
+
+        <h3>Register</h3>
+
+        <p>One you are ready to register then registration can be 
+        performed with data matching that from <em>xmpp.register.get</em> 
+        information.</p>
+
+        <pre class="out callback" message="xmpp.register.set">
+        socket.emit(
+            'xmpp.register.set',
+            {
+                "to": "evilprofessor.co.uk",
+             /* "email": "lloyd@evilprofessor.co.uk", */
+             /* "username": "lloydwatkin",            */
+             /* "password": "xmpp-ftw-password",      */
+             /* "form": [ ]                           */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>All data, other than <em>to</em> here is optional as it 
+        depends on the information requested by the service. 
+        <a href="/manual/data-forms">Data forms</a> can be passed 
+        back using the standard <strong>xmpp-ftw</strong> format 
+        (with <em>FORM_TYPE</em> field not required).</p>
+
+        <p>A successful request will result in the <strong>data</strong> 
+        argument having a property of <em>registered</em> which will equal 
+        <strong>true</strong>.</p>
 
 <% include ./partials/footer %>

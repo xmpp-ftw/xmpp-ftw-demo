@@ -73,4 +73,38 @@
         argument having a property of <em>registered</em> which will equal 
         <strong>true</strong>.</p>
 
+        <h3>Unregister</h3>
+
+        <p>It is possible to unregister from an entity as follows:</p>
+
+        <pre class="out callback" message="xmpp.register.unregister">
+        socket.emit(
+            'xmpp.register.unregister',
+            {
+                "to": "evilprofessor.co.uk",
+             /* "form": [] */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Should unregistering succeed then the <em>data</em> argument will 
+        simply be <strong>true</strong>. However if unregistering fails it 
+        may include a data form to be submitted in order to unregister as 
+        follows:</p>
+
+        <pre class="example">
+        {
+            type: "cancel",
+            condition: "not-allowed",
+            form: {
+                /* ... standard data form ... */
+            }
+        }
+        </pre>
+
+        <p>In order to complete unregistering process make the same 
+        <strong>xmpp.register.unregister</strong> again with the 
+        <em>form</em> parameter completed.</p>
+
 <% include ./partials/footer %>

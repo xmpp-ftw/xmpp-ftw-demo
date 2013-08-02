@@ -1,0 +1,56 @@
+<% 
+    pageTitle = "XEP-0066 Out of band data (OOB)"
+%>
+<% include ./partials/head %>
+
+    <div id="toc"></div>
+
+    <h2>Usage</h2>
+
+    <p><abbr title="Out of band">OOB</abbr> will always be set under the 
+    <em>oob</em> property of any data objects.</p>
+
+    <h2>XML to JSON</h2>
+
+    <p>Both namespaces are handled (<strong>jabber:iq:oob</strong> and 
+    <strong>jabber:x:oob</strong>) with <strong>jabber:iq:oob</strong> 
+    also having a parameter for <em>sid</em> (stream ID).</p>
+
+    <pre class="xml">
+    ...
+        &lt;query xmlns="jabber:iq:oob" sid="stream-id-1"&gt;
+            &lt;url&gt;http://www.evilprofessor.co.uk&lt;/url&gt;
+            &lt;desc&gt;Link description&lt;/desc&gt;
+        &lt;/query&gt;
+    ...
+    </pre>
+
+    <pre class="xml">
+    ...
+        &lt;x xmlns="jabber:x:oob"&gt;
+            &lt;url&gt;http://www.evilprofessor.co.uk&lt;/url&gt;
+            &lt;desc&gt;Link description&lt;/desc&gt;
+        &lt;/x&gt;
+    ...
+    </pre>
+
+    <p>Will be turned into the following:</p>
+
+    <pre class="example">
+    {
+        url: "http://www.evilprofessor.co.uk"
+        description: "Link description",
+        stream: "stream-id-1"
+    }
+    </pre>
+ 
+    <p>With <em>stream</em> only being supported for 
+    <strong>jabber:iq:oob</strong> namespace. All parameters are 
+    optional (<a href="http://xmpp.org/extensions/xep-0066.html">XEP-0066</a> 
+    states that only <strong>url</strong> is required).</p>
+
+    <h2>JSON to XML</h2>
+  
+    <p>Not currently built.</p>
+ 
+<% include ./partials/footer %>

@@ -143,6 +143,11 @@ app.get('/manual/result-set-management', function(req, res) {
     res.render('result-set-management', options)
 })
 
+app.get('/manual/out-of-band-data', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('out-of-band-data', options)
+})
+
 app.get('/extensions', function(req, res) {
     res.redirect('/manual/extensions')
 })

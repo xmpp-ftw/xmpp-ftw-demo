@@ -61,6 +61,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://xmpp-ftw.jit.su/manual/out-of-band-data</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://xmpp-ftw.jit.su/manual/extensions</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>

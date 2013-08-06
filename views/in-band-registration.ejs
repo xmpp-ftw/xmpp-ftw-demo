@@ -113,4 +113,49 @@
         <strong>xmpp.register.unregister</strong> again with the 
         <em>form</em> parameter completed.</p>
 
+        <h3>Changing password</h3>
+
+        <p>Passwords can be changed as follows:</p>
+
+        <pre class="out callback" message="xmpp.register.password">
+        socket.emit(
+            'xmpp.register.password',
+            {
+                "to": "evilprofessor.co.uk",
+             /* "username": "lloydwatkin", */
+             /* "password": "xmpp-ftw-password", */
+             /* "form": [] */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>          
+
+        <p>A successful response will come back as follows:</p>
+
+        <pre class="example">
+        { registered: true }
+        </pre>
+
+        <p>Errors can potentially include a 
+        <a href="">data form</a> with instructions on what data 
+        is required for a successful password change.</p>
+
+        <pre class="example">
+        {
+            type: "cancel",
+            condition: "not-allowed",
+            form: {
+                /* ... standard data form ... */
+            }   
+        }   
+        </pre>
+
+        <h3>Out of band data</h3>
+
+        <p>Should the server request that any stage of registering, 
+        unregistering, or changing password take place 
+        <a href="/manual/out-of-band-data">"Out of Band"</a> (e.g. 
+        via a web page) then this data will be provided in a 
+        <em>oob</em> property of the data response.</p>
+
 <% include ./partials/footer %>

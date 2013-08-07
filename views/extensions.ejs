@@ -234,6 +234,29 @@
         socket.emit('xmpp.buddycloud.presence', {})
         </pre>
 
+        <h3>Registration</h3>
+
+        <p>The first time you use a buddycloud server you should register with 
+        it in order to generate your personal nodes. Multiple registrations 
+        will not cause an error.</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.register">
+        socket.emit(
+            'xmpp.buddycloud.register',
+            {},
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>A successful response will look as follows:</p>
+
+        <pre class="example">
+        { registered: true }
+        </pre>
+
+        <p>In the unlikely event of an error upon registration these will formatted 
+        in the same style as <a href="/manual/in-band-registration">xmpp-ftw-register</a>.</p>
+
         <h3>Create a node</h3>
 
         <pre class="out callback" message="xmpp.buddycloud.create">

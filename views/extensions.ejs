@@ -367,6 +367,81 @@
         ]
         </pre>
 
+        <h4>Updating a subscribers subscription</h4>
+
+        <p>As a node owner, or moderator, it is also possible to update 
+        the subscription state of a user as follows:</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.subscription">
+        socket.emit(
+            'xmpp.pubsub.subscription',
+            {
+                "node":          "/user/lloyd@evilprofessor.co.uk/posts",
+                "jid":           "bad-person@evilprofessor.co.uk", 
+                "subscription" : "none"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>On success the <em>data</em> argument will simply be 
+        <strong>true</strong>.</p>
+
+        <h4>Notification of a subscription change</h4>
+
+        <p>In the event of a subscription change all node subscribers 
+        are informed via the `<em>xmpp.buddycloud.push.subscription</em>` 
+        event:</p>
+
+        <pre class="in" message="xmpp.buddycloud.push.subscription">
+        {
+            node: "xmpp-ftw updates",
+            jid: "megan@evilprofessor.co.uk",
+            subscription: "subscribed",
+        }  
+        </pre>
+
+        <h4>Subscription authorisation request</h4>
+
+        <p>If required, and if supported by the server, a node owner, 
+        or moderator, will receive a subscription authorisation request 
+        as follows:</p>
+
+        <pre class="in callback" message="xmpp.buddycloud.push.authorisation">
+        socket.on('xmpp.buddycloud.push.authorisation', function(data, callback) {
+            console.log(data)
+            callback( /* see below */ )
+        })
+        </pre>
+  
+        <p>With the data in the following format:</p>
+
+        <pre class="example">
+        {
+            id: "approve1",
+            form: {}
+        }
+        </pre>
+         
+        <ul>
+          <li>The `<em>form</em>` property being parsed as a standard 
+          <a href="/data-form" title="Data form">data form</a>.</li>
+          <li>The data form will contain node information, therefore this 
+          is not included in the standard fields.</li>
+        </ul>
+
+        <p>In order to reply to a subscription authorisation request the 
+        callback function should be used as follows (actual field data 
+        will depend on received data form):</p>
+
+        <pre class="example">
+        [
+            { var: "pubsub#node", value: "/user/lloyd@evilprofessor.co.uk/posts" },
+            { var: "pubsub#subscriber_jid": value: "megan@evilprofessor.co.uk" },
+            { var: "pubsub#allow", value: "true" }
+        ]
+        </pre>
+
         <h3>Affiliations</h3>
         
         <h4>Get node affiliations</h4>

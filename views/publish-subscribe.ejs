@@ -172,7 +172,7 @@
         <pre class="in callback" message="xmpp.pubsub.push.authorisation">
         socket.on('xmpp.pubsub.push.authorisation', function(data, callback) {
             console.log(data)
-            callback( /* see below */
+            callback( /* see below */ )
         })
         </pre>
   
@@ -187,10 +187,10 @@
         </pre>
          
         <ul>
-        <li>The `<em>form</em>` property being parsed as a standard 
-        <a href="/data-form" title="Data form">data form</a>.</li>
-        <li>The data form will contain node information, therefore this 
-        is not included in the standard fields.</li>
+          <li>The `<em>form</em>` property being parsed as a standard 
+          <a href="/data-form" title="Data form">data form</a>.</li>
+          <li>The data form will contain node information, therefore this 
+          is not included in the standard fields.</li>
         </ul>
 
         <p>In order to reply to a subscription authorisation request the 
@@ -204,6 +204,27 @@
             { var: "pubsub#allow", value: "true" }
         ]
         </pre>
+
+        <h4>Updating a subscribers subscription</h4>
+
+        <p>As a node owner it is also possible to update the subscription state 
+        of subscribers as follows:</p>
+
+        <pre class="out callback" message="xmpp.pubsub.subscription">
+        socket.emit(
+            'xmpp.pubsub.subscription',
+            {
+                "to":            "pubsub.evilprofessor.co.uk",
+                "node":          "xmpp-ftw updates",
+                "jid":           "bad-person@evilprofessor.co.uk", 
+                "subscription" : "none"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>On success the <em>data</em> argument will simply be 
+        <strong>true</strong>.</p>
 
         <h3>Unsubscribe from a node</h3>
         

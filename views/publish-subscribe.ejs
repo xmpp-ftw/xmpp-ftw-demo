@@ -548,11 +548,16 @@
         
         <h4>Notification of affiliation changes</h4>
 
+        <p>The event name for these changes is `<em>xmpp.pubsub.push.affiliation</em>`.</p>
+
         <pre class="in" message="xmpp.pubsub.push.affiliation">
         {
             from: "pubsub.evilprofessor.co.uk",
             node: "xmpp-ftw updates",
-            jid: "bad-person@evilprofessor.co.uk",
+            jid: {
+                domain: "evilprofessor.co.uk",
+                user: "bad-person"
+            },
             affiliation: "none"
         }
         </pre>        

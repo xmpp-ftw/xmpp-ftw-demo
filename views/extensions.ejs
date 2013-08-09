@@ -403,6 +403,42 @@
         ]
         </pre>
 
+        <h4>Set node affiliation</h4>
+      
+        <pre class="out callback" message="xmpp.buddycloud.affiliation">
+        socket.emit(
+            'xmpp.buddycloud.affiliation',
+            {
+                "node": "/user/lloyd@evilprofessor.co.uk/posts",
+                "jid": "troll@underthebrid.ge",
+                "affiliation": "outcast"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+        
+        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
+        `<em>data</em>` will be <b>true</b>.</p>
+        
+        <p><b>Note:</b> Whilst specification allows user to update several 
+        affiliation changes at once, only on per message is supported 
+        here. If required it can be added later.</p>
+        
+        <h4>Notification of affiliation changes</h4>
+
+        <p>The event name for these changes is `<em>xmpp.buddycloud.push.affiliation</em>`.</p>
+
+        <pre class="in" message="xmpp.buddycloud.push.affiliation">
+        {
+            node: "/user/lloyd@evilprofessor.co.uk/posts",
+            jid: {
+                domain: "evilprofessor.co.uk",
+                user: "bad-person"
+            },
+            affiliation: "none"
+        }
+        </pre>
+
         <h3>Items</h3>
 
         <h4>Retrieve items</h4>

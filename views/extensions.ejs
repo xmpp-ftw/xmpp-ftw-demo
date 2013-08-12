@@ -221,6 +221,20 @@
         channel server host, if not `<em>error</em>` will be populated to 
         tell you that no server was found.</p>
 
+        <h4>Disco requests</h4>
+
+        <p>For convenience, `<em>xmpp-ftw-buddycloud</em>` proxies disco requests 
+        for the user using the two events 
+        <strong>xmpp.buddycloud.discover.items</strong> and 
+        <strong>xmpp.buddycloud.discover.info</strong> (
+        <strong>xmpp.discover.items</strong> and 
+        <strong>xmpp.discover.info</strong> respectively).</p>
+
+        <p>These events are documented in 
+        <a href="/manual/service-discovery" title="XEP-0030 service discovery">
+        service discovery</a>. <strong>Note:</strong> these events do not require 
+        that the channel server is discovered first.</p>
+
         <h3>Presence</h3>
 
         <p>Presence must be sent to the buddycloud server in order to 

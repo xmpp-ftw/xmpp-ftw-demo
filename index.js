@@ -90,7 +90,6 @@ app.get('/chat', function(req, res) {
 
 app.get('/manual', function(req, res) {
     var options = cloneextend.clone(configuration)
-    options.versions = versions
     res.render('manual', options)
 })
 

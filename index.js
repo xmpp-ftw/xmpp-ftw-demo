@@ -26,16 +26,6 @@ var register = require('xmpp-ftw-register')
 var superfeedr = require('xmpp-ftw-superfeedr')
 var buddycloud = require('xmpp-ftw-buddycloud')
 
-var versions = {
-    'xmpp-ftw': require('xmpp-ftw/package.json').version,
-    'xmpp-ftw-disco': require('xmpp-ftw-disco/package.json').version,
-    'xmpp-ftw-muc': require('xmpp-ftw-muc/package.json').version,
-    'xmpp-ftw-pubsub': require('xmpp-ftw-pubsub/package.json').version,
-    'xmpp-ftw-superfeedr': require('xmpp-ftw-superfeedr/package.json').version,
-    'xmpp-ftw-buddycloud': require('xmpp-ftw-buddycloud/package.json').version,
-    'xmpp-ftw-register': require('xmpp-ftw-register/package.json').version
-}
-
 io.sockets.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket)
      xmppFtw.addListener(new muc())

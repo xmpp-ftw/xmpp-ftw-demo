@@ -16,7 +16,8 @@
     "xmpp-ftw-pubsub": "*",
     "xmpp-ftw-register": "*",
     "xmpp-ftw-superfeedr": "*",
-    "xmpp-ftw-buddycloud": "*"
+    "xmpp-ftw-buddycloud": "*",
+    "xmpp-ftw-avatar": "*"
   },
   "repository": {
     "type": "git",

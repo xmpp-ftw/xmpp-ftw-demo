@@ -1,0 +1,118 @@
+<% 
+    pageTitle = "XEP-0086 User Avatar"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+ 
+        <h3>Publish avatar data</h3>
+
+        <p>Image data can be published using the following method. Note: 
+        Published images should be of 
+        <strong title="Portable Network Graphics">png</strong> type.</p>
+        
+        <pre class="out callback" message="xmpp.avatar.upload">
+        socket.emit(
+            'xmpp.avatar.upload'
+            { 
+                "content": "... IMAGE DATA ...",
+             /* "id": "sha-1 of the image data"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>If no <em>id</em> is provided then a sha-1 hash will be 
+        calculated on the server and returned to the user as part 
+        of the result response.</p>
+        
+        <p>Example response:</p>
+        
+        <pre class="example">
+        {
+          id: 'sha-1 of the image data'
+        }
+        </pre>
+
+        <h4>Publish avatar meta data</h4>
+ 
+        <pre class="out callback" message="xmpp.avatar.metadata">
+        socket.emit(
+            'xmpp.avatar.metadata',
+            {
+                "bytes": "1234",
+                "id": "sha-1 of image data",
+                "type": "image/png",
+             /* "width": 64, */
+             /* "height": 64, */
+             /* "url": "http://evilprofessor.co.uk/avatar.png", */
+             /* "additional": [ ], */
+             /* "disable": true */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>On successful publishing of metadata the <em>data</em> 
+        parameter will simply have a value of <strong>true</strong>.</p>
+
+        <p>If a value of <strong>true</strong> is passed for the 
+        <em>disable</em> key then avatar metadata publishing is 
+        disabled, all other data is ignored.</p>
+
+        <p>If the user wishes to provide additional avatars located at 
+        some URL &amp;/or in another format then this can be completed 
+        using the <em>additional</em> key. Additional avatars should 
+        use the same fields as the main metadata information and also 
+        the <em>url</em> key will be required.</p>
+
+        <pre class="example">
+        {
+            "additional": [
+                {
+                    "bytes": 988,
+                    "id": "sha-1 of the jpeg avatar",
+                    "url": "http://evilprofessor.co.uk/avatar.jpg",
+                    "type": "image/jpeg"
+                },
+                {
+                    "bytes": 1344,
+                    "id": "sha-1 of the gif avatar",
+                    "url": "http://evilprofessor.co.uk/avatar.gif",
+                    "type": "image/gif"
+                }
+            ]
+        }
+        </pre>
+
+        <p>See <a href="http://xmpp.org/extensions/xep-0084.html#example-10"
+        target="_blank">http://xmpp.org/extensions/xep-0084.html#example-10</a>
+        .</p>
+
+        <h3>Retrieve avatar data</h3>
+
+        <p>In order to retrieve a user's avatar data the following 
+        call is made. Avatar ID can come from a presence update or 
+        meta data retrieval (see later).</p>
+ 
+        <pre class="out callback" message="xmpp.avatar.data">
+        socket.emit(
+            'xmpp.avatar.data'
+            { 
+                "of": "lloyd@evilprofessor.co.uk",
+                "id": " ...123456abcdef... "
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>A successful response will return data as follows:</p>
+
+        <pre class="example">
+        {
+            content: "... IMAGE DATA ..."
+        }
+        </pre>
+
+
+<% include ./partials/footer %>

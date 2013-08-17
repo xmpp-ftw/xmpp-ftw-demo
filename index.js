@@ -19,21 +19,23 @@ io.configure(function(){
     ])
 })
 
-var muc = require('xmpp-ftw-muc')
-var disco = require('xmpp-ftw-disco')
-var pubsub = require('xmpp-ftw-pubsub')
-var register = require('xmpp-ftw-register')
-var superfeedr = require('xmpp-ftw-superfeedr')
-var buddycloud = require('xmpp-ftw-buddycloud')
+var Muc = require('xmpp-ftw-muc')
+var Disco = require('xmpp-ftw-disco')
+var Pubsub = require('xmpp-ftw-pubsub')
+var Register = require('xmpp-ftw-register')
+var Superfeedr = require('xmpp-ftw-superfeedr')
+var Buddycloud = require('xmpp-ftw-buddycloud')
+var Avatar = require('xmpp-ftw-avatar')
 
 io.sockets.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket)
-     xmppFtw.addListener(new muc())
-     xmppFtw.addListener(new disco())
-     xmppFtw.addListener(new pubsub())
-     xmppFtw.addListener(new register())
-     xmppFtw.addListener(new superfeedr())
-     xmppFtw.addListener(new buddycloud())
+     xmppFtw.addListener(new Muc())
+     xmppFtw.addListener(new Disco())
+     xmppFtw.addListener(new Pubsub())
+     xmppFtw.addListener(new Register())
+     xmppFtw.addListener(new Superfeedr())
+     xmppFtw.addListener(new Buddycloud())
+     xmppFtw.addListener(new Avatar())
 })
 
 var readme = require('express-middleware-readme.md')
@@ -135,6 +137,11 @@ app.get('/manual/result-set-management', function(req, res) {
 app.get('/manual/out-of-band-data', function(req, res) {
     var options = cloneextend.clone(configuration)
     res.render('out-of-band-data', options)
+})
+
+app.get('/manual/avatar', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('avatar', options)
 })
 
 app.get('/extensions', function(req, res) {

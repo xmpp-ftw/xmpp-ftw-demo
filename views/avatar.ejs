@@ -114,5 +114,35 @@
         }
         </pre>
 
+        <h3>Notifications</h3>
+
+        <p>Notifications to updates to avatar meta data are recieved as 
+        follows:</p>
+
+        <pre class="in" message="xmpp.avatar.push.metadata">
+        {
+            "from": {
+                "domain": "evilprofessor.co.uk",
+                "user": "lloyd"
+            },
+            "avatars": [
+                {
+                    "bytes": 1235,
+                    "type": "image/png",
+                    "id": "... sha-1 of image data ..."
+                },
+                {
+                    "bytes": 998,
+                    "type": "image/jpeg",
+                    "id": "... sha-1 of jpeg image data ..."
+                }
+            ]
+        }
+        </pre>
+
+        <p>If avatar publishing has been disabled by the remote user 
+        then the <em>avatars</em> key will not be present and a key 
+        of <em>disabled</em> will be present and have a value of 
+        <strong>true</strong>.</p>
 
 <% include ./partials/footer %>

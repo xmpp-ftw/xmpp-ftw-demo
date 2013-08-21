@@ -51,13 +51,19 @@
               content: '&lt;p&gt;Hello &lt;b&gt;world&lt;/b&gt;!&lt;/p&gt;',
               format: 'xhtml',
            /* delay: '2012-03-03T20:22:00Z', */
-           /* private: false */
+           /* private: false, */
+           /* state: 'composing' */
           }
         </pre>
 
         <p>For plain text IMs the '<em>format</em>' attribute will be 
         <b>plain</b>, for XEP-0071 messages it will be <b>xhtml</b>. 
         You will only ever receive a plain or XHTML message, not both.</p>
+
+        <p>It is also possible to receive just a 
+        <a href="http://xmpp.org/extensions/xep-0085.html" target="_blank">
+        chat state notification</a> where only the '<em>state</em>' 
+        property will be included.</p>
 
         <h3>Send a message</h3>
         
@@ -68,7 +74,8 @@
                 "room": "test@conference.evilprofessor.co.uk",
                 "content": "Hello XMPP people!",
              /* "format": "plain" */
-             /* "to": "TheirNickname" */
+             /* "to": "TheirNickname", */
+             /* "state": "composing" */
             }
         )
         </pre>
@@ -80,6 +87,11 @@
         will generate a plain text version of an XHTML message for 
         sending.</p>
         
+        <p>It is possible to send 
+        <a href="http://xmpp.org/extensions/xep-0085.html" target="_blank">
+        chat state notifications</a> by just sending the '<em>state</em>' 
+        property.</p>
+
         <h3>Leave a room</h3>
         
         <pre class="out" message="xmpp.muc.leave">

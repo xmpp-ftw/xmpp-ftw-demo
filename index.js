@@ -127,6 +127,11 @@ app.get('/manual/service-discovery', function(req, res) {
     res.render('service-discovery', options)
 })
 
+app.get('/manual/delayed-delivery', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('delayed-delivery', options)    
+})
+
 app.get('/data-forms', function(req, res) {
     res.redirect('/manual/data-forms')
 })

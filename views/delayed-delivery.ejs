@@ -1,0 +1,67 @@
+<% 
+    pageTitle = "XEP-0203 Delayed Delivery"
+%>
+<% include ./partials/head %>
+
+    <div id="toc"></div>
+
+    <h2>Usage</h2>
+
+    <p>Delayed delivery will always be set under the 
+    <em>delay</em> property of any data objects.</p>
+
+    <p>For more information please see 
+    <a href="http://xmpp.org/extensions/xep-0203.html">XEP-0203</a>.</p>
+
+    <h2>XML to JSON</h2>
+
+    <pre class="xml">
+    ...
+    &lt;delay xmlns="urn:xmpp:delay" stamp="2013-08-23T21:45:00Z"
+              from="evilprofessor.co.uk"&gt;
+        Offline Storage
+    &lt;/delay&gt;
+    ...
+    </pre>
+
+    <p>Will be turned into the following:</p>
+
+    <pre class="example">
+    {
+        delay: {
+            when: "2013-08-23T21:45:00Z",
+            from: "evilprofessor.co.uk",
+            reason: "Offline Storage"
+         }
+    }
+    </pre>
+ 
+    <p>The only required attribute is <em>stamp</em> meaning, at a minimum, only the 
+    <strong>when</strong> property may be present.</p>
+
+    <h2>JSON to XML</h2>
+  
+    <p>Should the need arise delayed delivery elements can also be build from JSON 
+    object by providing a <em>delay</em> property (where supported):</p>
+    <pre class="example">
+    {
+        delay: {
+            when: "2013-08-23T21:45:00Z",
+         /* from: "evilprofessor.co.uk", */
+         /* reason: "Offline Storage" */
+        }
+    }
+    </pre>
+
+    <p>This will be added to a stanza as follows:</p>
+
+    <pre class="xml">
+    ...
+    &lt;delay xmlns="urn:xmpp:delay" stamp="2013-08-23T21:45:00Z"
+              from="evilprofessor.co.uk"&gt;
+        Offline Storage
+    &lt;/delay&gt;
+    ...
+    </pre>
+ 
+<% include ./partials/footer %>

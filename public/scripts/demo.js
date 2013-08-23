@@ -204,8 +204,8 @@ $(document).ready(function() {
     getMessages('/manual/extensions', 2000)
     getMessages('/manual/core')
     getMessages()
-
-    socket = io.connect('//' + window.document.location.host);
+    
+    socket = new Primus('//' + window.document.location.host)
     socket.on('error', function(error) { console.log(error); })
 
     socket.on('connect', function(data) {

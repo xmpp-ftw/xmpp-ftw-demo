@@ -3,7 +3,8 @@ node_modules
 .project
 .classpath
 npm-debug.log
-examples/public/google*
+public/google*
+public/scripts/primus.js
 *.geany
 *~
 xmpp-ftw.js

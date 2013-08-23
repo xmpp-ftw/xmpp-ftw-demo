@@ -17,7 +17,9 @@
     "xmpp-ftw-register": "*",
     "xmpp-ftw-superfeedr": "*",
     "xmpp-ftw-buddycloud": "*",
-    "xmpp-ftw-avatar": "*"
+    "xmpp-ftw-avatar": "*",
+    "primus-emitter": "~1.0.0",
+    "primus": "~1.2.0"
   },
   "repository": {
     "type": "git",

@@ -2,22 +2,29 @@ var   xmpp        = require('xmpp-ftw')
     , express     = require('express')
     , app         = express()
     , engine      = require('ejs-locals')
-    , cloneextend = require('cloneextend')  
+    , cloneextend = require('cloneextend') 
+    , Emitter     = require('primus-emitter')
+    , Primus      = require('primus')
     
 var server = require('http').createServer(app)
 server.listen(3000)
-var io = require('socket.io').listen(server)
 
 version = require('xmpp-ftw/package.json').version
 
-io.configure(function(){
-    io.set('transports', [
+var options = {
+    transformer: 'socket.io',
+    parser: 'JSON',
+    transports: [
         'websocket',
         'htmlfile',
         'xhr-polling',
         'jsonp-polling'
-    ])
-})
+    ]
+}
+
+var primus = new Primus(server, options)
+primus.use('emitter', Emitter)
+primus.save(__dirname + '/public/scripts/primus.js');
 
 var Muc = require('xmpp-ftw-muc')
 var Disco = require('xmpp-ftw-disco')
@@ -27,7 +34,7 @@ var Superfeedr = require('xmpp-ftw-superfeedr')
 var Buddycloud = require('xmpp-ftw-buddycloud')
 var Avatar = require('xmpp-ftw-avatar')
 
-io.sockets.on('connection', function(socket) {
+primus.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket)
      xmppFtw.addListener(new Muc())
      xmppFtw.addListener(new Disco())

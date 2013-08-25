@@ -117,7 +117,10 @@
         <pre class="example">
           {
               type:  'message',
-              error: 'SERVICE-UNAVAILABLE',
+              error : {
+                  type: 'service-unavailable',
+                  condition: 'wait'
+              },
               room:  'test@conference.evilprofessor.co.uk',
            /* content: 'Original message content' */
           }
@@ -125,6 +128,40 @@
         <p>Code will attempt to grab the extended reason from the 
         '<abbr title="urn:ietf:params:xml:ns:xmpp-stanzas">xmpp-stanzas</abbr>' namespaced 
         element, otherwise it will grab the 'type' attribute from the error tag.</p>
+
+        <h3>Room subject</h3>
+
+        <p>The room subject can be updated as follows:</p>
+
+        <pre class="out" message="xmpp.muc.subject">
+        socket.emit(
+            'xmpp.muc.subject',
+            {
+             /* "subject": "XMPP-FTW Chat room" */
+            }
+        }
+        </pre>
+
+        <p>By not providing the '<em>subject</em>' the room subject 
+        will be disabled.</p>
+
+        <p>Updates to room subject will be recieved as follows:</p>
+
+        <pre class="in" message="xmpp.muc.subject">
+        socket.on('xmpp.muc.subject', function(data) { console.log(data) })
+        </pre>
+
+        <p>Where the <strong>data</strong> format is as follows:</p>
+
+        <pre class="example">
+        {
+            room: "test@conference.evilprofessor.co.uk",
+            subject: "XMPP-FTW Chat room",
+        }
+        </pre>
+
+        <p>A value of <strong>false</strong> for the <em>subject</em> 
+        key signifies that the room subject has been disabled.</p>
 
         <h3>Retrieve a list of users with specified role</h3>
 

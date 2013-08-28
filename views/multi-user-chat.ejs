@@ -351,5 +351,20 @@
             status: [ 100, 110, 104 ]
         }
         </pre>
+
+        <h3>Delete a room</h3>
+
+        <pre class="out callback" message="xmpp.muc.destory">
+        socket.emit(
+            'xmpp.muc.destroy',
+            {
+                "room": "test@conference.evilprofessor.co.uk",
+             /* "reason": "Was just a test room" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>On success <em>data</em> will simply be <strong>true</strong>.</p>
         
 <% include ./partials/footer %>

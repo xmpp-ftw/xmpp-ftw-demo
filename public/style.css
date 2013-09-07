@@ -350,3 +350,29 @@ table {
   background-size: 20px;
   cursor: help;
 }
+
+#modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #cccccc;
+    z-index: 999;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#modal * {
+    opacity: 1;
+}
+
+#modal pre {
+    background: #FFFFFF;
+    opacity: 1;
+    width: 97%;
+    height: 90%;
+    border-color: #15b2e7;
+    font-size: 1.5em;
+}

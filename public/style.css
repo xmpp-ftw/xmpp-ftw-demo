@@ -220,6 +220,7 @@ a.top {
     -moz-box-pack: center;
     box-pack: center;
 }
+
 #demo .callback {
     width: 35%;
 }
@@ -263,9 +264,11 @@ div.example-data {
 #messages .message-container .callback.success {
     border-color: #9fce66;
 }
+
 #messages .message-container .callback.error {
     border-color: #cf5829;
 }
+
 #messages .message-container.callback-yes .callback,
   #messages .message-container.callback-yes .data {
     width: 250px;

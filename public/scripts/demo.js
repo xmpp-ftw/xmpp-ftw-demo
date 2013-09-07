@@ -76,7 +76,7 @@ var addMessage = function(message, direction, data, callback) {
     else 
         var html = $('<div class="message-container payload callback-no">'
             + '<div class="message"></div>'
-            + '<div class="data"></div>'
+            + '<div class="data zoomable"></div>'
             + '</div>')
     html.addClass(direction)
     html.find('.data').html(
@@ -145,6 +145,21 @@ var decreaseQueue = function() {
     console.log('Listening for the following messages', incoming)
     console.log('Logging the following outgoing messages', outgoingMessages)
     $('.messages-container').css('display', 'block')
+}
+
+$(document).bind('click', $('.zoomable'), function() {
+    showModal($(e.target).parent().html())
+})
+
+$(document).bind('click', $('zoom-out'), hideModal)
+
+var hideModal = function() {
+    $('#modal').hide()
+}
+
+var showModal = function(content) {
+    $('#modal').html(content)
+    $('#modal').show()
 }
 
 $('#send').on('click', function() {

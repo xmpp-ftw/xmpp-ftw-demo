@@ -147,15 +147,19 @@ var decreaseQueue = function() {
     $('.messages-container').css('display', 'block')
 }
 
-$(document).bind('click div.zoomable', function(e) {
-    if (e.ctrlKey) showModal($(e.target).html())
+$(document).on('click', 'div.zoomable', function(e) {
+    if (!e.ctrlKey) return true
+    showModal($(e.target).html())
+    e.stopPropagation()
 })
 
-$(document).bind('click .zoom-out', hideModal)
-
-var hideModal = function() {
+var hideModal = function(e) {
+    if (!e.ctrlKey) return true
     $('#modal').hide()
+    e.stopPropagation()
 }
+
+$(document).on('click', '#modal', hideModal)
 
 var showModal = function(content) {
     $('#modal pre').html(content)

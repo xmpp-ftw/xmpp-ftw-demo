@@ -148,13 +148,13 @@ var decreaseQueue = function() {
 }
 
 $(document).on('click', 'div.zoomable', function(e) {
-    if (!e.ctrlKey) return true
+    if (!e.ctrlKey && !e.metaKey) return true
     showModal($(e.target).html())
     e.stopPropagation()
 })
 
 var hideModal = function(e) {
-    if (!e.ctrlKey) return true
+    if (!e.ctrlKey && !e.metaKey) return true
     $('#modal').hide()
     e.stopPropagation()
 }

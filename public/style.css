@@ -372,9 +372,10 @@ table {
     background: #FFFFFF;
     opacity: 1;
     width: 97%;
-    height: 90%;
+    height: 96%;
     border-color: #15b2e7;
     font-size: 1.5em;
+    overflow: auto;
 }
 
 div.demo-storage {

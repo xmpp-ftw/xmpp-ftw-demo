@@ -180,7 +180,9 @@ var hideModal = function(e) {
 $(document).on('click', '#modal', hideModal)
 
 var showModal = function(content) {
+    $('body').css('cursor', 'wait')
     $('#modal pre').html(content)
+    $('body').css('cursor', '')
     $('#modal').show()
 }
 

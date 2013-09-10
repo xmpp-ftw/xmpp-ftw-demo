@@ -376,3 +376,29 @@ table {
     border-color: #15b2e7;
     font-size: 1.5em;
 }
+
+div.demo-storage {
+    border: 5px dashed #9fce66;
+    border-radius: 5px;
+    margin-left: 10px;
+    padding: 5px;
+    float: right;
+}
+
+div.demo-storage p:first-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+div.demo-storage p {
+    margin: 5px;
+}
+
+div.demo-storage checkbox {
+    margin-right: 10px;
+}
+
+div.demo-storage span.clear-storage {
+    cursor: pointer;
+    color: #0000ff;
+}

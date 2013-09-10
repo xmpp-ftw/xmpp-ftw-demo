@@ -7,7 +7,7 @@ var incoming         = []
 
 var parsePage = function(data) {
 
-    var data             = $(data.replace(/^\n/, ""))
+    var data = $(data.replace(/^\n/, ""))
     
     data.each(function(i, ele) {
 
@@ -38,13 +38,25 @@ var parsePage = function(data) {
     decreaseQueue()
 }
 
+var useLocalStorage = function() {
+    return $('input[name=useStorage]').is(':checked')
+}
+    
 var setupAutocomplete = function() {
     $("#message").autocomplete({
       minLength: 0,
       source: outgoing,
       select: function(event, ui) {
           $('.send .callback').removeClass('callback-yes').removeClass('callback-no')
-          $('.send .data').html(ui.item.example)
+          
+          var example = ui.item.example
+          if ((true === useLocalStorage()) &&
+              localStorage[ui.item.label])
+              example = localStorage[ui.item.label]
+                  .replace("{", "{<br/>")
+                  .replace('",', "\",<br/>")
+                  .replace('}', "<br/>}")
+          $('.send .data').html(example)
           $('.send .callback').attr('callback', ui.item.callback)
           $('.send .callback').addClass((true == ui.item.callback) ? 'callback-yes' : 'callback-no')
           $('.send .callback').html((true == ui.item.callback) ? 'Yes' : 'No')
@@ -153,6 +165,12 @@ $(document).on('click', 'div.zoomable', function(e) {
     e.stopPropagation()
 })
 
+$(document).on('click', 'span.clear-storage', function(e) {
+    e.stopPropagation()
+    console.debug('localStorage cleared')
+    localStorage.clear()
+})
+
 var hideModal = function(e) {
     if (!e.ctrlKey && !e.metaKey) return true
     $('#modal').hide()
@@ -182,6 +200,8 @@ $('#send').on('click', function() {
     } 
     var id = addMessage(message, 'out', parsed, callback)
     console.debug('OUT: ', '(id=' + id + ')', message, parsed)
+    if (true === useLocalStorage())
+        localStorage[message] = JSON.stringify(parsed)
     if (true == callback) {
         console.time('id=' + id)
         socket.emit(message, parsed, function(error, data, rsm) {

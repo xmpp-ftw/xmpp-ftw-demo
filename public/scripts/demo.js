@@ -208,6 +208,7 @@ $('#send').on('click', function() {
         console.time('id=' + id)
         socket.emit(message, parsed, function(error, data, rsm) {
             var callback = $('#' + id).find('.callback')
+            callback.addClass('zoomable')
             if (error) {
                 callback.addClass('error')
                 callback.html(JSON.stringify(error, null, 2).replace(/\n/g, '<br/>'))

@@ -212,7 +212,7 @@
         <pre class="out callback" message="xmpp.buddycloud.discover">
         socket.emit(
             'xmpp.buddycloud.discover',
-            {},
+            { /* server: 'channels.buddycloud.org' */ },
             function(error, data) { console.log(error, data) }
         )
         </pre>
@@ -220,6 +220,9 @@
         <p>If a server is discovered the `<em>data</em>` will contain the 
         channel server host, if not `<em>error</em>` will be populated to 
         tell you that no server was found.</p>
+
+        <p>Providing a `<em>server</em>` key allows the user to short cut 
+        discovery by specifying the channel server they wish to use.</p>
 
         <h4>Disco requests</h4>
 

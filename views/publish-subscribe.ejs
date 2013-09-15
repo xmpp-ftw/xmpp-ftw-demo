@@ -353,7 +353,8 @@
         socket.emit(
             'xmpp.pubsub.purge', 
             {
-
+              "to": "pubsub.evilprofessor.co.uk",
+              "node": "xmpp-ftw updates"
             }, 
             function(error, data) { console.log(error, data) }
         )

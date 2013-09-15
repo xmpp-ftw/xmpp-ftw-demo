@@ -1,0 +1,85 @@
+<% 
+    pageTitle = "XEP-0055 Jabber Search"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+ 
+        <h3>Get search form</h3>
+
+        <p>To retrieve the search form from the required source the following 
+        method is used:</p>
+        
+        <pre class="out callback" message="xmpp.search.get">
+        socket.emit(
+            'xmpp.search.get'
+            { 
+                "to": "evilprofessor.co.uk"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>The server may us a '<strong>basic</strong>' or 
+        '<strong>extensible</strong>' type search form and 
+        the two different formats are important for making the 
+        search query itself.</p>
+
+        <p>If the server uses a 
+        <a href="http://xmpp.org/extensions/xep-0055.html#example-2" 
+           target="_blank">simple search form</a> then the result will be  
+        returned in the following format:</p>
+        
+        <pre class="example">
+        {
+          instructions: "Please use the following search fields",
+          basic: [ "first", "last", "jid", "nick" ]          
+        }
+        </pre>
+
+        <p>Should the server make use of 
+        <a href="http://xmpp.org/extensions/xep-0055.html#example-7" 
+           target="_blank">extensibility</a> then the result will appear in 
+        the following format:</p>
+
+        <pre class="example">
+        {
+          instructions: "Please use the following search fields",
+          form: ... data form ...
+        }
+        </pre>
+
+        <p>Where <em>form</em> will be parsed according to 
+        <a href="/manual/data-forms">data forms</a>.</p>
+
+        <h4>Performing a search</h4>
+ 
+        <p></p>
+        <pre class="out callback" message="xmpp.search.do">
+        socket.emit(
+            'xmpp.search.do',
+            {
+                "to": "evilprofessor.co.uk",
+             /* "basic": {
+                  "nick": "lloydwatkin",
+                  "first": "lloyd"
+                }, */
+             /* "form": [
+                  { "var": "nick"', "value": "lloydwatkin" },
+                  { "var": "first", "value": "lloyd" }
+                ] */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Whether you provide a <em>basic</em> or <em>form</em> key very much 
+        depends on whether the chosen server is implementing <strong>basic</strong> 
+        or <strong>extensible</strong> search forms as mentioned above. When sending 
+        your payload ensure that the appropriate type is sent.</p>
+
+        <p><strong>Note:</strong> If you provide both the <em>basic</em> and 
+        <em>form</em> parameters then preference will be given to 
+        <strong>basic</strong>.</p>
+
+<% include ./partials/footer %>

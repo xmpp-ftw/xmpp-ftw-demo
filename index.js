@@ -160,6 +160,11 @@ app.get('/manual/avatar', function(req, res) {
     res.render('avatar', options)
 })
 
+app.get('/manual/jabber-search', function(req, res) {
+    var options = cloneextend.clone(configuration)
+    res.render('jabber-search', options)
+})
+
 app.get('/extensions', function(req, res) {
     res.redirect('/manual/extensions')
 })

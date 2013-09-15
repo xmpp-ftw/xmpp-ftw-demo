@@ -5,7 +5,10 @@ var   xmpp        = require('xmpp-ftw')
     , cloneextend = require('cloneextend') 
     , Emitter     = require('primus-emitter')
     , Primus      = require('primus')
-    
+    , helmet      = require('helmet')
+
+helmet.defaults(app)
+
 var server = require('http').createServer(app)
 server.listen(3000)
 
@@ -55,7 +58,8 @@ readme.setOptions({
     }
 })
 
-app.configure(function(){
+app.configure(function() {
+    app.disable('x-powered-by')
     app.use(express.static(__dirname + '/public'))
     app.set('views', __dirname + '/views')
     app.set('view engine', 'ejs')

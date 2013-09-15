@@ -19,7 +19,8 @@
     "xmpp-ftw-buddycloud": "*",
     "xmpp-ftw-avatar": "*",
     "primus-emitter": "~1.0.0",
-    "primus": "~1.2.0"
+    "primus": "~1.2.0",
+    "helmet": "~0.1.0"
   },
   "repository": {
     "type": "git",

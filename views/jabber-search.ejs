@@ -12,7 +12,7 @@
         
         <pre class="out callback" message="xmpp.search.get">
         socket.emit(
-            'xmpp.search.get'
+            'xmpp.search.get',
             { 
                 "to": "evilprofessor.co.uk"
             },
@@ -72,6 +72,9 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
+
+        <p>Where the `<em>form</em>` is formatted as outlined in 
+        <a href="/manual/data-forms">data forms</a>.</p>
 
         <p>Whether you provide a <em>basic</em> or <em>form</em> key very much 
         depends on whether the chosen server is implementing <strong>basic</strong> 

@@ -251,15 +251,15 @@ $(document).ready(function() {
     socket = new Primus('//' + window.document.location.host)
     socket.on('error', function(error) { console.log(error); })
 
-    socket.on('connect', function(data) {
+    socket.on('online', function(data) {
         console.log('Connected')
     })
     
-    socket.on('connect.fail', function(reason) {
+    socket.on('timeout', function(reason) {
         console.log("Connection failed: " + reason)
     })
   
-    socket.on('disconnect', function() {
+    socket.on('end', function() {
         addMessage('exit(0)', 'in', 'SOCKET CONNECTION CLOSED', false)
         socket = null
     })

@@ -18,6 +18,7 @@
     "xmpp-ftw-superfeedr": "*",
     "xmpp-ftw-buddycloud": "*",
     "xmpp-ftw-avatar": "*",
+    "xmpp-ftw-search": "~0.1.0",
     "primus-emitter": "~1.0.0",
     "primus": "~1.2.0",
     "helmet": "~0.1.0"

@@ -52,7 +52,7 @@
         <p>Where <em>form</em> will be parsed according to 
         <a href="/manual/data-forms">data forms</a>.</p>
 
-        <h4>Performing a search</h4>
+        <h3>Performing a search</h3>
  
         <p></p>
         <pre class="out callback" message="xmpp.search.do">
@@ -84,5 +84,30 @@
         <p><strong>Note:</strong> If you provide both the <em>basic</em> and 
         <em>form</em> parameters then preference will be given to 
         <strong>basic</strong>.</p>
+
+        <h4>Results</h4>
+
+        <p>Results are returned in the following format:</p>
+
+        <pre class="example">
+        {
+             fields: {
+                 first: { label: "Given Name", var: "text-single" },
+                 last: { label: "Family Name", var: "text-single" },
+                 jid: { label: "JID", var: "jid-single" }
+             },
+             results: [
+                 {
+                     first: "Lloyd",
+                     last: "Watkin",
+                     jid: "lloyd@evilprofessor.co.uk"
+                 }
+             ]
+        }
+        </pre>
+ 
+        <p>Result values will be provided in arrays if the data type is of 
+        <strong>*-multi</strong> or otherwise appropriate. Empty results simply include 
+        an empty <em>fields</em> and empty <em>results</em> objects.</p>
 
 <% include ./partials/footer %>

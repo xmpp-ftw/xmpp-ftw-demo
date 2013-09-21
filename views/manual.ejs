@@ -17,8 +17,7 @@
                     <th>Functionality</th>
                     <th>XEP</th>
                     <th>Module</th>
-                    <th>Version</th>
-                    <th>Build status</th>
+                    <th class="status-column">Status</th>
                     <th>Notes</th>
                 </tr>
             </thead>
@@ -26,10 +25,14 @@
                 <tr>
                     <td><a href="/manual/core">XMPP Core</a></td>
                     <td>XMPP-Core</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column">
+                        <a href="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw/dev-status.png"/></a>
+                    </td>
                     <td>
                       <ul>
                         <li>Login</li>
@@ -46,30 +49,38 @@
                 <tr>
                     <td><a href="/manual/data-forms">Data Forms</a></td>
                     <td>XEP-0004</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a><br/>
+                    <img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /><br/>
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/service-discovery">Service Discovery</a></td>
                     <td>XEP-0030</td>
                     <td><a href="https://npmjs.org/package/xmpp-ftw-disco">xmpp-ftw-disco</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-disco.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-disco.png" /></td>
+><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-disco.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-disco.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-disco" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-disco.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-disco#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-disco/dev-status.png"/></a>
+                    </td>
                     <td>Supports <a href="http://xmpp.org/extensions/xep-0128.html">XEP-0128</a></td>
                 </tr>
                 <tr>
                     <td><a href="/manual/multi-user-chat">Multi-user Chat</a></td>
                     <td>XEP-0045</td>
                     <td><a href="https://npmjs.org/package/xmpp-ftw-muc">xmpp-ftw-muc</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-muc.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-muc.png" /></td>
+><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-muc.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-muc.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-muc" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-muc.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-muc#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-muc/dev-status.png"/></a>
+                    </td>
                     <td>Supports 
                     <a href="http://xmpp.org/extensions/xep-0085.html"
                        target="_blank">XEP-0085</a></td>
@@ -77,97 +88,126 @@
                 <tr>
                     <td><a href="/manual/jabber-search">Jabber Search</a></td>
                     <td>XEP-0055</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw-search">xmpp-ftw-search</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-search.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-search.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-search">xmpp-ftw-search</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-search.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-search.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw=search" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-search.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-search#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-search/dev-status.png"/></a>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/result-set-management">Result Set Management</a></td>
                     <td>XEP-0059</td>
                     <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></td>
+><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/publish-subscribe">Publish Subscribe</a></td>
                     <td>XEP-0060</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw-pubsub">xmpp-ftw-pubsub</a></td>  
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-pubsub.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-pubsub.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-pubsub">xmpp-ftw-pubsub</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-pubsub.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-pubsub.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-pubsub" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-pubsub.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-pubsub#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-pubsub/dev-status.png"/></a>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/out-of-band-data">Out of band data</a></td>
                     <td>XEP-0066</td>
                     <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></td>
+><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/in-band-registration">In-Band registration</a></td>
                     <td>XEP-0077</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw-register">xmpp-ftw-register</a></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-register.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-register.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-register">xmpp-ftw-register</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-register.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-register.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-register" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-register.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-register#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-register/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/avatar">User Avatar</a></td>
                     <td>XEP-0084</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw-avatar">xmpp-ftw-avatar</a></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-avatar.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-avatar.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-avatar">xmpp-ftw-avatar</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-avatar.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-avatar.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-avatar" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-avatar.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-avatar#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-avatar/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td>Chat state (see <a href="/manual/core#receive-a-chat-message">example</a>)</td>
                     <td>XEP-0085</td>
                     <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></td>
+><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw/dev-status.png"/></a></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td>Service discovery extensions</td>
+                    <td>XEP-0128</td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-disco">xmpp-ftw-disco</a
+><br/><img src="https://badge.fury.io/js/xmpp-ftw-disco.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-disco.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-disco" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-disco.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-disco#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-disco/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/delayed-delivery">Delayed delivery</a></td>
                     <td>XEP-0203</td>
                     <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a
-></td>
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" /></td>
+><br/><img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/extensions#superfeedr">Superfeedr</a></td>
                     <td>N/A</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw-superfeedr">xmpp-ftw-superfeedr</a></td>  
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-superfeedr.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-superfeedr.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-superfeedr">xmpp-ftw-superfeedr</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw-superfeedr.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-superfeedr.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-superfeedr" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-superfeedr.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-superfeedr#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-superfeedr/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
                     <td><a href="/manual/extensions#buddycloud">buddycloud</a></td>
                     <td>N/A</td>
-                    <td><a href="https://npmjs.org/package/xmpp-ftw-buddycloud">xmpp-ftw-buddycloud</a
-></td>  
-                    <td><img src="https://badge.fury.io/js/xmpp-ftw-buddycloud.png" /></td>
-                    <td><img class="build-status"
-         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-buddycloud.png" /></td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw-buddycloud">xmpp-ftw-buddycloud</a><br/><img src="https://badge.fury.io/js/xmpp-ftw-buddycloud.png" /></td>
+                    <td class="status-column"><img class="build-status"
+         src="https://secure.travis-ci.org/lloydwatkin/xmpp-ftw-buddycloud.png" />
+                    <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-buddycloud" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-buddycloud.png"/></a>
+                        <a href="https://david-dm.org/lloydwatkin/xmpp-ftw-buddycloud#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/lloydwatkin/xmpp-ftw-buddycloud/dev-status.png"/></a></td>
                     <td>&nbsp;</td>
                 </tr>
             </tbody>

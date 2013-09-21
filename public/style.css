@@ -334,6 +334,13 @@ table thead th {
   padding-bottom: 10px;
 }
 
+table thead td.status-column, table tbody td.status-column {
+  max-width: 150px;    
+}
+
+table tbody td.status-column img, table tbody td.status-column a img {
+    margin: 2px;
+}
 
 table {
   border: 5px #15b2e7 dashed;

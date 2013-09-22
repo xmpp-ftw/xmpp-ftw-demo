@@ -7,7 +7,7 @@
     "socket.io": "~0.9.13",
     "express-middleware-readme.md": "~0.3.0",
     "ejs-locals": "~1.0.2",
-    "express": "~3.0.3",
+    "express": "~3.0.6",
     "xmpp-ftw": "*",
     "cloneextend": "0.0.3",
     "xmpp-ftw-disco": "*",
@@ -20,7 +20,7 @@
     "xmpp-ftw-avatar": "*",
     "xmpp-ftw-search": "*",
     "primus-emitter": "~1.0.0",
-    "primus": "~1.2.0",
+    "primus": "~1.4.2",
     "helmet": "~0.1.0"
   },
   "repository": {

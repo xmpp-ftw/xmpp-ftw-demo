@@ -368,5 +368,19 @@
         </pre>
 
         <p>On success <em>data</em> will simply be <strong>true</strong>.</p>
-        
+
+        <p>Clients will be informed of a room destroy via the incoming 
+        `<em>xmpp.muc.destroy</em>` event as follows:</p>
+
+        <pre class="in">
+        socket.on('xmpp.muc.destroy', function(data) {
+            console.log(data)
+            /* {
+                 room: "test@conference.evilprofessor.co.uk",
+              /* reason: "Killed test room" */
+              /* alternative: "test2@conference.evilprofessor.co.uk" */
+               } */
+        })
+        </pre>
+
 <% include ./partials/footer %>

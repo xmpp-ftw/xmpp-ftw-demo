@@ -6,6 +6,7 @@ var   xmpp        = require('xmpp-ftw')
     , Emitter     = require('primus-emitter')
     , Primus      = require('primus')
     , helmet      = require('helmet')
+    , winston     = require('winston')
 
 helmet.defaults(app)
 
@@ -40,6 +41,7 @@ var Search = require('xmpp-ftw-search')
 
 primus.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket)
+     xmppFtw.setLogger(winston)
      xmppFtw.addListener(new Muc())
      xmppFtw.addListener(new Disco())
      xmppFtw.addListener(new Pubsub())

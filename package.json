@@ -21,7 +21,8 @@
     "xmpp-ftw-search": "*",
     "primus-emitter": "~1.0.0",
     "primus": "~1.4.2",
-    "helmet": "~0.1.0"
+    "helmet": "~0.1.0",
+    "winston": "~0.7.2"
   },
   "repository": {
     "type": "git",

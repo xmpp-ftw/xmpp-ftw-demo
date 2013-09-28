@@ -311,11 +311,15 @@
                   required: false,
                   value:    "moderators,
                   label:    "Who May Discover Real JIDs?",
-                  options:  [{ label: "Moderators", value: "moderators"}, {label: "Anyone", value: "anyone" }]
+                  options:  [{ label: "Moderators", value: "moderators" }, { label: "Anyone", value: "anyone" }]
                 },
             ],
         }
         </pre>
+
+        <p>Making a request on a room which doesn't already exist creates 
+        a reserved room. In order to cancel this request see 
+        <a href="#cancel-request">cancel request</a>.</p>
 
         <h4>Set room configurtion</h4>
         
@@ -406,5 +410,22 @@
                } */
         })
         </pre>
+
+        <h3>Cancel Request</h3>
+
+        <p>Cancel a request to update room configuration, or to create 
+        a reserved room using <em>xmpp.muc.cancel</em>:</p>
+
+        <pre class="out callback" message="xmpp.muc.cancel">
+        socket.emit(
+            'xmpp.muc.cancel',
+            {
+                "room": "test@conference.evilprofessor.co.uk"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>On success <em>data</em> will simply be <strong>true</strong>.</p>
 
 <% include ./partials/footer %>

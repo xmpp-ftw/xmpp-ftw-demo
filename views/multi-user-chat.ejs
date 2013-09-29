@@ -358,6 +358,21 @@
         }
         </pre>
 
+        <h3>Request voice</h3>
+
+        <p>In order to request the ability to speak in a moderated room 
+        the user must request a voice. This is done as follows:</p>
+
+        <pre class="out" message="xmpp.muc.voice">
+        socket.emit(
+            'xmpp.muc.voice',
+            {
+                "room": "test@conference.evilprofessor.co.uk",
+                "role": "participant"
+            }
+        )
+        </pre>
+
         <h3>Create a room</h3>
 
         <pre class="out callback" message="xmpp.muc.create">

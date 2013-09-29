@@ -283,6 +283,42 @@
         )
         </pre>
 
+        <h3>Room Invites</h3>
+
+        <h4><a href="https://github.com/lloydwatkin/xmpp-ftw-muc/issues/38" 
+               target="_blank">Mediated Invitation</a></h4>
+
+        <pre class="out">
+        socket.emit(
+            'xmpp.muc.invite',
+            {
+                "room": "test@conference.evilprofessor.co.uk",
+                "to": "megan@evilprofessor.co.uk",
+             /* "reason": "Come join us for some cool chat!" */
+            }
+        )
+        </pre>
+
+        <h4>Direct Invitation</h4>
+
+        <p>XEP-0249 not currently supported but coming soon, 
+        <a href="https://github.com/lloydwatkin/xmpp-ftw-muc/issues/38">
+        https://github.com/lloydwatkin/xmpp-ftw-muc/issues/38</a>.</p>
+
+        <h4>Incoming invites</h4>
+
+        <pre class="in" message="xmpp.muc.invite">
+        socket.on('xmpp.muc.invite', function(data) { 
+            console.log(data)
+            /* {
+                   room: "test@conference.evilprofessor.co.uk",
+                   from: { domain: "evilprofessor.co.uk", user: "lloyd" },
+                /* reason: "Come join us for some cool chat!", */
+                /* password: "donttellanyone" */
+               } */
+        })
+        </pre>
+
         <h3>Update room configuration</h3>
         
         <h4>Get room configuration</h4>

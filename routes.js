@@ -90,6 +90,11 @@ module.exports = function(app, configuration) {
         res.render('extensions', options)
     })
     
+    app.get('/manual/unknown-stanza-handling', function(req, res) {
+        var options = cloneextend.clone(configuration)
+        res.render('unknown-stanza-handling', options)
+    })
+    
     app.get('/publishing', function(req, res) {
         res.redirect('/manual/item-parser')
     })

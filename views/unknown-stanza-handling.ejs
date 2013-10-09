@@ -1,0 +1,27 @@
+<% 
+    pageTitle = "Unknown stanza handling"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+ 
+        <h3>Unknown stanza handling</h3>
+
+        <p>Sometimes its advantageous to have any stanzas which are 
+        not handled by the current install of XMPP-FTW to be pushed 
+        to the client regardless of parsing. This is where 
+        `<em>xmpp-ftw-wtf</em>` steps in.</p>
+
+        <p>If using this plugin ensure it is the last listener 
+        in the stack (by adding it as a listener first). Otherwise 
+        incoming packets which can be parsed will not be delivered 
+        as expected.</p>
+
+        <p>All packets pushed by `<em>xmpp-ftw-wtf</em>` are 
+        pushed via the <strong>xmpp.wtf.push</strong> event.</p>
+
+        <p><strong>Note:</strong> `<em>xmpp-ftw-wtf</em>` has not 
+        been added to the demo system. If you think this is wrong 
+        please let me know!</p>
+
+<% include ./partials/footer %>

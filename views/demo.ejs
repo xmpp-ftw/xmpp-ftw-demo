@@ -20,7 +20,7 @@ message, the DOM will be updated to reflect your messages. The string you enter 
     <p>Store valid outgoing payloads for reuse?</p>
 </div>
 
-<p><em>Ctrl/Cmd + click</em> on the result box to zoom and once again to zoom back out.</p>
+<p><em>Ctrl/Cmd + click</em> on the payload boxes to zoom and once again to zoom back out. You can also zoom the outgoing payload box when creating longer JSON strings.</p>
 
 <p class="hint"><span class="bold">Hint:</span> You'll probably want to start with '<i>xmpp.login</i>'.</p>
 
@@ -33,7 +33,7 @@ message, the DOM will be updated to reflect your messages. The string you enter 
         <div class="message ui-widget" title="Event name">
             <input type="text" id="message" placeholder="event name (autocompletes)" />
         </div>
-        <div class="data" id="data" contenteditable="true" title="Message to send"></div>
+        <div class="data zoomable" id="data" contenteditable="true" title="Message to send"></div>
         <div class="callback" id="callback" title="Green if callback used"></div>
        <div class="send"><button id="send">Send</button></div>
     </div>

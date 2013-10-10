@@ -82,7 +82,7 @@ var addMessage = function(message, direction, data, callback) {
     if (callback)
         var html = $('<div class="message-container payload callback-yes">'
             + '<div class="message"></div>'
-            + '<div class="data"></div>'
+            + '<div class="data zoomable"></div>'
             + '<div class="callback"></div>'
             + '</div>')
     else 
@@ -159,30 +159,42 @@ var decreaseQueue = function() {
     $('.messages-container').css('display', 'block')
 }
 
-$(document).on('click', 'div.zoomable', function(e) {
-    if (!e.ctrlKey && !e.metaKey) return true
-    showModal($(e.target).html())
-    e.stopPropagation()
-})
-
 $(document).on('click', 'span.clear-storage', function(e) {
     e.stopPropagation()
     console.debug('localStorage cleared')
     localStorage.clear()
 })
 
+var modalTarget
+
+$(document).on('click', 'div.zoomable', function(e) {
+    if (!e.ctrlKey && !e.metaKey) return true
+    showModal($(e.target))
+    e.stopPropagation()
+})
+
 var hideModal = function(e) {
     if (!e.ctrlKey && !e.metaKey) return true
+    if (modalTarget) {
+        modalTarget.html($('#modal pre').html())
+        modalTarget = null
+    }
     $('#modal').hide()
+    $('#modal pre').attr('contenteditable', 'false')
     e.stopPropagation()
 }
 
 $(document).on('click', '#modal', hideModal)
 
-var showModal = function(content) {
+var showModal = function(target) {
+    var content = target.html()
     $('body').css('cursor', 'wait')
     $('#modal pre').html(content)
     $('body').css('cursor', '')
+    if (target.hasClass('data')) {
+        $('#modal pre').attr('contenteditable', 'true')
+        modalTarget = target
+    }
     $('#modal').show()
 }
 

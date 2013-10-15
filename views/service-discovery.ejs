@@ -61,10 +61,9 @@
         <h3>Features your client supports</h3>
         
         <p>
-        <pre class="in callback" message="xmpp.discover.client">
-        socket.on('xmpp.discover.client', function(data, callback) {
+        <pre class="in" message="xmpp.discover.client">
+        socket.on('xmpp.discover.client', function(data) {
             console.log(data)
-            callback(/*...see example below...*/)
         })
         </pre>
         
@@ -72,18 +71,26 @@
         
         <pre class="example">
         {
-            from: 'lloyd@evilprofessor.co.uk/laptop'
+            from: 'lloyd@evilprofessor.co.uk/laptop',
+            id: 'discover:1'
         }
         </pre>
-        
-        <p>Example reply data (pass as argument to callback):</p>
+
+        <p>In order to send a reply we use the `<em>xmpp.discover.result</em>` 
+        event as follows:</p>
         
         <pre class="example">
-        [
-            { "kind": "identity", "type": "pc", "name": "xmpp-ftw", "category": "client" },
-            { "kind": "feature", "var": "http://jabber.org/protocol/disco#info" },
-            { "kind": "feature", "var": "http://jabber.org/protocol/muc" }
-        ]
+        {
+            to: 'lloyd@evilprofessor.co.uk/laptop',
+            id: 'discover:1',
+            features: [
+                { "kind": "identity", "type": "pc", "name": "xmpp-ftw", "category": "client" },
+                { "kind": "feature", "var": "http://jabber.org/protocol/disco#info" },
+                { "kind": "feature", "var": "http://jabber.org/protocol/muc" }
+            ]
         </pre>
+
+        <p><strong>features</strong> is optional, or can be an array with zero 
+        or more elements.</p>
 
 <% include ./partials/footer %>

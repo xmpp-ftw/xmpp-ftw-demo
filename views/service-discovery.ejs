@@ -93,4 +93,10 @@
         <p><strong>features</strong> is optional, or can be an array with zero 
         or more elements.</p>
 
+        <p>Providing a callback to this call is optional. If provided you will 
+        simply receive an <strong>true</strong> if the result was sent ok. If 
+        the data provided is invalid the error argument will be populated. Should 
+        you not provide a callback then the `<em>xmpp.error.client</em>` event 
+        will be used.</p>
+
 <% include ./partials/footer %>

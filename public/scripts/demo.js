@@ -250,11 +250,11 @@ var clearForm = function() {
 
 $(document).ready(function() {
     console.log("Page loaded...")
-
     getMessages('/manual/service-discovery', 2000)
     getMessages('/manual/multi-user-chat', 2000)
     getMessages('/manual/publish-subscribe', 2000)
     getMessages('/manual/jabber-search', 2000)
+    getMessages('/manual/jabber-rpc', 2000)
     getMessages('/manual/in-band-registration', 2000)
     getMessages('/manual/extensions', 2000)
     getMessages('/manual/core')

@@ -95,6 +95,11 @@ module.exports = function(app, configuration) {
         res.render('unknown-stanza-handling', options)
     })
     
+    app.get('/manual/jabber-rpc', function(req, res) {
+        var options = cloneextend.clone(configuration)
+        res.render('jabber-rpc', options)
+    })
+    
     app.get('/publishing', function(req, res) {
         res.redirect('/manual/item-parser')
     })

@@ -5,5 +5,56 @@
 
         <div id="toc"></div>
 
-        <p>Coming soon...</p>
+    <h3>Make a request</h3>
+
+    <p>In order to make a request we use the `<em>xmpp.rpc.perform</em>` 
+    event as follows:</p>
+
+    <pre class="out callback" message="xmpp.rpc.perform">
+    socket.emit(
+        'xmpp.rpc.perform',
+        {
+            "to": "rpc.evilprofessor.co.uk",
+            "method": "server.restart",
+         /* "params": [] */
+        },
+        function(error, data) { console.log(error, data) }
+    )
+    </pre>
+
+    <p>For more information about parameters in JSON see 
+        <a href="#parameters-in-json">here.</a></p>
+
+    <h4>Results from a request</h4>
+
+    <p>Results are returned as follows:</p>
+
+    <pre class="example">
+    [
+        { type: 'string', value: 'restarting' }
+    ]
+    </pre>
+
+    <p>Again see the section on parameters for more information.</p>
+
+    <h3>Receive a request</h3>
+
+    <p>It is also possible to receive RPCs and these appear as follows:</p>
+
+    <pre class="in" message="xmpp.rpc.request">
+    socket.on('xmpp.rpc.request', function(data) {
+        console.log(data)
+    })
+    </pre>
+
+    <p>With data looking a follows:</p>
+
+    <pre class="example">
+    {
+        from: 'tasks.evilprofessor.co.uk',
+        method: 'wake up',
+     /* params: [] */
+    }
+    </pre>
+
 <% include ./partials/footer %>

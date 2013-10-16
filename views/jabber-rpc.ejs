@@ -3,7 +3,7 @@
 %>
 <% include ./partials/head %>
 
-        <div id="toc"></div>
+    <div id="toc"></div>
 
     <h3>Make a request</h3>
 
@@ -51,10 +51,95 @@
 
     <pre class="example">
     {
-        from: 'tasks.evilprofessor.co.uk',
-        method: 'wake up',
+        from: 'rpc.evilprofessor.co.uk',
+        method: 'client.restart',
+        id: 'rpc:request:1',
      /* params: [] */
     }
+    </pre>
+
+    <h4>Responding to a request</h4>
+
+    <p>Respond to a request as follows using the `<em>xmpp.rpc.result</em>` event:</p>
+
+    <pre class="out callback" message="xmpp.rpc.result">
+    socket.emit(
+        'xmpp.rpc.result',
+        {
+            "to": "rpc.evilprofessor.co.uk",
+            "id": "rpc:request:1",
+         /* "params": [] */
+        },
+        function(error, data) { console.log(error, data) }
+    )</pre>
+
+    <p>The callback here is <strong>optional</strong>, if provided it can be used to 
+    receive errors (else `<em>xmpp.client.error</em>` is used. On successful sending 
+    of the message the <em>data</em> argument will simply be true.</p>
+
+    <h3>Parameters in JSON</h3>
+
+    <p>The general format for parameters is as follows:</p>
+
+    <pre class="example">
+    { type: %type%, value: %value% }
+    </pre>
+
+    <p>Valid XMPP types are:</p>
+
+    <ul>
+        <li>boolean</li>
+        <li>i4</li>
+        <li>int</li>
+        <li>double</li>
+        <li>string</li>
+        <li>base64</li>
+        <li>dateTime.iso8601</li>
+        <li>array</li>
+        <li>struct</li>
+    </ul>
+
+    <p>This plugin does not check types (but will perform conversion where possible, and 
+    non-standard types may be ignored.</p>
+
+    <p><strong>struct</strong> and <strong>array</strong> may be nested and examples will 
+    be given below:</p>
+
+    <pre class="example">
+    [
+        { type: 'boolean', value: true },
+        { type: 'i4', value: '123' },
+        { type: 'int', value: '999' },
+        { type: 'double', value: '10.66' },
+        { type: 'string', value: 'a string' },
+        { type: 'base64', value: 'ba5e64' },
+        { type: 'dateTime.iso8601', value: '2013-10-16T09:00:00Z' },
+        /* Array */
+        { type: 'array', value: [
+            { type: 'string', value: 'one' },
+            { type: 'int', value: 2 }
+        ]},
+        /* Nested array */
+        { type: 'array', value: [{
+            type: 'array',
+            value: [
+                { type: 'int', value: 2 }
+            ]
+        }]},
+        /* Struct */
+        { type: 'struct', value: [
+            { type: 'string', value: 'one', name: 'PageNumber' },
+            { type: 'int', value: 2, name: 'RPP' }
+        ]},
+        /* Nested struct */
+        { type: 'struct', value: [{
+            type: 'struct',
+            value: [
+                { type: 'int', value: 2, name: 'PageNumber' }
+            ],
+            name: 'Paging'
+        }]}
+    ]
     </pre>
 
 <% include ./partials/footer %>

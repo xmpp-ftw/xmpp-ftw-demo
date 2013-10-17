@@ -29,8 +29,14 @@
         <pre class="in" message="xmpp.connection">
         socket.on('xmpp.connection', function(data) { 
             console.log(data)
-            /*
-             * 'online'
+            /* {
+             *   status: 'online',
+             *   jid: {
+             *     domain: 'evilprofessor.co.uk',
+             *     user: 'lloyd',
+             *     resource: 'desktop'
+             *   }
+             * }
              */
         })
         </pre>

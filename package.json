@@ -23,7 +23,8 @@
     "xmpp-ftw-buddycloud": "*",
     "xmpp-ftw-avatar": "*",
     "xmpp-ftw-search": "*",
-    "xmpp-ftw-rpc": "*"
+    "xmpp-ftw-rpc": "*",
+    "xmpp-ftw-fanout": "*"
   },
   "repository": {
     "type": "git",

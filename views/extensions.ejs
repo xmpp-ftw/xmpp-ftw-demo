@@ -779,6 +779,66 @@
 
         <h2>Fanout</h2>
 
-        <p>Coming soon...</p>
+        <h3>Log in</h3>
+
+        <p>If not using the fanout gateway, then anonymous login is 
+        performed as follows:</p>
+
+        <pre class="example">
+        socket.emit(
+          'xmpp.login.anonymous',
+          { jid: 'anon.fanout.io' }
+        )
+        </pre>
+
+        <p>If using the fanout gateway then the payload can simply be 
+        any empty object.</p>
+
+        <h3>Subscribe</h3>
+
+        <p>Subscribe to fanout events as follows:</p>
+
+        <pre class="out callback" message="fanout.fpp.subscribe">
+        {
+            "channel": "your-channel",
+            "realm": "your-realm",
+          /* "to": "pubsub.fanout.io" */
+        }
+        </pre>
+
+        <p>On successful subscription `<em>data</em>` wil simply be 
+        <strong>true</strong>.</p>
+
+        <p>Not providing <em>to</em> key will default it to the value 
+        in the example payload.</p>
+
+        <h3>Unsubscribe</h3>
+
+        <pre class="out callback" message="fanout.fpp.unsubscribe">
+        {
+            "channel": "your-channel",
+            "realm": "your-realm",
+         /* "to": "pubsub.fanout.io" */
+        } 
+        </pre>
+
+        <p>On successful unsubscribe `<em>data</em>` wil simply be
+        <strong>true</strong>.</p>
+
+        <p>Not providing <em>to</em> key will default it to the value
+        in the example payload.</p>
+ 
+        <h3>Event notifications</h3>
+
+        <pre class="in" message="fanout.fpp.push">
+        {
+            "from": "pubsub.fanout.io",
+            "channel": "your-channel",
+            "realm": "your-realm",
+            "content": {
+                "json": { ... the JSON content ... }
+            }
+        }
+        </pre>
 
 <% include ./partials/footer %>

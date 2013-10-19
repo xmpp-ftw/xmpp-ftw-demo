@@ -799,11 +799,15 @@
         <p>Subscribe to fanout events as follows:</p>
 
         <pre class="out callback" message="fanout.fpp.subscribe">
-        {
-            "channel": "your-channel",
-            "realm": "your-realm",
-          /* "to": "pubsub.fanout.io" */
-        }
+        socket.emit(
+            'fanout.fpp.subscribe',
+            {
+                "channel": "your-channel",
+                "realm": "your-realm",
+             /* "to": "pubsub.fanout.io" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
         </pre>
 
         <p>On successful subscription `<em>data</em>` wil simply be 
@@ -815,11 +819,15 @@
         <h3>Unsubscribe</h3>
 
         <pre class="out callback" message="fanout.fpp.unsubscribe">
-        {
-            "channel": "your-channel",
-            "realm": "your-realm",
-         /* "to": "pubsub.fanout.io" */
-        } 
+        socket.emit(
+            'fanout.fpp.unsubscribe',
+            {
+                "channel": "your-channel",
+                "realm": "your-realm",
+             /* "to": "pubsub.fanout.io" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
         </pre>
 
         <p>On successful unsubscribe `<em>data</em>` wil simply be

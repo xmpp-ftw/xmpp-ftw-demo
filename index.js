@@ -39,6 +39,8 @@ var Superfeedr = require('xmpp-ftw-superfeedr')
 var Buddycloud = require('xmpp-ftw-buddycloud')
 var Avatar = require('xmpp-ftw-avatar')
 var Search = require('xmpp-ftw-search')
+var Rpc = require('xmpp-ftw-rpc')
+var Fanout = require('xmpp-ftw-fanout')
 
 primus.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket)
@@ -51,6 +53,8 @@ primus.on('connection', function(socket) {
      xmppFtw.addListener(new Buddycloud())
      xmppFtw.addListener(new Avatar())
      xmppFtw.addListener(new Search())
+     xmppFtw.addListener(new Rpc())
+     xmppFtw.addListener(new Fanout())
 })
 
 var readme = require('express-middleware-readme.md')

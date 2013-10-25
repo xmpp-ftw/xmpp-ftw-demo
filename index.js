@@ -41,6 +41,8 @@ var Avatar = require('xmpp-ftw-avatar')
 var Search = require('xmpp-ftw-search')
 var Rpc = require('xmpp-ftw-rpc')
 var Fanout = require('xmpp-ftw-fanout')
+var Jingle = require('xmpp-ftw-jingle')
+var Mam = require('xmpp-ftw-mam')
 
 primus.on('connection', function(socket) {
      var xmppFtw = new xmpp.Xmpp(socket)
@@ -55,6 +57,8 @@ primus.on('connection', function(socket) {
      xmppFtw.addListener(new Search())
      xmppFtw.addListener(new Rpc())
      xmppFtw.addListener(new Fanout())
+     xmppFtw.addListener(new Jingle())
+     xmppFtw.addListener(new Mam())
 })
 
 var readme = require('express-middleware-readme.md')

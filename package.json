@@ -24,7 +24,9 @@
     "xmpp-ftw-avatar": "*",
     "xmpp-ftw-search": "*",
     "xmpp-ftw-rpc": "*",
-    "xmpp-ftw-fanout": "*"
+    "xmpp-ftw-fanout": "*",
+    "xmpp-ftw-jingle": "*",
+    "xmpp-ftw-mam": "*"
   },
   "repository": {
     "type": "git",

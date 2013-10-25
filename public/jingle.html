@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <title>Jingle Interop Testing</title>
+    <script type="text/javascript" src="/scripts/primus.js"></script>
+    <script type="text/javascript" src="/scripts/attach-media-stream/attachmediastream.bundle.js"></script>
+    <script type="text/javascript" src="/scripts/jingle.js/jingle.bundle.js"></script>
+    <script type="text/javascript">
+    var outgoing = []
+    var socket = new Primus('//' + window.document.location.host)
+    var jingle = new Jingle()
+    </script>
+  </head>
+  <body>
+    <div id="settings">
+      <h1>Connection Settings</h1>
+      <form id="loginInfo">
+        <label>JID: <input id="jid" type="text" name="jid" placeholder="me@example.com" /></label>
+        <label>Password: <input id="password" type="password" placeholder="password" /></label>
+        <label>Host <em>(optional)</em>: <input id="host" type="text" name="host" placeholder="localhost" /></label>
+        <input id="connect" type="submit" value="Connect" />
+      </form>
+        
+      <h2>Start Video Session</h2>
+      <form id="callInfo">
+        <label>JID: <input id="peer" type="text" name="peer" placeholder="otherperson@example.com" /></label>
+        <input id="call" type="submit" value="Call" />
+      </form>
+    </div>
+
+    <p id="myJID"></p>
+
+    <h1>Local Video</h1>
+    <video id="localVideo"></video>
+
+    <h2>Remote Video</h2>
+    <video id="remoteVideo"></video>
+
+    <script type="text/javascript">
+      var loginInfo = document.getElementById('loginInfo')
+
+      loginInfo.onsubmit = function (e) {
+        if (e.preventDefault) e.preventDefault()
+
+        var jid = document.getElementById('jid').value
+        var username = jid.slice(0, jid.indexOf('@'))
+
+        console.log('Connected')
+        socket.emit(
+          'xmpp.login', {
+              jid: jid,
+              password: document.getElementById('password').value,
+              host: document.getElementById('host').value
+          }
+        )
+        socket.on('xmpp.connection', function(data) {
+          console.log('connected', data)
+          socket.emit('xmpp.presence', {})
+          document.getElementById('myJID').textContent = data.jid.user +
+              '@' + data.jid.domain + '/' + data.jid.resource
+        })
+
+        jingle.on('incoming', function (session) {
+            console.log('incoming session', session)
+            session.accept()
+        })
+        jingle.on('peerConnectionAdded', function(stream) {
+           attachMediaStream(stream, document.getElementById('remoteVideo'))
+        })
+        var added = false
+        jingle.on('localStream', function (stream) {
+            if (true === added) return
+            attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
+            added = true
+        })
+
+        var callInfo = document.getElementById('callInfo')
+        callInfo.onsubmit = function (e) {
+          e.preventDefault()
+          var jid = document.getElementById('peer').value
+          jingle.startLocalMedia(null, function (error, stream) {
+             var sess = jingle.createMediaSession(jid)
+             sess.start()
+             console.log('Calling ' + jid)
+             jingle.on('send', function(data) {
+                 var event = (data.error) ? 'xmpp.jingle.response' : 'xmpp.jingle.request'
+                 console.log('outgoing', data.error || data.jingle.action)
+                 socket.emit(event, data, function(error, success) {
+                     if (error) return console.error('Failed', error)
+                     console.log(data.jingle.action + ' ack', success)
+                 })
+      })
+          })
+            jingle.on('peerStreamAdded', function(session) {
+                attachMediaStream(session.stream, document.getElementById('remoteVideo'))
+            })
+          return false
+        }
+        return false
+      }
+      
+      socket.on('xmpp.error.client', function(error) {
+          console.error(error)
+      })
+      
+      socket.on('xmpp.jingle.request', function(data) {
+          console.log('incoming', data)
+          jingle.process(data)
+      })
+      
+      socket.on('xmpp.discover.client', function(data) {
+          console.log('client capability discovery', data)
+      })
+    </script>
+  </body>
+</html>

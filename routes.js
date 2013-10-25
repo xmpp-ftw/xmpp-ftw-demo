@@ -81,6 +81,11 @@ module.exports = function(app, configuration) {
         res.render('jabber-search', options)
     })
     
+    app.get('/manual/message-archive-management', function(req, res) {
+        var options = cloneextend.clone(configuration)
+        res.render('message-archive-management', options)
+    })
+    
     app.get('/extensions', function(req, res) {
         res.redirect('/manual/extensions')
     })

@@ -250,6 +250,7 @@ var clearForm = function() {
 
 $(document).ready(function() {
     console.log("Page loaded...")
+    getMessages('/manual/message-archive-management', 2000)
     getMessages('/manual/service-discovery', 2000)
     getMessages('/manual/multi-user-chat', 2000)
     getMessages('/manual/publish-subscribe', 2000)

@@ -260,7 +260,19 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
+
+        <h3>Remove a user from roster</h3>
+
+        <pre class="out callback" message="xmpp.roster.remove">
+        socket.emit(
+            'xmpp.roster.add',
+            {
+                "jid": "user@evilprofessor.co.uk"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
         <h3>Get</h3>
         
         <pre class="out callback" message="xmpp.roster.get">

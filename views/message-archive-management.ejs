@@ -28,13 +28,40 @@
         <p>Once a request is received the message archive will fire message 
         stanzas to the user, once it is complete the callback will be called 
         with a value of <strong>true</strong> for the `<em>data</em>` key.</p>
-        
-        <p>Example response:</p>
-        
-        <pre class="example">
+
+        <h3>Incoming archived messages</h3>
+
+        <p>Upon firing the above request messages (if present) will be sent 
+        from your XMPP server and received using the event 
+        `<em>xmpp.mam.message</em>`.</p>
+
+        <p>This code extends the incoming chat message parser (documented 
+        <a href="/manual/core#receive-a-chat-message">here</a>) but adds 
+        the additional key of `<em>mam</em>` with an example below:</p>
+
+        <pre class="in" message="xmpp.mam.message">
         {
-          id: 'sha-1 of the image data'
-        }
+            from: {
+                domain: 'evilprofessor.co.uk',
+                user: 'megan'
+            },
+            content: 'Hello fine Lady!',
+            format: 'plain',
+            mam: {
+                to: {
+                    domain: 'evilprofessor.co.uk',
+                    user: 'lloyd',
+                    resource: 'car'
+                },
+                id: '1234',
+                queryId: 'query-id'
+            },
+         /* delay: { 
+                from: 'evilprofessor.co.uk',
+                when: '2013-06-03T19:56Z',
+                reason: 'Offline storage'
+            }, */
+        }  
         </pre>
 
         <h3>Settting archive preferences</h3>

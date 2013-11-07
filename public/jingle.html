@@ -63,14 +63,21 @@
             console.log('incoming session', session)
             session.accept()
         })
-        jingle.on('peerConnectionAdded', function(stream) {
-           attachMediaStream(stream, document.getElementById('remoteVideo'))
+        jingle.on('peerStreamAdded', function(session) {
+            attachMediaStream(session.stream, document.getElementById('remoteVideo'))
         })
         var added = false
         jingle.on('localStream', function (stream) {
             if (true === added) return
             attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
             added = true
+        })
+        jingle.on('send', function(data) {
+             console.log('sending', data)
+             socket.emit('xmpp.jingle.request', data, function(error, success) {
+                 if (error) return console.error('Failed', error)
+                 console.log(data.jingle.action + ' ack', success)
+             })
         })
 
         var callInfo = document.getElementById('callInfo')
@@ -81,18 +88,7 @@
              var sess = jingle.createMediaSession(jid)
              sess.start()
              console.log('Calling ' + jid)
-             jingle.on('send', function(data) {
-                 var event = (data.error) ? 'xmpp.jingle.response' : 'xmpp.jingle.request'
-                 console.log('outgoing', data.error || data.jingle.action)
-                 socket.emit(event, data, function(error, success) {
-                     if (error) return console.error('Failed', error)
-                     console.log(data.jingle.action + ' ack', success)
-                 })
-      })
           })
-            jingle.on('peerStreamAdded', function(session) {
-                attachMediaStream(session.stream, document.getElementById('remoteVideo'))
-            })
           return false
         }
         return false

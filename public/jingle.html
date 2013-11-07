@@ -37,7 +37,7 @@
 
     <script type="text/javascript">
       var loginInfo = document.getElementById('loginInfo')
-
+      var localStarted = false
       loginInfo.onsubmit = function (e) {
         if (e.preventDefault) e.preventDefault()
 
@@ -66,11 +66,8 @@
         jingle.on('peerStreamAdded', function(session) {
             attachMediaStream(session.stream, document.getElementById('remoteVideo'))
         })
-        var added = false
         jingle.on('localStream', function (stream) {
-            if (true === added) return
             attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
-            added = true
         })
         jingle.on('send', function(data) {
              console.log('sending', data)
@@ -85,6 +82,7 @@
           e.preventDefault()
           var jid = document.getElementById('peer').value
           jingle.startLocalMedia(null, function (error, stream) {
+             localStarted = true
              var sess = jingle.createMediaSession(jid)
              sess.start()
              console.log('Calling ' + jid)
@@ -98,7 +96,20 @@
           console.error(error)
       })
       
+      jingle.startLocalMedia(null, function (error, stream) {
+          if (error) return console.error(error)
+          attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
+      })
+      
       socket.on('xmpp.jingle.request', function(data) {
+          console.log('localStarted', localStarted)
+          if (false === localStarted) {
+              jingle.startLocalMedia(null, function (error, stream) {
+                  if (error) return console.error(error)
+                  attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
+              })
+              localStarted = true
+          }
           console.log('incoming', data)
           jingle.process(data)
       })

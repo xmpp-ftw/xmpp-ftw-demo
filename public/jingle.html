@@ -67,7 +67,10 @@
             attachMediaStream(session.stream, document.getElementById('remoteVideo'))
         })
         jingle.on('localStream', function (stream) {
-            attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
+            if (false === localStarted) {
+               attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
+               localStarted = true
+            }
         })
         jingle.on('send', function(data) {
              console.log('sending', data)

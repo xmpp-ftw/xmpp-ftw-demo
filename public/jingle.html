@@ -99,6 +99,7 @@
       jingle.startLocalMedia(null, function (error, stream) {
           if (error) return console.error(error)
           attachMediaStream(stream, document.getElementById('localVideo'), { muted: true, mirror: true })
+          localStarted = true
       })
       
       socket.on('xmpp.jingle.request', function(data) {

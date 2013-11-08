@@ -14,9 +14,9 @@
     <div id="settings">
       <h1>Connection Settings</h1>
       <form id="loginInfo">
-        <label>JID: <input id="jid" type="text" name="jid" placeholder="me@example.com" /></label>
-        <label>Password: <input id="password" type="password" placeholder="password" /></label>
-        <label>Host <em>(optional)</em>: <input id="host" type="text" name="host" placeholder="localhost" /></label>
+        <label>JID: <input id="jid" type="text" name="jid" placeholder="me@example.com" value="lloyd@evilprofessor.co.uk" /></label>
+        <label>Password: <input id="password" type="password" placeholder="password" value="password" /></label>
+        <label>Host <em>(optional)</em>: <input id="host" type="text" name="host" placeholder="localhost" value="localhost" /></label>
         <input id="connect" type="submit" value="Connect" />
       </form>
         
@@ -64,6 +64,7 @@
             session.accept()
         })
         jingle.on('peerStreamAdded', function(session) {
+            console.log('peerStreamAdded', session)
             attachMediaStream(session.stream, document.getElementById('remoteVideo'))
         })
         jingle.on('localStream', function (stream) {
@@ -73,7 +74,11 @@
             }
         })
         jingle.on('send', function(data) {
-             console.log('sending', data)
+             if (data.jingle && data.jingle.action == 'session-accept')
+{
+             console.debug('sending', data)
+             window.jingleAccept = data
+}
              socket.emit('xmpp.jingle.request', data, function(error, success) {
                  if (error) return console.error('Failed', error)
                  console.log(data.jingle.action + ' ack', success)

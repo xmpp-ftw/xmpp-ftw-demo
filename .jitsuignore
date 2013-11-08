@@ -1,0 +1,5 @@
+public/scripts/jingle.js/*
+!public/scripts/jingle.js/jingle.bundle.js
+
+public/scripts/attach-media-stream/*
+!public/scripts/attach-media-stream/attach-media-stream.bundle.js

@@ -1,6 +1,6 @@
 [submodule "public/scripts/jingle.js"]
 	path = public/scripts/jingle.js
-	url = git@github.com:legastero/jingle.js.git
+	url = https://github.com/legastero/jingle.js.git
 [submodule "public/scripts/attach-media-stream"]
-	path = scripts/attach-media-stream
-	url = git@github.com:HenrikJoreteg/attachMediaStream.git
+	path = public/scripts/attach-media-stream
+	url = https://github.com/HenrikJoreteg/attachMediaStream.git

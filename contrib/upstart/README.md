@@ -1,4 +1,4 @@
-Ubuntu upstart setup script for XMPP-ftw
+Ubuntu upstart setup script for XMPP-FTW
 ========================================
 
 * copy this script to ```/etc/init``` (not /etc/init.d)

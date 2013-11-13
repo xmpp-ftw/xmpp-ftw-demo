@@ -8,3 +8,4 @@ public/scripts/primus.js
 *.geany
 *~
 xmpp-ftw.js
+config/logger.json

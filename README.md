@@ -8,7 +8,7 @@ For more information on `xmpp-ftw` please see https://xmpp-ftw.jit.su.
 
 # Try it out...
 
-The code is now up and running at https://xmpp-ftw.jit.su so you can try it out. Be aware that this 
+The code is now up and running at https://xmpp-ftw.jit.su so you can try it out. Be aware that this
 setup is only for trying xmpp-ftw out and may be slow as we need to go client ↔ nodejitsu (east coast US) ↔  your XMPP server and back each time.
 
 * https://xmpp-ftw.jit.su/manual -- XMPP-FTW manual
@@ -43,6 +43,16 @@ The main module XMPP-FTW has code for login, roster, and presence as well as a f
 * Go to `http://localhost:3000/`
 
 To work on the code in 'development mode' (where process restarts as files change) run `npm run-script develop`.
+
+## Logging
+
+`xmpp-ftw-demo` uses [winston](https://github.com/flatiron/winston) for logging. `xmpp-ftw` itself will accept any logging object that implements the same interface as winston or will generate itself a null logger object.
+
+By default the configuration for winston sits in `config/logger.config.default.json`. Output is sent to the console.
+
+If you wish to use your own configuration for `xmpp-ftw-demo` create the file `config/logger.json` and this will be used instead.
+
+For instructions on using the config file see [winston-config](https://github.com/triplem/winston-config).
 
 # License
 

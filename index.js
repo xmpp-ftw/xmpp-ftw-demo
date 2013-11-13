@@ -1,20 +1,35 @@
-var   xmpp        = require('xmpp-ftw')
-    , express     = require('express')
-    , app         = express()
-    , engine      = require('ejs-locals')
-    , Emitter     = require('primus-emitter')
-    , Primus      = require('primus')
-    , helmet      = require('helmet')
-    , winston     = require('winston')
+var   xmpp          = require('xmpp-ftw')
+    , express       = require('express')
+    , app           = express()
+    , engine        = require('ejs-locals')
+    , Emitter       = require('primus-emitter')
+    , Primus        = require('primus')
+    , helmet        = require('helmet')
+    , winston       = require('winston')
+    , winstonConfig = require('winston-config')
+
+var port = 3000
 
 helmet.defaults(app)
 
-var environment = process.env['NODE_ENV'] || 'production'
+try {
+    var config = require('./config/logging.json')
+} catch (e) {
+    var config = require('./config/logger.default.json')
+}
+
+winstonConfig.fromJson(config, function(error, winston) {
+    if (error) {
+        console.error('Error configuring winston')
+        process.exit(1)
+    }
+})
 
 var server = require('http').createServer(app)
-server.listen(3000)
+server.listen(port)
+winston.info('Server started and listening on port ' + port)
 
-version = require('xmpp-ftw/package.json').version
+var version = require('xmpp-ftw/package.json').version
 
 var options = {
     transformer: 'socket.io',
@@ -88,20 +103,18 @@ app.configure(function() {
 
 app.engine('ejs', engine);
 
-var configuration = { 
-    ga: process.env['GOOGLE_ANALYTICS_ID'] || null,
-        webmasterTools: process.env['GOOGLE_WEBMASTER_TOOLS'] || null,
-    username: process.env['NODE_XMPP_USERNAME'] || null,
-    password: process.env['NODE_XMPP_PASSWORD'] || null,
+var configuration = {
+    ga: process.env.GOOGLE_ANALYTICS_ID || null,
+        webmasterTools: process.env.GOOGLE_WEBMASTER_TOOLS || null,
     body:     {},
-    title:    "XMPP-FTW ⟫ ",
+    title:    'XMPP-FTW ⟫ ',
     version:  version
 }
 
 require('./routes')(app, configuration)
 
 process.on('uncaughtException', function(error) {
-    // Try and prevent issues crashing the whole system 
+    // Try and prevent issues crashing the whole system
     // for other users too
     console.error(error)
 })

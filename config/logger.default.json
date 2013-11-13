@@ -1,0 +1,8 @@
+{
+  "logging": {
+      "console": {
+        "level": "debug",
+        "colorize": true
+      }
+  }
+}

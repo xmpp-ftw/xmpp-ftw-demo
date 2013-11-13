@@ -26,7 +26,8 @@
     "xmpp-ftw-rpc": "*",
     "xmpp-ftw-fanout": "*",
     "xmpp-ftw-jingle": "*",
-    "xmpp-ftw-mam": "*"
+    "xmpp-ftw-mam": "*",
+    "winston-config": "~0.4.2"
   },
   "repository": {
     "type": "git",

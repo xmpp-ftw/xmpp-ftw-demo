@@ -44,6 +44,8 @@ The main module XMPP-FTW has code for login, roster, and presence as well as a f
 
 To work on the code in 'development mode' (where process restarts as files change) run `npm run-script develop`.
 
+If installing globally then the `xmpp-ftw-demo` needs to be able to write to the `public/scripts` directory; this is so [Primus](https://github.com/primus/primus) can generate and save its client side javascript.
+
 ## Logging
 
 `xmpp-ftw-demo` uses [winston](https://github.com/flatiron/winston) for logging. `xmpp-ftw` itself will accept any logging object that implements the same interface as winston or will generate itself a null logger object.

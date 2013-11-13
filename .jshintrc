@@ -1,0 +1,17 @@
+{
+  "asi": true, 
+  "camelcase": true, 
+  "noempty": true, 
+  "undef": true, 
+  "unused": true, 
+  "trailing": true, 
+  "maxlen": 90, 
+  "laxcomma": true,
+  "newcap": true,
+  "quotmark": true,
+  "trailing": true,
+  "predef": [
+      "console", "define", "module", "require", 
+      "before", "beforeEach", "describe", "it" 
+  ]
+}

@@ -13,6 +13,6 @@
   "predef": [
       "console", "define", "module", "require",
       "before", "beforeEach", "describe", "it",
-      "process", "__dirname"
+      "process", "__dirname", "document", "$"
   ]
 }

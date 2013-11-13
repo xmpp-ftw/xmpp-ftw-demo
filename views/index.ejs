@@ -5,24 +5,32 @@
 
 <h2>Introduction</h2>
 
-<p>The goal of this project is to make XMPP really simple to use for developers. This module takes 
-away all of the XML and works by hooking to events which are passed between client and server 
-using a transport in JSON. In the example code we use socket.io, but there is no reason this 
+<p>The goal of this project is to make XMPP really simple to use for developers. This module takes
+away all of the XML and works by hooking to events which are passed between client and server
+using a transport in JSON. In the example code we use socket.io, but there is no reason this
 can not be replaced with engine.io, or implement your own transport and pass in as a connection.</p>
 
-<p>The examples on this site use <a href="http://socket.io" target="_blank">socket.io</a> to handle 
+<p>The examples on this site use <a href="http://socket.io" target="_blank">socket.io</a> to handle
 data transport and will attempt to use websockets before attempting to use alternative connection types.</p>
+
+<h2>Getting started...</h2>
+
+<div class="demo link">
+    <a href="/demo">Know your XMPP?<br/>Click here to start experimenting</a>
+</div>
+<br/>
+<p>Beginner and installation guides to come...</p>
 
 <h2>Hosting</h2>
 
 <img src="/img/nodejitsu-logo.png" class="nodejitsu-logo" />
 
-<p><a href="https://xmpp-ftw.jit.su">https://xmpp-ftw.jit.su</a> is hosted for free by 
-<a href="http://www.nodejitsu.com" target="_blank">nodejitsu</a> as part of 
+<p><a href="https://xmpp-ftw.jit.su">https://xmpp-ftw.jit.su</a> is hosted for free by
+<a href="http://www.nodejitsu.com" target="_blank">nodejitsu</a> as part of
 their on-going commitment to open source software.</p>
 
-<p>Nodejitsu is a great PaaS provider allowing you to very quickly and easily deploy nodejs apps online 
-within minutes. Please show nodejitsu some ❤. For more details see 
+<p>Nodejitsu is a great PaaS provider allowing you to very quickly and easily deploy nodejs apps online
+within minutes. Please show nodejitsu some ❤. For more details see
 <a href="http://opensource.jit.su/" target="_blank">opensource.jit.su</a>.</p>
 
 <h2>Information</h2>
@@ -69,20 +77,20 @@ within minutes. Please show nodejitsu some ❤. For more details see
 
 <h2>Architecture</h2>
 
-<p>XMPP-FTW is made up of a group of modules. The main XMPP-FTW module 
-includes code for handling login/logout, presence, chat, and roster. In 
-addition to this it also includes small amounts of code to handle common 
+<p>XMPP-FTW is made up of a group of modules. The main XMPP-FTW module
+includes code for handling login/logout, presence, chat, and roster. In
+addition to this it also includes small amounts of code to handle common
 occurances in XMPP e.g. data forms (XEP-0004).</p>
 
-<p>All other code is (or is in the process of being) broken into 
+<p>All other code is (or is in the process of being) broken into
 separate modules. The current status of the modules is listed below:</p>
 
 <p class="project-status">
     <a href="https://github.com/xmpp-ftw/xmpp-ftw" target="_blank">
-    <img class="build-status" 
+    <img class="build-status"
          src="https://secure.travis-ci.org/xmpp-ftw/xmpp-ftw.png" />
-    </a> The main XMPP-FTW repo. Handles authentication, roster, presence, 
-    and chat. Includes small pieces of code that are seen frequently in 
+    </a> The main XMPP-FTW repo. Handles authentication, roster, presence,
+    and chat. Includes small pieces of code that are seen frequently in
     XMPP (e.g. data form parsing)
 </p>
 <p class="project-status">
@@ -154,7 +162,7 @@ separate modules. The current status of the modules is listed below:</p>
 
 <h3>Additional components</h3>
 
-<p>There are also several smaller components which can be used seperately to 
+<p>There are also several smaller components which can be used seperately to
 XMPP-FTW which perform useful utility tasks. These are listed below:</p>
 
 <p>

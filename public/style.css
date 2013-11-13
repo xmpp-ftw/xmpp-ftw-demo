@@ -1,6 +1,6 @@
 /**
  *     Colours:
- * 
+ *
  *   #9fce66 ::: rgba(159, 206, 102, 1) ::: Green
  *   #419539: Dark green
  *   #15b2e7 ::: rgba(21, 178, 231, 1) :::  Light blue
@@ -24,7 +24,7 @@ body {
     position: relative;
 }
 
-.container { 
+.container {
    overflow: auto;
 }
 
@@ -63,7 +63,7 @@ h3, h4 {
     clear: both;
 }
 
-pre { 
+pre {
     border: 3px dashed #000;
     margin: 5px;
     padding-top: 15px;
@@ -116,11 +116,11 @@ pre.in {
 }
 
 
-a, a:hover, a:visited, a:link, a:-webkit-any-link { 
+a, a:hover, a:visited, a:link, a:-webkit-any-link {
     text-decoration: none;
     color: #419539
 }
-a.top { 
+a.top {
   font-size: 11px;
    vertical-align: super
 }
@@ -130,7 +130,7 @@ a.top {
     font-size: 1.6em;
 }
 
-.hint { 
+.hint {
     color: #063e64;
 }
 
@@ -147,7 +147,7 @@ a.top {
     border-left: 2px solid #063e64;
     border-right: 2px solid #063e64;
     border-radius: 0 0 5px 5px;
-    
+
 }
 .collapse a, .collapse a:link, .collapse a:visited {
     color: #9fce66;
@@ -205,7 +205,7 @@ a.top {
     width: 300px;
 }
 
-#demo .send .data { 
+#demo .send .data {
   cursor: text;
   width: 40%;
 }
@@ -335,7 +335,7 @@ table thead th {
 }
 
 table thead td.status-column, table tbody td.status-column {
-  max-width: 150px;    
+  max-width: 150px;
 }
 
 table tbody td.status-column img, table tbody td.status-column a img {
@@ -409,4 +409,31 @@ div.demo-storage checkbox {
 div.demo-storage span.clear-storage {
     cursor: pointer;
     color: #0000ff;
+}
+
+div.link {
+    border: 3px dashed #000;
+    margin: 5px;
+    padding: 15px;
+    width: 30%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+}
+
+div.link a {
+    text-decoration: none;
+    color: #000000;
+}
+
+div.link.beginner {
+    border-color: rgba(159, 206, 102, 0.4);
+}
+
+div.link.install {
+    border-color: rgba(21, 178, 231, 0.4);
+}
+
+div.link.demo {
+    border-color: rgba(229, 106, 20, 0.4);
 }

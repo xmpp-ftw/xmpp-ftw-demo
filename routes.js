@@ -22,7 +22,8 @@ module.exports = function(app, configuration) {
         '/manual/extensions': 'extensions',
         '/manual/unknown-stanza-handling': 'unknown-stanza-handling',
         '/manual/jabber-rpc': 'jabber-rpc',
-        '/manual/item-parser': 'item-parser'
+        '/manual/item-parser': 'item-parser',
+        '/manual/jingle': 'jingle'
     }
 
     Object.keys(routes).forEach(function(route) {

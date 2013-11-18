@@ -1,10 +1,39 @@
-<% 
+<%
     pageTitle = "XEP-0166 Jingle"
 %>
 <% include ./partials/head %>
 
     <div id="toc"></div>
 
-    <p>Coming soon...</p>
+    <h2>Introduction</h2>
+
+    <p>The inclusion of a
+    <a href="http://xmpp.org/extensions/xep-0166.html" target="_blank">jingle</a>
+    module early in the life of this project was primarily to enable the use
+    of XMPP as a ignalling server for
+    <a href="http://webrtc.org" target="_blank">webRTC</a>.
+    Amazing gains in this area were made by
+    <a href="https://plus.google.com/102091620148929269177/posts"
+       target="_blank">Philip Hancke</a> and
+    <a href="https://twitter.com/lancestout" target="_blank">Lance Stout</a>
+    resulting in interoperable signalling systems for webRTC over XMPP.</p>
+
+    <p>XMPP-FTW was soon added to the
+    <a href="https://github.com/legastero/jingle-interop-demos"
+       target="_blank">list of interoperable libraries</a> for signalling webRTC
+    calls. If you wish to use xmpp-ftw-jingle for webRTC calls then this is the
+    first module for which I would recommend a client-side library.
+    This library is
+    <a href="https://github.com/legastero/jingle.js" target="_blank">jingle.js</a>
+    by Lance Stout. It handles generating the required JSON from
+    <abbr title="Session description protocol">SDP</abbr> and the handling of the
+    webRTC sessions. If you prefer a more DIY approach then the <a href="https://github.com/legastero/sdp-jingle-json" target="_blank">sdp-jingle-json</a> library (again from Lance) upon which jingle.js builds will be of great use.</p>
+
+    <p>If you'd like to experiment with webRTC using xmpp-ftw then please visit
+    the <a href="http://xmpp-ftw.github.io/webrtc-demo">webRTC demo page</a>
+    and its <a href="https://github.com/xmpp-ftw/webrtc-demo">source code</a>.</p>
+
+
+    <h2>Initiating a <abbr title="Peer to Peer">P2P</abbr> connnection</h2>
 
 <% include ./partials/footer %>

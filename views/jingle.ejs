@@ -36,4 +36,36 @@
 
     <h2>Initiating a <abbr title="Peer to Peer">P2P</abbr> connnection</h2>
 
+    <p>A jingle session can be initiated using `<em>xmpp.jingle.request</em>` as
+    follows:</p>
+
+    <pre class="out callback" message="xmpp.jingle.request">
+    socket.emit(
+        'xmpp.jingle.request',
+        {
+            "to": "megan@evilprofessor.co.uk/desktop",
+            "jingle": {
+                contents: [
+                    {},
+                    {},
+                    sid: "session-id",
+                    action: "session-initiate",
+                ]
+            },
+         /* "type": "set", */
+        }
+    )
+    </pre>
+
+    <p>A `<em>type</em>` of <strong>error</strong> or an `<em>error</em>` key
+    will result in error stanza being sent. A `<em>type</em>` of
+    <strong>result</strong> will result in an result stanza being sent.</p>
+
+    <p>For the <strong>error</strong> and <strong>result</strong> cases above
+    a `<em>jingle</em>` key is not required.</p>
+
+    <p>The above example will generate the stanza from
+    <a href="http://xmpp.org/extensions/xep-0166.html#example-1"
+       target="_blank">example 1</a> in the jingle XEP.</p>
+
 <% include ./partials/footer %>

@@ -1,29 +1,29 @@
-<% 
+<%
     pageTitle = "XEP-0030 Service Discovery (DISCO)"
 %>
 <% include ./partials/head %>
 
         <div id="toc"></div>
 
-        <p>Note: Both <em>xmpp.discover.info</em> and <em>xmpp.discover.items</em> support 
-        <abbr title="Result set management">RSM</a> as outlined in 
+        <p>Note: Both <em>xmpp.discover.info</em> and <em>xmpp.discover.items</em> support
+        <abbr title="Result set management">RSM</a> as outlined in
         <a href="/manual/result-set-management">result set management</a>.</p>
- 
+
         <h3>Discover Entities <em>disco#items</em></h3>
-        
+
         <pre class="out callback" message="xmpp.discover.items">
         socket.emit(
             'xmpp.discover.items',
-            { 
+            {
                 "of": "evilprofessor.co.uk",
              /* "node": "xmpp-ftw updates" */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
+
         <p>Example response:</p>
-        
+
         <pre class="example">
         [
             { jid: "conference.evilprofessor.co.uk" },
@@ -32,20 +32,20 @@
         </pre>
 
         <h3>Discover Features <em>disco#info</em></h3>
-        
+
         <pre class="out callback" message="xmpp.discover.info">
         socket.emit(
             'xmpp.discover.info',
-            { 
+            {
                 "of": "evilprofessor.co.uk",
              /* "node": "xmpp-ftw updates" */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
+
         <p>Example response:</p>
-        
+
         <pre class="example">
         [
             { "kind": "identity", "type": "pep", "name": "Prosody", "category": "pubsub" },
@@ -57,18 +57,18 @@
             { "kind": "x", "form": {} }
         ]
         </pre>
-        
+
         <h3>Features your client supports</h3>
-        
+
         <p>
         <pre class="in" message="xmpp.discover.client">
         socket.on('xmpp.discover.client', function(data) {
             console.log(data)
         })
         </pre>
-        
+
         <p>Example data sent from server:</p>
-        
+
         <pre class="example">
         {
             from: 'lloyd@evilprofessor.co.uk/laptop',
@@ -76,27 +76,32 @@
         }
         </pre>
 
-        <p>In order to send a reply we use the `<em>xmpp.discover.result</em>` 
+        <p>In order to send a reply we use the `<em>xmpp.discover.client</em>`
         event as follows:</p>
-        
-        <pre class="example">
-        {
-            to: 'lloyd@evilprofessor.co.uk/laptop',
-            id: 'discover:1',
-            features: [
-                { "kind": "identity", "type": "pc", "name": "xmpp-ftw", "category": "client" },
-                { "kind": "feature", "var": "http://jabber.org/protocol/disco#info" },
-                { "kind": "feature", "var": "http://jabber.org/protocol/muc" }
-            ]
+
+        <pre class="out callback" message="xmpp.discover.client">
+        socket.emit(
+            'xmpp.discover.client',
+            {
+                to: 'lloyd@evilprofessor.co.uk/laptop',
+                id: 'discover:1',
+                features: [
+                    { "kind": "identity", "type": "pc", "name": "xmpp-ftw", "category": "client" },
+                    { "kind": "feature", "var": "http://jabber.org/protocol/disco#info" },
+                    { "kind": "feature", "var": "http://jabber.org/protocol/muc" }
+                ]
+            },
+            function(error, data) { console.log(error, data) }
+        )
         </pre>
 
-        <p><strong>features</strong> is optional, or can be an array with zero 
+        <p><strong>features</strong> is optional, or can be an array with zero
         or more elements.</p>
 
-        <p>Providing a callback to this call is optional. If provided you will 
-        simply receive an <strong>true</strong> if the result was sent ok. If 
-        the data provided is invalid the error argument will be populated. Should 
-        you not provide a callback then the `<em>xmpp.error.client</em>` event 
+        <p>Providing a callback to this call is optional. If provided you will
+        simply receive an <strong>true</strong> if the result was sent ok. If
+        the data provided is invalid the error argument will be populated. Should
+        you not provide a callback then the `<em>xmpp.error.client</em>` event
         will be used.</p>
 
 <% include ./partials/footer %>

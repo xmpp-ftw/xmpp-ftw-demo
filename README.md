@@ -59,3 +59,7 @@ For instructions on using the config file see [winston-config](https://github.co
 # License
 
 License is Apache 2.0, please let me know if this doesn't suit.
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/xmpp-ftw/xmpp-ftw-demo/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+

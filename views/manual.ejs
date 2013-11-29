@@ -1,12 +1,12 @@
-<% 
+<%
     pageTitle = "Manual"
 %>
 <% include ./partials/head %>
-        
-        <p>This page covers using XMPP-FTW from the browser. You may also 
-        want to check out the <a href="/demo" title="XMPP-FTW Demo">demo</a> and 
+
+        <p>This page covers using XMPP-FTW from the browser. You may also
+        want to check out the <a href="/demo" title="XMPP-FTW Demo">demo</a> and
         the <del title="deprecated"><a href="/chat" title="XMPP-FTW Chat client">chat client</a></del>.</p>
-        
+
         <div id="toc"></div>
 
         <h2>Components</h2>
@@ -41,7 +41,7 @@
                         <li>presence</li>
                         <li>chat</li>
                       </ul>
-                        
+
                       Chat includes <a href="http://xmpp.org/extensions/xep-0085.html"
                         target="_blank">XEP-0085</a> support.
                     </td>
@@ -93,7 +93,7 @@
                     <a href="https://david-dm.org/xmpp-ftw/xmpp-ftw-muc" title="Dependency status"><img src="https://david-dm.org/xmpp-ftw/xmpp-ftw-muc.png"/></a>
                         <a href="https://david-dm.org/xmpp-ftw/xmpp-ftw-muc#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/xmpp-ftw/xmpp-ftw-muc/dev-status.png"/></a>
                     </td>
-                    <td>Supports 
+                    <td>Supports
                     <a href="http://xmpp.org/extensions/xep-0085.html"
                        target="_blank">XEP-0085</a></td>
                 </tr>
@@ -177,6 +177,19 @@
          src="https://secure.travis-ci.org/xmpp-ftw/xmpp-ftw.png" />
                     <a href="https://david-dm.org/xmpp-ftw/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/xmpp-ftw/xmpp-ftw.png"/></a>
                         <a href="https://david-dm.org/xmpp-ftw/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/xmpp-ftw/xmpp-ftw/dev-status.png"/></a></td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr>
+                    <td><a href="/manual/core#presence">Entity Capabilities</a></td>
+                    <td>XEP-0115</td>
+                    <td><a href="https://npmjs.org/package/xmpp-ftw">xmpp-ftw</a><br/>
+                        <img src="https://badge.fury.io/js/xmpp-ftw.png" /></td>
+                    <td class="status-column">
+                        <a href="https://secure.travis-ci.org/xmpp-ftw/xmpp-ftw"><img class="build-status"
+         src="https://secure.travis-ci.org/xmpp-ftw/xmpp-ftw.png" /></a>
+                        <a href="https://david-dm.org/xmpp-ftw/xmpp-ftw" title="Dependency status"><img src="https://david-dm.org/xmpp-ftw/xmpp-ftw.png"/></a>
+                        <a href="https://david-dm.org/xmpp-ftw/xmpp-ftw#info=devDependencies" title="Dependency status"><img src="https://david-dm.org/xmpp-ftw/xmpp-ftw/dev-status.png"/></a>
+                    </td>
                     <td>&nbsp;</td>
                 </tr>
                 <tr>
@@ -267,31 +280,31 @@
                 </tr>
             </tbody>
         </table>
-                            
+
         <h2>Colour conventions</h2>
-        
+
         <p>These colour conventions are also carried over into the <a href="/demo" title="XMPP-FTW demo client">demo client</a>.<p>
-        
+
         <div class="example-out">Outgoing message</div>
         <div class="example-in">Incoming message</div>
         <div class="example-data">Example data</div>
-        
+
         <h2>JIDs</h2>
-        
+
         <p>JIDs are always sent as an object as follows:</p>
-        
+
         <pre class="example">
-        { 
+        {
             "user": "lloyd",
             "domain": "evilprofessor.co.uk",
             "resource": "laptop"
         }
         </pre>
-        
+
         <h2>Errors</h2>
-        
+
         <p>Errors are delivered in the following form:</p>
-        
+
         <pre class="example in" message="xmpp.error">
         {
             type: "auth",
@@ -299,7 +312,7 @@
          /* description: "Only owners can configure rooms" */
         }
         </pre>
-        
+
         <h3>Client errors</h3>
 
         <p>Client errors follow a similar format to standard XMPP error responses. An example error looks like this:</p>
@@ -313,13 +326,13 @@
         }
         </pre>
 
-        <p>If the request included a callback this will be sent back as the 
-        first argument (i.e. '<em>error</em>' variable), otherwise the 
+        <p>If the request included a callback this will be sent back as the
+        first argument (i.e. '<em>error</em>' variable), otherwise the
         message will come back as a <strong>xmpp.error.client</strong> event.
         </p>
 
-        <p><strong>Note:</strong> use of '<em>bad-request</em>' was avoided 
-        to ensure that a client → XMPP-FTW was discernible from a pure 
+        <p><strong>Note:</strong> use of '<em>bad-request</em>' was avoided
+        to ensure that a client → XMPP-FTW was discernible from a pure
         client → XMPP error.</p>
- 
+
 <% include ./partials/footer %>

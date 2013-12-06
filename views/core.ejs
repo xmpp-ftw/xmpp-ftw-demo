@@ -283,7 +283,7 @@
 
         <pre class="out callback" message="xmpp.roster.remove">
         socket.emit(
-            'xmpp.roster.add',
+            'xmpp.roster.remove',
             {
                 "jid": "user@evilprofessor.co.uk"
             },
@@ -332,17 +332,19 @@
           }
         </pre>
 
-        <h3>Add a user to a roster group</h3>
+        <h3>Edit a user</h3>
 
         <p><strong>Note:</strong> Existing groups will be erased, therefore
-        you must include all roster groups in this list.</p>
+        you must include all roster groups in this list. Existing name will be 
+        erased too if not provided.</p>
 
-        <pre class="out callback" message="xmpp.roster.group">
+        <pre class="out callback" message="xmpp.roster.edit">
         socket.emit(
-            'xmpp.roster.group',
+            'xmpp.roster.edit',
             {
                 "jid": "user@evilprofessor.co.uk",
-                "groups": [ "buddies", "colleagues" ]
+                "groups": [ "buddies", "colleagues" ],
+                /* "name": "Evil User" */
             },
             function(error, data) { console.log(error, data) }
         )

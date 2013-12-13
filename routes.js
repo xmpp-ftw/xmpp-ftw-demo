@@ -1,7 +1,7 @@
-var cloneextend = require('cloneextend')
+'use strict';
 
 module.exports = function(app, configuration) {
-    
+
     var routes = {
         '/': 'index',
         '/demo': 'demo',

@@ -1,3 +1,5 @@
+'use strict';
+
 var messageCount = 1
 var manualPageRetrievalQueue = 0
 
@@ -5,20 +7,130 @@ var outgoingMessages = []
 var outgoing         = []
 var incoming         = []
 
-var parsePage = function(data) {
+var getEntryHtml = function(callback) {
+    if (callback) {
+        return $('<div class="message-container payload callback-yes">' +
+            '<div class="message"></div>' +
+            '<div class="data zoomable"></div>' +
+            '<div class="callback"></div>' +
+            '</div>')
+    }
+    return $('<div class="message-container payload callback-no">' +
+        '<div class="message"></div>' +
+        '<div class="data zoomable"></div>' +
+        '</div>')
+}
 
-    var data = $(data.replace(/^\n/, ""))
-    
+var addMessage = function(message, direction, data, callback) {
+    console.log('IN: ', message, direction, data, callback)
+    var html = getEntryHtml(callback)
+
+    html.addClass(direction)
+    html.find('.data').html(
+        JSON.stringify(data, undefined, 2).replace(/\n/g, '<br/>')
+    )
+    html.find('.message').html(message)
+
+    var id = messageCount
+    html.attr('id', id)
+    messageCount++
+    if (('in' === direction) && callback) {
+
+        var callbackDiv = html.find('.callback')
+        callbackDiv.attr('contenteditable', 'true')
+            .text('{...Write JSON callback data here...}')
+        callbackDiv.addClass('out')
+        var callbackButtonDiv = $('<div class="in-callback-submit"></div>')
+        var callbackButton = $('<button>Send callback</button>')
+        callbackButtonDiv.append(callbackButton)
+        html.append(callbackButtonDiv)
+        setTimeout(function() {
+            $(callbackButtonDiv).css('height', $(callbackDiv).css('height'))
+        }, 100)
+        callbackButton.click(function() {
+            var parsed = null
+            try {
+                parsed = JSON.parse(callbackDiv.text())
+            } catch (e) {
+                console.error(e)
+                return alert('You must enter valid JSON:\n\n' + e.toString())
+            }
+            callback(parsed)
+            callbackButtonDiv.remove()
+        })
+        callbackDiv.append()
+    }
+    $('#messages').append(html)
+    return id
+}
+
+var useLocalStorage = function() {
+    return $('input[name=useStorage]').is(':checked')
+}
+
+var setupAutocomplete = function() {
+    $('#message').autocomplete({
+        minLength: 0,
+        source: outgoing,
+        select: function(event, ui) {
+            $('.send .callback').removeClass('callback-yes').removeClass('callback-no')
+
+            var example = ui.item.example
+            if ((true === useLocalStorage()) &&
+                localStorage[ui.item.label])
+                example = localStorage[ui.item.label]
+                    .replace('{', '{<br/>')
+                    .replace('\',', '",<br/>')
+                    .replace('}', '<br/>}')
+            $('.send .data').html(example)
+            $('.send .callback').attr('callback', ui.item.callback)
+            $('.send .callback').addClass((true === ui.item.callback) ? 'callback-yes' : 'callback-no')
+            $('.send .callback').html((true === ui.item.callback) ? 'Yes' : 'No')
+            return false
+        },
+        focus: function(event, ui) {
+            $('#message').val(ui.item.label)
+            return false
+        }
+    })
+}
+
+var setupListener = function() {
+    incoming.forEach(function(message) {
+        socket.on(message, function(data, callback) {
+            addMessage(message, 'in', data, callback)
+        })
+    })
+}
+
+var increaseQueue = function() {
+    ++manualPageRetrievalQueue
+}
+
+var decreaseQueue = function() {
+    --manualPageRetrievalQueue
+    if (manualPageRetrievalQueue > 0) return
+    setupListener()
+    setupAutocomplete()
+    console.log('Listening for the following messages', incoming)
+    console.log('Logging the following outgoing messages', outgoingMessages)
+    $('.messages-container').css('display', 'block')
+}
+
+var parsePage = function(incomingData) {
+
+    var data = $(incomingData.replace(/^\n/, ''))
+
     data.each(function(i, ele) {
 
-        if (!'container' == $(ele).attr('id')) return
-        
+        if ('container' !== $(ele).attr('id')) return
+
         $(ele).find('pre.in').each(function(i, message) {
             incoming.push($(message).attr('message'))
         })
-            
+
         $(ele).find('pre.out').each(function(i, message) {
-            var example = $(message).text().split($(message).attr('message') + "',")[1]
+            var example = $(message).text().split($(message).attr('message') + '\',')[1]
             if (example) {
                 var splitString = (-1 === example.indexOf(', rsm)')) ?
                     'function(error, data) { console.log(error, data) }' :
@@ -29,7 +141,7 @@ var parsePage = function(data) {
                 value: $(message).attr('message'),
                 label: $(message).attr('message'),
                 callback: $(message).hasClass('callback'),
-                example: (example || "{}").replace(/\n/g, "<br/>")
+                example: (example || '{}').replace(/\n/g, '<br/>')
             }
             outgoing.push(out)
             outgoingMessages.push(out.value)
@@ -38,96 +150,6 @@ var parsePage = function(data) {
     decreaseQueue()
 }
 
-var useLocalStorage = function() {
-    return $('input[name=useStorage]').is(':checked')
-}
-    
-var setupAutocomplete = function() {
-    $("#message").autocomplete({
-      minLength: 0,
-      source: outgoing,
-      select: function(event, ui) {
-          $('.send .callback').removeClass('callback-yes').removeClass('callback-no')
-          
-          var example = ui.item.example
-          if ((true === useLocalStorage()) &&
-              localStorage[ui.item.label])
-              example = localStorage[ui.item.label]
-                  .replace("{", "{<br/>")
-                  .replace('",', "\",<br/>")
-                  .replace('}', "<br/>}")
-          $('.send .data').html(example)
-          $('.send .callback').attr('callback', ui.item.callback)
-          $('.send .callback').addClass((true == ui.item.callback) ? 'callback-yes' : 'callback-no')
-          $('.send .callback').html((true == ui.item.callback) ? 'Yes' : 'No')
-        return false;
-      },
-      focus: function(event, ui) {
-        $("#message").val(ui.item.label);
-        return false;
-      }
-    })
-}
-
-var setupListener = function() {
-    incoming.forEach(function(message) {
-        socket.on(message, function(data, callback) {
-            addMessage(message, 'in', data, callback)
-        })    
-    })
-}
-
-var addMessage = function(message, direction, data, callback) {
-    console.log('IN: ', message, direction, data, callback)
-    if (callback)
-        var html = $('<div class="message-container payload callback-yes">'
-            + '<div class="message"></div>'
-            + '<div class="data zoomable"></div>'
-            + '<div class="callback"></div>'
-            + '</div>')
-    else 
-        var html = $('<div class="message-container payload callback-no">'
-            + '<div class="message"></div>'
-            + '<div class="data zoomable"></div>'
-            + '</div>')
-    html.addClass(direction)
-    html.find('.data').html(
-        JSON.stringify(data, undefined, 2).replace(/\n/g, "<br/>")
-    )
-    html.find('.message').html(message)
-    
-    var id = messageCount
-    html.attr('id', id)
-    ++messageCount
-    if ('in' == direction && callback) {
-    	
-    	var callbackDiv = html.find('.callback')
-    	callbackDiv.attr('contenteditable', 'true')
-    	    .text('{...Write JSON callback data here...}')
-    	callbackDiv.addClass("out")
-    	var callbackButtonDiv = $('<div class="in-callback-submit"></div>')
-    	var callbackButton = $('<button>Send callback</button>')
-    	callbackButtonDiv.append(callbackButton)
-    	html.append(callbackButtonDiv)
-    	setTimeout(function() {
-    		$(callbackButtonDiv).css('height', $(callbackDiv).css('height'))
-        }, 100)
-    	callbackButton.click(function() {
-		    try {
-		        var parsed = JSON.parse(callbackDiv.text())
-		    } catch (e) {
-		        console.error(e)
-		        return alert("You must enter valid JSON:\n\n" + e.toString())
-		    }
-		    callback(parsed)
-		    callbackButtonDiv.remove()
-    	})
-    	callbackDiv.append()
-    }
-    $('#messages').append(html)
-    return id
-}
-    
 var getMessages = function(path, delay) {
     if (!delay) delay = 0
     increaseQueue()
@@ -143,20 +165,6 @@ var getMessages = function(path, delay) {
             }
         })
     }, delay)
-}
-
-var increaseQueue = function() {
-    ++manualPageRetrievalQueue
-}
-
-var decreaseQueue = function() {
-    --manualPageRetrievalQueue
-    if (manualPageRetrievalQueue > 0) return
-    setupListener()
-    setupAutocomplete()
-    console.log('Listening for the following messages', incoming)
-    console.log('Logging the following outgoing messages', outgoingMessages)
-    $('.messages-container').css('display', 'block')
 }
 
 $(document).on('click', 'span.clear-storage', function(e) {
@@ -202,16 +210,16 @@ $('#send').on('click', function() {
     var message = $('#message').val()
     var payload = $('#data').text()
     var callback = $('#callback').hasClass('callback-yes')
-   
+
     if (message.length < 6) return alert('You must enter a valid message')
     if (payload.length < 2) return alert("You must enter a valid payload, at least empty JSON object...\n\n{}")
-    
+
     try {
         var parsed = JSON.parse(payload)
     } catch (e) {
         console.error(e)
         return alert("You must enter valid JSON:\n\n" + e.toString())
-    } 
+    }
     var id = addMessage(message, 'out', parsed, callback)
     console.debug('OUT: ', '(id=' + id + ')', message, parsed)
     if (true === useLocalStorage())
@@ -260,18 +268,18 @@ $(document).ready(function() {
     getMessages('/manual/extensions', 2000)
     getMessages('/manual/core')
     getMessages()
-    
+
     socket = new Primus('//' + window.document.location.host)
     socket.on('error', function(error) { console.log(error); })
 
     socket.on('online', function(data) {
         console.log('Connected')
     })
-    
+
     socket.on('timeout', function(reason) {
         console.log("Connection failed: " + reason)
     })
-  
+
     socket.on('end', function() {
         addMessage('exit(0)', 'in', 'SOCKET CONNECTION CLOSED', false)
         socket = null

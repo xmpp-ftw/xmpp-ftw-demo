@@ -1,3 +1,5 @@
+'use strict';
+
 var   xmpp          = require('xmpp-ftw')
     , express       = require('express')
     , app           = express()
@@ -11,7 +13,7 @@ var   xmpp          = require('xmpp-ftw')
 var port = 3000
 
 helmet.defaults(app)
-
+/* jshint -W098 */
 try {
     var config = require('./config/logging.json')
 } catch (e) {
@@ -60,21 +62,22 @@ var Jingle = require('xmpp-ftw-jingle')
 var Mam = require('xmpp-ftw-mam')
 
 primus.on('connection', function(socket) {
-     var xmppFtw = new xmpp.Xmpp(socket)
-     xmppFtw.setLogger(winston)
-     xmppFtw.addListener(new Muc())
-     xmppFtw.addListener(new Disco())
-     xmppFtw.addListener(new Pubsub())
-     xmppFtw.addListener(new Register())
-     xmppFtw.addListener(new Superfeedr())
-     xmppFtw.addListener(new Buddycloud())
-     xmppFtw.addListener(new Avatar())
-     xmppFtw.addListener(new Search())
-     xmppFtw.addListener(new Rpc())
-     xmppFtw.addListener(new Fanout())
-     xmppFtw.addListener(new Jingle())
-     xmppFtw.addListener(new Mam())
-})
+        var xmppFtw = new xmpp.Xmpp(socket)
+        xmppFtw.setLogger(winston)
+        xmppFtw.addListener(new Muc())
+        xmppFtw.addListener(new Disco())
+        xmppFtw.addListener(new Pubsub())
+        xmppFtw.addListener(new Register())
+        xmppFtw.addListener(new Superfeedr())
+        xmppFtw.addListener(new Buddycloud())
+        xmppFtw.addListener(new Avatar())
+        xmppFtw.addListener(new Search())
+        xmppFtw.addListener(new Rpc())
+        xmppFtw.addListener(new Fanout())
+        xmppFtw.addListener(new Jingle())
+        xmppFtw.addListener(new Mam())
+    }
+)
 
 var readme = require('express-middleware-readme.md')
 readme.setOptions({
@@ -97,7 +100,8 @@ app.configure(function() {
     app.use(app.router)
     app.use(express.logger);
     app.use(express.errorHandler({
-        dumpExceptions: true, showStack: true
+        dumpExceptions: true,
+        showStack: true
     }))
 })
 
@@ -105,7 +109,7 @@ app.engine('ejs', engine);
 
 var configuration = {
     ga: process.env.GOOGLE_ANALYTICS_ID || null,
-        webmasterTools: process.env.GOOGLE_WEBMASTER_TOOLS || null,
+    webmasterTools: process.env.GOOGLE_WEBMASTER_TOOLS || null,
     body:     {},
     title:    'XMPP-FTW ⟫ ',
     version:  version

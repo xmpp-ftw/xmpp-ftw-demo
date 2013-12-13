@@ -53,10 +53,13 @@
   "scripts": {
     "start": "node index.js",
     "develop": "nodemon --watch lib --watch index.js --watch node_modules index.js",
-    "test": "./node_modules/.bin/mocha -R spec --recursive ./node_modules/xmpp-ftw*/test/lib"
+    "test": "grunt test"
   },
   "devDependencies": {
     "should": "~1.3.0",
-    "mocha": "~1.13.0"
+    "mocha": "~1.13.0",
+    "grunt-contrib-jshint": "~0.7.2",
+    "grunt": "~0.4.2",
+    "grunt-mocha-cli": "~1.4.0"
   }
 }

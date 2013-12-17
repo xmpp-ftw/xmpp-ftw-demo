@@ -10,7 +10,7 @@
     "laxcomma": true,
     "maxparams": 4,
     "maxdepth": 3,
-    "maxstatements": 20,
+    "maxstatements": 21,
     "maxcomplexity": 12,
     "maxlen": 120,
     "newcap": true,
@@ -28,7 +28,7 @@
     "predef": [
       "define", "module", "require",
       "before", "beforeEach", "describe", "it",
-      "after", "window"
+      "after", "window", "$", "localStorage"
   ]
 
 }

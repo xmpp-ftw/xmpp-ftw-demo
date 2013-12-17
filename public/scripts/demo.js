@@ -1,5 +1,6 @@
 'use strict';
 
+var socket = null
 var messageCount = 1
 var manualPageRetrievalQueue = 0
 
@@ -53,7 +54,7 @@ var addMessage = function(message, direction, data, callback) {
                 parsed = JSON.parse(callbackDiv.text())
             } catch (e) {
                 console.error(e)
-                return alert('You must enter valid JSON:\n\n' + e.toString())
+                return window.alert('You must enter valid JSON:\n\n' + e.toString())
             }
             callback(parsed)
             callbackButtonDiv.remove()
@@ -161,13 +162,13 @@ var getMessages = function(path, delay) {
             success: parsePage,
             error: function(error) {
                 console.log(error)
-                alert('Failed to start: ' + error.statusText)
+                window.alert('Failed to start: ' + error.statusText)
             }
         })
     }, delay)
 }
 
-$(document).on('click', 'span.clear-storage', function(e) {
+$(window.document).on('click', 'span.clear-storage', function(e) {
     e.stopPropagation()
     console.debug('localStorage cleared')
     localStorage.clear()
@@ -175,7 +176,19 @@ $(document).on('click', 'span.clear-storage', function(e) {
 
 var modalTarget
 
-$(document).on('click', 'div.zoomable', function(e) {
+var showModal = function(target) {
+    var content = target.html()
+    $('body').css('cursor', 'wait')
+    $('#modal pre').html(content)
+    $('body').css('cursor', '')
+    if (target.hasClass('data')) {
+        $('#modal pre').attr('contenteditable', 'true')
+        modalTarget = target
+    }
+    $('#modal').show()
+}
+
+$(window.document).on('click', 'div.zoomable', function(e) {
     if (!e.ctrlKey && !e.metaKey) return true
     showModal($(e.target))
     e.stopPropagation()
@@ -192,39 +205,35 @@ var hideModal = function(e) {
     e.stopPropagation()
 }
 
-$(document).on('click', '#modal', hideModal)
-
-var showModal = function(target) {
-    var content = target.html()
-    $('body').css('cursor', 'wait')
-    $('#modal pre').html(content)
-    $('body').css('cursor', '')
-    if (target.hasClass('data')) {
-        $('#modal pre').attr('contenteditable', 'true')
-        modalTarget = target
-    }
-    $('#modal').show()
+var clearForm = function() {
+    $('#demo .send .message, #message, #data, #callback').effect('highlight', 'slow');
+    $('#message').val('')
+    $('#data').html('')
+    $('#callback').removeClass('callback-yes').removeClass('callback-no').html('')
 }
+
+$(window.document).on('click', '#modal', hideModal)
 
 $('#send').on('click', function() {
     var message = $('#message').val()
     var payload = $('#data').text()
     var callback = $('#callback').hasClass('callback-yes')
 
-    if (message.length < 6) return alert('You must enter a valid message')
-    if (payload.length < 2) return alert("You must enter a valid payload, at least empty JSON object...\n\n{}")
+    if (message.length < 6) return window.alert('You must enter a valid message')
+    if (payload.length < 2) return window.alert('You must enter a valid payload, at least empty JSON object...\n\n{}')
 
+    var parsed = null
     try {
-        var parsed = JSON.parse(payload)
+        parsed = JSON.parse(payload)
     } catch (e) {
         console.error(e)
-        return alert("You must enter valid JSON:\n\n" + e.toString())
+        return window.alert('You must enter valid JSON:\n\n' + e.toString())
     }
     var id = addMessage(message, 'out', parsed, callback)
     console.debug('OUT: ', '(id=' + id + ')', message, parsed)
     if (true === useLocalStorage())
         localStorage[message] = JSON.stringify(parsed)
-    if (true == callback) {
+    if (true === callback) {
         console.time('id=' + id)
         socket.emit(message, parsed, function(error, data, rsm) {
             var callback = $('#' + id).find('.callback')
@@ -249,15 +258,9 @@ $('#send').on('click', function() {
     clearForm()
 })
 
-var clearForm = function() {
-    $("#demo .send .message, #message, #data, #callback").effect('highlight', 'slow');
-    $('#message').val('')
-    $('#data').html('')
-    $('#callback').removeClass('callback-yes').removeClass('callback-no').html('')
-}
-
-$(document).ready(function() {
-    console.log("Page loaded...")
+/* jshint -W117 */
+$(window.document).ready(function() {
+    console.log('Page loaded...')
     getMessages('/manual/message-archive-management', 2000)
     getMessages('/manual/service-discovery', 2000)
     getMessages('/manual/multi-user-chat', 2000)
@@ -273,11 +276,11 @@ $(document).ready(function() {
     socket.on('error', function(error) { console.log(error); })
 
     socket.on('online', function(data) {
-        console.log('Connected')
+        console.log('Connected', data)
     })
 
     socket.on('timeout', function(reason) {
-        console.log("Connection failed: " + reason)
+        console.log('Connection failed: ' + reason)
     })
 
     socket.on('end', function() {

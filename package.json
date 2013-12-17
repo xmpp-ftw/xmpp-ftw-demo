@@ -13,7 +13,6 @@
     "helmet": "~0.1.0",
     "winston": "~0.7.2",
     "cloneextend": "0.0.3",
-    "node-stringprep": "latest",
     "xmpp-ftw": "*",
     "xmpp-ftw-disco": "*",
     "xmpp-ftw-muc": "*",
@@ -28,6 +27,9 @@
     "xmpp-ftw-jingle": "*",
     "xmpp-ftw-mam": "*",
     "winston-config": "~0.4.2"
+  },
+  "optionalDependencies": {
+    "node-stringprep": "latest"
   },
   "repository": {
     "type": "git",

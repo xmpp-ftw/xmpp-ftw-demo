@@ -13,7 +13,7 @@
     "helmet": "~0.1.0",
     "winston": "~0.7.2",
     "cloneextend": "0.0.3",
-    "node-stringprep": "~0.1.7",
+    "node-stringprep": "latest",
     "xmpp-ftw": "*",
     "xmpp-ftw-disco": "*",
     "xmpp-ftw-muc": "*",

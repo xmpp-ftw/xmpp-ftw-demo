@@ -115,7 +115,7 @@ var configuration = {
     version:  version
 }
 
-require('./routes')(app, configuration)
+require('./lib/routes')(app, configuration)
 
 process.on('uncaughtException', function(error) {
     // Try and prevent issues crashing the whole system

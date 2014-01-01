@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            allFiles: ['Gruntfile.js', './node_modules/xmpp-ftw*/**/*.js',
+            allFiles: ['Gruntfile.js',
                        'index.js', 'routes.js', './public/**/*.js'],
             options: {
                 jshintrc: '.jshintrc',

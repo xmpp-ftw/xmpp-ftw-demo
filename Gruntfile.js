@@ -5,14 +5,14 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            allFiles: ['Gruntfile.js', './node_modules/xmpp-ftw-*/tests/**/*.js',
+            allFiles: ['Gruntfile.js', './node_modules/xmpp-ftw*/**/*.js',
                        'index.js', 'routes.js', './public/**/*.js'],
             options: {
                 jshintrc: '.jshintrc',
             }
         },
         mochacli: {
-            all: ['test/**/*.js'],
+            all: ['test/**/*.js', './node_modules/xmpp-ftw*/test/**/*.js'],
             options: {
                 reporter: 'spec',
                 ui: 'tdd'

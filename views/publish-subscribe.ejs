@@ -9,7 +9,7 @@
         <h3>Create a node</h3>
         
         <pre class="out callback" message="xmpp.pubsub.create">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.create',
             { 
                 "to": "pubsub.evilprofessor.co.uk",
@@ -29,7 +29,7 @@
         <h3>Delete a node</h3>
         
         <pre class="out callback" message="xmpp.pubsub.delete">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.delete',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -56,7 +56,7 @@
         <h3>Subscribe to a node</h3>
         
         <pre class="out callback" message="xmpp.pubsub.subscribe">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.subscribe',
             {
                 "node": "xmpp-ftw updates",
@@ -93,7 +93,7 @@
         <h4>Get subscription options</h4>
         
         <pre class="out callback" message="xmpp.pubsub.subscription.config.get">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.subscription.config.get',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -118,7 +118,7 @@
         <h4>Get default subscription configuration options</h4>
 
         <pre class="out callback" message="xmpp.pubsub.subscription.config.default">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.subscription.config.default",
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -141,7 +141,7 @@
         <h4>Update subscription options</h4>
         
         <pre class="out callback" message="xmpp.pubsub.subscription.config.set">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.subscription.config.set',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -218,7 +218,7 @@
         of subscribers as follows:</p>
 
         <pre class="out callback" message="xmpp.pubsub.subscription">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.subscription',
             {
                 "to":            "pubsub.evilprofessor.co.uk",
@@ -236,7 +236,7 @@
         <h3>Unsubscribe from a node</h3>
         
         <pre class="out callback" message="xmpp.pubsub.unsubscribe">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.unsubscribe',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -256,7 +256,7 @@
         <a href="/manual/item-parser">publishing</a>.</p>
         
         <pre class="out callback" message="xmpp.pubsub.publish">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.publish',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -313,7 +313,7 @@
         <h3>Delete an item</h3>
         
         <pre class="out callback" message="xmpp.pubsub.item.delete">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.item.delete',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -351,7 +351,7 @@
         <h3>Purge node items</h3>
 
         <pre class="out callback" message="xmpp.pubsub.purge">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.purge', 
             {
               "to": "pubsub.evilprofessor.co.uk",
@@ -384,7 +384,7 @@
         <h4>Get node configuration</h4>
         
         <pre class="out callback" message="xmpp.pubsub.config.get">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.config.get',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -400,7 +400,7 @@
         <h4>Set node configuration</h4>
         
         <pre class="out callback" message="xmpp.pubsub.config.set">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.config.set',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -449,7 +449,7 @@
         more details on how this works.</p>
 
         <pre class="out callback" message="xmpp.pubsub.retrieve">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.retrieve',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -490,7 +490,7 @@
         <p>This method supports RSM.</p>
 
         <pre class="out callback" message="xmpp.pubsub.subscriptions">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.subscriptions',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -522,7 +522,7 @@
         <p>This method supports RSM.</p>
 
         <pre class="out callback" message="xmpp.pubsub.affiliations">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.affiliations',
             {
                 "to": "pubsub.evilprofessor.co.uk",
@@ -556,7 +556,7 @@
         <h4>Set node affiliation</h4>
       
         <pre class="out callback" message="xmpp.pubsub.affiliation">
-        socket.emit(
+        socket.send(
             'xmpp.pubsub.affiliation',
             {
                 "to": "pubsub.evilprofessor.co.uk",

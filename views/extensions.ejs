@@ -32,7 +32,7 @@
         for simplicity this is restricted to a single subscription per request.</p>
 
         <pre class="out callback" message="xmpp.superfeedr.subscribe">
-        socket.emit(
+        socket.send(
             'xmpp.superfeedr.subscribe',
             {                
                 "feed": "http://www.evilprofessor.co.uk/feed",
@@ -69,7 +69,7 @@
         <h3>Unsubscribe from a feed</h3>
         
         <pre class="out callback" message="xmpp.superfeedr.unsubscribe">
-        socket.emit(
+        socket.send(
             'xmpp.superfeedr.unsubscribe',
             {
                 "feed": "https://github.com/xmpp-ftw.atom",
@@ -84,7 +84,7 @@
         <h3>Get Subscriptions</h3>
 
         <pre class="out callback" message="xmpp.superfeedr.subscriptions">
-        socket.emit(
+        socket.send(
             'xmpp.superfeedr.subscriptions',
             {
               /* "page": 1 */
@@ -164,7 +164,7 @@
         <h4>Item Retrieval</h4>
         
         <pre class="out callback" message="xmpp.superfeedr.retrieve">
-        socket.emit(
+        socket.send(
             'xmpp.superfeedr.retrieve',
             {
                 "feed": "http://www.evilprofessor.co.uk/feed"
@@ -211,7 +211,7 @@
         will result in an error response</strong>.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.discover">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.discover',
             { /* "server": "channels.buddycloud.org" */ },
             function(error, data) { console.log(error, data) }
@@ -249,7 +249,7 @@
         '<em>xmpp.presence</em>'.</p>
  
         <pre class="out" message="xmpp.buddycloud.presence">
-        socket.emit('xmpp.buddycloud.presence', {})
+        socket.send('xmpp.buddycloud.presence', {})
         </pre>
 
         <h3>Registration</h3>
@@ -259,7 +259,7 @@
         will not cause an error.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.register">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.register',
             {},
             function(error, data) { console.log(error, data) }
@@ -278,7 +278,7 @@
         <h3>Create a node</h3>
 
         <pre class="out callback" message="xmpp.buddycloud.create">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.create',
             { 
                 "node": "xmpp-ftw updates",
@@ -297,7 +297,7 @@
         <h3>Publishing to a node</h3>
 
         <pre class="out callback" message="xmpp.buddycloud.publish">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.publish',
             {
                 "node": "/user/lloyd@buddycloud.org/posts",
@@ -316,7 +316,7 @@
         <h4>Subscribe to a node</h4>
 
         <pre class="out callback" message="xmpp.buddycloud.subscribe">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.subscribe',
             {
                 "node": "/user/lloyd@buddycloud.org/posts"
@@ -337,7 +337,7 @@
         <h4>Unsubscribe from a node</h4>
 
         <pre class="out callback" message="xmpp.buddycloud.unsubscribe">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.unsubscribe',
             {
                 "node": "/user/lloyd@buddycloud.org/posts"
@@ -354,7 +354,7 @@
         <p>This method supports RSM.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.subscriptions">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.subscriptions',
             {
              /* "node": "xmpp-ftw updates", */
@@ -391,7 +391,7 @@
         the subscription state of a user as follows:</p>
 
         <pre class="out callback" message="xmpp.buddycloud.subscription">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.subscription',
             {
                 "node":          "/user/lloyd@evilprofessor.co.uk/posts",
@@ -470,7 +470,7 @@
         <p>This method supports RSM.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.affiliations">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.affiliations',
             {
              /* "node": "/user/lloyd@evilprofessor.co.uk/posts", */
@@ -502,7 +502,7 @@
         <h4>Set node affiliation</h4>
       
         <pre class="out callback" message="xmpp.buddycloud.affiliation">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.affiliation',
             {
                 "node": "/user/lloyd@evilprofessor.co.uk/posts",
@@ -544,7 +544,7 @@
         <a href="/manual/result-set-management">result set management</a>.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.retrieve">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.retrieve',
             {
                 "node": "/user/lloyd@buddycloud.org/posts"
@@ -592,7 +592,7 @@
            title="Result set management">RSM</a>):</p>
 
         <pre class="out callback" message="xmpp.buddycloud.items.recent">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.items.recent',
             {
               /* "max": 50, */
@@ -636,7 +636,7 @@
         <p>Retrieve a full post thread as follows (RSM supported):</p>
 
         <pre class="out callback" message="xmpp.buddycloud.items.thread">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.items.thread',
             {
                 "node": "/user/lloyd@evilprofessor.co.uk/posts",
@@ -663,7 +663,7 @@
         <p>Retrieve all replies to a post as follows (RSM supported):</p>
 
         <pre class="out callback" message="xmpp.buddycloud.items.replies">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.items.replies',
             {
                 "node": "/user/lloyd@evilprofessor.co.uk/posts",
@@ -688,7 +688,7 @@
         <h4>Delete an item</h4>
   
         <pre class="out callback" message="xmpp.buddycloud.item.delete">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.item.delete',
             {
                 "node": "/user/lloyd@buddycloud.org/posts",
@@ -731,7 +731,7 @@
         <h4>Get node configuration</h4>
 
         <pre class="out callback" message="xmpp.buddycloud.config.get">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.config.get',
             {
                 "node": "xmpp-ftw updates"
@@ -743,7 +743,7 @@
         <h4>Set node configuration</h4>
 
         <pre class="out callback" message="xmpp.buddycloud.config.set">
-        socket.emit(
+        socket.send(
             'xmpp.buddycloud.config.set',
             {
                 "node": "xmpp-ftw updates",
@@ -786,7 +786,7 @@
         performed as follows:</p>
 
         <pre class="example">
-        socket.emit(
+        socket.send(
           'xmpp.login.anonymous',
           { jid: 'anon.fanout.io' }
         )
@@ -800,7 +800,7 @@
         <p>Subscribe to fanout events as follows:</p>
 
         <pre class="out callback" message="fanout.fpp.subscribe">
-        socket.emit(
+        socket.send(
             'fanout.fpp.subscribe',
             {
                 "channel": "your-channel",
@@ -820,7 +820,7 @@
         <h3>Unsubscribe</h3>
 
         <pre class="out callback" message="fanout.fpp.unsubscribe">
-        socket.emit(
+        socket.send(
             'fanout.fpp.unsubscribe',
             {
                 "channel": "your-channel",

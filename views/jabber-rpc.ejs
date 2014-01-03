@@ -12,7 +12,7 @@
     event as follows:</p>
 
     <pre class="out callback" message="xmpp.rpc.perform">
-    socket.emit(
+    socket.send(
         'xmpp.rpc.perform',
         {
             "to": "rpc.evilprofessor.co.uk",
@@ -64,7 +64,7 @@
     <p>Respond to a request as follows using the `<em>xmpp.rpc.result</em>` event:</p>
 
     <pre class="out callback" message="xmpp.rpc.result">
-    socket.emit(
+    socket.send(
         'xmpp.rpc.result',
         {
             "to": "rpc.evilprofessor.co.uk",

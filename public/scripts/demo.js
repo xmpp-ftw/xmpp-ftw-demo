@@ -235,7 +235,7 @@ $('#send').on('click', function() {
         localStorage[message] = JSON.stringify(parsed)
     if (true === callback) {
         console.time('id=' + id)
-        socket.emit(message, parsed, function(error, data, rsm) {
+        socket.send(message, parsed, function(error, data, rsm) {
             var callback = $('#' + id).find('.callback')
             callback.addClass('zoomable')
             if (error) {
@@ -253,7 +253,7 @@ $('#send').on('click', function() {
             console.timeEnd('id=' + id)
         })
     } else {
-        socket.emit(message, parsed)
+        socket.send(message, parsed)
     }
     clearForm()
 })

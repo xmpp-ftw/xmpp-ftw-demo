@@ -9,7 +9,7 @@
         <h3>Join a room</h3>
         
         <pre class="out" message="xmpp.muc.join">
-        socket.emit(
+        socket.send(
             'xmpp.muc.join',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -71,7 +71,7 @@
         <h3>Send a message</h3>
         
         <pre class="out" message="xmpp.muc.message">
-        socket.emit(
+        socket.send(
             'xmpp.muc.message',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -98,7 +98,7 @@
         <h3>Leave a room</h3>
         
         <pre class="out" message="xmpp.muc.leave">
-        socket.emit(
+        socket.send(
             'xmpp.muc.leave',
             {
                 "room": "test@conference.evilprofessor.co.uk"
@@ -137,7 +137,7 @@
         <p>The room subject can be updated as follows:</p>
 
         <pre class="out" message="xmpp.muc.subject">
-        socket.emit(
+        socket.send(
             'xmpp.muc.subject',
             {
              /* "subject": "XMPP-FTW Chat room" */
@@ -169,7 +169,7 @@
         <h3>Retrieve a list of users with specified role</h3>
 
         <pre class="out callback" message="xmpp.muc.role.get">
-        socket.emit(
+        socket.send(
             'xmpp.muc.role.get', 
             {   
                 "room": "xmpp@muc.evilprofessor.co.uk",
@@ -199,7 +199,7 @@
         <h3>Change a user's role</h3>
         
         <pre class="out callback" message="xmpp.muc.role.set">
-        socket.emit(
+        socket.send(
             'xmpp.muc.role.set', 
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -215,7 +215,7 @@
         <h3>Change a user's affiliation</h3>
         
         <pre class="out callback" message="xmpp.muc.affiliation">
-        socket.emit(
+        socket.send(
             'xmpp.muc.role',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -231,7 +231,7 @@
         <h4>Get registration information</h4>
         
         <pre class="out callback" message="xmpp.muc.register.info">
-        socket.emit(
+        socket.send(
             'xmpp.muc.register.info',
             {
                 "room": "test@conference.evilprofessor.co.uk"
@@ -274,7 +274,7 @@
         <h4>Perform registration</h4>
         
         <pre class="out callback" message="xmpp.muc.register">
-        socket.emit(
+        socket.send(
             'xmpp.muc.register',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -290,7 +290,7 @@
                target="_blank">Mediated Invitation</a></h4>
 
         <pre class="out">
-        socket.emit(
+        socket.send(
             'xmpp.muc.invite',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -325,7 +325,7 @@
         <h4>Get room configuration</h4>
         
         <pre class="out callback" message="xmpp.muc.room.config.get">
-        socket.emit(
+        socket.send(
             'xmpp.muc.room.config.get',
             { "room": "test@conference.evilprofessor.co.uk" },
             function(error, data) { console.log(error, data) }
@@ -361,7 +361,7 @@
         <h4>Set room configurtion</h4>
         
         <pre class="out callback" message="xmpp.muc.room.config.set">
-        socket.emit(
+        socket.send(
             'xmpp.muc.room.config.set',
             { "room": "test@conference.evilprofessor.co.uk", "form": [ ] },
             function(error, data) { console.log(error, data) }
@@ -401,7 +401,7 @@
         the user must request a voice. This is done as follows:</p>
 
         <pre class="out" message="xmpp.muc.voice">
-        socket.emit(
+        socket.send(
             'xmpp.muc.voice',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -413,7 +413,7 @@
         <h3>Create a room</h3>
 
         <pre class="out callback" message="xmpp.muc.create">
-        socket.emit(
+        socket.send(
             'xmpp.muc.create',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -437,7 +437,7 @@
         <h3>Delete a room</h3>
 
         <pre class="out callback" message="xmpp.muc.destroy">
-        socket.emit(
+        socket.send(
             'xmpp.muc.destroy',
             {
                 "room": "test@conference.evilprofessor.co.uk",
@@ -469,7 +469,7 @@
         a reserved room using <em>xmpp.muc.cancel</em>:</p>
 
         <pre class="out callback" message="xmpp.muc.cancel">
-        socket.emit(
+        socket.send(
             'xmpp.muc.cancel',
             {
                 "room": "test@conference.evilprofessor.co.uk"

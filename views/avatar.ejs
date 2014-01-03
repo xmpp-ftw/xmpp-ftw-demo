@@ -13,7 +13,7 @@
         <strong title="Portable Network Graphics">png</strong> type.</p>
         
         <pre class="out callback" message="xmpp.avatar.upload">
-        socket.emit(
+        socket.send(
             'xmpp.avatar.upload'
             { 
                 "content": "... IMAGE DATA ...",
@@ -38,7 +38,7 @@
         <h4>Publish avatar meta data</h4>
  
         <pre class="out callback" message="xmpp.avatar.metadata">
-        socket.emit(
+        socket.send(
             'xmpp.avatar.metadata',
             {
                 "bytes": "1234",
@@ -97,7 +97,7 @@
         meta data retrieval (see later).</p>
  
         <pre class="out callback" message="xmpp.avatar.data">
-        socket.emit(
+        socket.send(
             'xmpp.avatar.data'
             { 
                 "of": "lloyd@evilprofessor.co.uk",

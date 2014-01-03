@@ -13,7 +13,7 @@
         <h3>Discover Entities <em>disco#items</em></h3>
 
         <pre class="out callback" message="xmpp.discover.items">
-        socket.emit(
+        socket.send(
             'xmpp.discover.items',
             {
                 "of": "evilprofessor.co.uk",
@@ -35,7 +35,7 @@
         <h3>Discover Features <em>disco#info</em></h3>
 
         <pre class="out callback" message="xmpp.discover.info">
-        socket.emit(
+        socket.send(
             'xmpp.discover.info',
             {
                 "of": "evilprofessor.co.uk",
@@ -81,7 +81,7 @@
         event as follows:</p>
 
         <pre class="out callback" message="xmpp.discover.client">
-        socket.emit(
+        socket.send(
             'xmpp.discover.client',
             {
                 to: 'lloyd@evilprofessor.co.uk/laptop',

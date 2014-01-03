@@ -17,7 +17,7 @@
     user as the third (optional) parameter in a callback, e.g.</p>
 
     <pre class="example">
-    socket.emit('xmpp.pubsub.retrieve', data, function(error, items, rsm) { })
+    socket.send('xmpp.pubsub.retrieve', data, function(error, items, rsm) { })
     </pre>
 
     <p>A RSM element such as this...</p>

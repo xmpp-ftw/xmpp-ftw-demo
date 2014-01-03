@@ -8,25 +8,25 @@
     "express-middleware-readme.md": "~0.3.0",
     "ejs-locals": "~1.0.2",
     "express": "~3.0.6",
-    "primus-emitter": "~1.0.0",
-    "primus": "~1.4.2",
+    "primus-emitter": "~2.0.0",
+    "primus": "~1.5.0",
     "helmet": "~0.1.0",
     "winston": "~0.7.2",
+    "winston-config": "~0.4.2",
     "cloneextend": "0.0.3",
-    "xmpp-ftw": "*",
-    "xmpp-ftw-disco": "*",
-    "xmpp-ftw-muc": "*",
-    "xmpp-ftw-pubsub": "*",
-    "xmpp-ftw-register": "*",
-    "xmpp-ftw-superfeedr": "*",
-    "xmpp-ftw-buddycloud": "*",
-    "xmpp-ftw-avatar": "*",
-    "xmpp-ftw-search": "*",
-    "xmpp-ftw-rpc": "*",
-    "xmpp-ftw-fanout": "*",
-    "xmpp-ftw-jingle": "*",
-    "xmpp-ftw-mam": "*",
-    "winston-config": "~0.4.2"
+    "xmpp-ftw": "latest",
+    "xmpp-ftw-disco": "latest",
+    "xmpp-ftw-muc": "latest",
+    "xmpp-ftw-pubsub": "latest",
+    "xmpp-ftw-register": "latest",
+    "xmpp-ftw-superfeedr": "latest",
+    "xmpp-ftw-buddycloud": "latest",
+    "xmpp-ftw-avatar": "latest",
+    "xmpp-ftw-search": "latest",
+    "xmpp-ftw-rpc": "latest",
+    "xmpp-ftw-fanout": "latest",
+    "xmpp-ftw-jingle": "latest",
+    "xmpp-ftw-mam": "latest"
   },
   "optionalDependencies": {
     "node-stringprep": "latest"
@@ -49,7 +49,7 @@
   "author": "Steven Lloyd Watkin <lloyd@evilprofessor.co.uk>",
   "license": "Apache 2.0",
   "engines": {
-    "node": "0.8.x"
+    "node": "0.10.x"
   },
   "subdomain": "xmpp-ftw",
   "scripts": {

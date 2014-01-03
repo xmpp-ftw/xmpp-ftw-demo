@@ -12,7 +12,7 @@
         method is used:</p>
         
         <pre class="out callback" message="xmpp.search.get">
-        socket.emit(
+        socket.send(
             'xmpp.search.get',
             { 
                 "to": "evilprofessor.co.uk"
@@ -57,7 +57,7 @@
  
         <p></p>
         <pre class="out callback" message="xmpp.search.do">
-        socket.emit(
+        socket.send(
             'xmpp.search.do',
             {
                 "to": "evilprofessor.co.uk",

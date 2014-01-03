@@ -9,7 +9,7 @@
         <h3>Get registration information</h3>
         
         <pre class="out callback" message="xmpp.register.get">
-        socket.emit(
+        socket.send(
             'xmpp.register.get',
             { 
                 "to": "evilprofessor.co.uk"
@@ -57,7 +57,7 @@
         information.</p>
 
         <pre class="out callback" message="xmpp.register.set">
-        socket.emit(
+        socket.send(
             'xmpp.register.set',
             {
                 "to": "evilprofessor.co.uk",
@@ -85,7 +85,7 @@
         <p>It is possible to unregister from an entity as follows:</p>
 
         <pre class="out callback" message="xmpp.register.unregister">
-        socket.emit(
+        socket.send(
             'xmpp.register.unregister',
             {
                 "to": "evilprofessor.co.uk",
@@ -119,7 +119,7 @@
         <p>Passwords can be changed as follows:</p>
 
         <pre class="out callback" message="xmpp.register.password">
-        socket.emit(
+        socket.send(
             'xmpp.register.password',
             {
                 "to": "evilprofessor.co.uk",

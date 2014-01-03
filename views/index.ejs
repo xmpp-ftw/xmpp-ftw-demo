@@ -21,6 +21,16 @@ data transport and will attempt to use websockets before attempting to use alter
 </div>
 <br/>
 <p>Beginner and installation guides to come...</p>
+<br/>
+<h3>Version 1.X Change</h3>
+
+<p>For this demo system we use <a href="https://github.com/primus/primus">Primus</a> and
+<a href="https://github.com/cayasso/primus-emitter">Primus-Emitter plugin</a> to handle
+the websocket connection.</p>
+
+<p>With version 2.0.0 of Primus Emitter <em>emit</em> is no longer used on the socket object
+to send a message. Instead <em>send</em> is used. If using another websocket library please
+ensure that you have a <em>send</em> method (that replicates <em>emit</em>).</p>
 
 <h2>Hosting</h2>
 

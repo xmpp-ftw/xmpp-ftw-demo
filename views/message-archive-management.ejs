@@ -13,7 +13,7 @@
         <a href="/manual/result-set-management">result set management</a>.</p>
         
         <pre class="out callback" message="xmpp.mam.query">
-        socket.emit(
+        socket.send(
             'xmpp.mam.query'
             {
              /* "queryId": "query-id", */
@@ -70,7 +70,7 @@
         <p>Setting archive preferences is performed as follows:</p>
 
         <pre class="out callback" message="xmpp.mam.preferences">
-        socket.emit(
+        socket.send(
             'xmpp.mam.preferences'
             {
                 "default": "roster",

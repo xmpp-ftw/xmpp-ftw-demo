@@ -11,7 +11,7 @@
         <h3>Login</h3>
 
         <pre class="out" message="xmpp.login">
-        socket.emit(
+        socket.send(
              'xmpp.login',
              {
                  "jid": "test@evilprofessor.co.uk",
@@ -45,7 +45,7 @@
         <h4>Anonymous Login</h4>
 
         <pre class="out" message="xmpp.login.anonymous">
-        socket.emit(
+        socket.send(
             'xmpp.login.anonymous',
             {
                 "jid": "anon.evilprofessor.co.uk",
@@ -59,7 +59,7 @@
         <p>Logout is performed with the following call:</p>
 
         <pre class="out callback" message="xmpp.logout">
-        socket.emit(
+        socket.send(
             'xmpp.logout',
             {},
             function(error, data) { console.log(error, data) }
@@ -73,7 +73,7 @@
         <h3>Send a message</h3>
 
         <pre class="out" message="xmpp.chat.message">
-        socket.emit(
+        socket.send(
             'xmpp.chat.message',
             {
                 "to": "other@evilprofessor.co.uk",
@@ -151,7 +151,7 @@
         <h3>Set presence</h3>
 
         <pre class="out" message="xmpp.presence">
-        socket.emit(
+        socket.send(
             'xmpp.presence',
             {
                 "show": "online",
@@ -196,13 +196,13 @@
         <h3>Directed presence</h3>
 
         <pre class="out" message="xmpp.presence.get">
-        socket.emit('xmpp.presence.get', { "to": "user@evilprofessor.co.uk" })
+        socket.send('xmpp.presence.get', { "to": "user@evilprofessor.co.uk" })
         </pre>
 
         <h3>Go offline</h3>
 
         <pre class="out" message="xmpp.presence.offline">
-        socket.emit('xmpp.presence.offline' /*, {} */ )
+        socket.send('xmpp.presence.offline' /*, {} */ )
         </pre>
 
         <h3>Subscribe</h3>
@@ -210,7 +210,7 @@
         <p>Request to subsribe to a user</p>
 
         <pre class="out" message="xmpp.presence.subscribe">
-        socket.emit('xmpp.presence.subscribe', { "to": "user@evilprofessor.co.uk" })
+        socket.send('xmpp.presence.subscribe', { "to": "user@evilprofessor.co.uk" })
         </pre>
 
         <p>User requests to subscribe to your presence</p>
@@ -232,7 +232,7 @@
         <p>Respond with subscribed or unsubscribed</p>
 
         <pre class="out" message="xmpp.presence.subscribed">
-        socket.emit(
+        socket.send(
             'xmpp.presence.subscribed',
             {
                 "to": "user@evilprofessor.co.uk"
@@ -241,7 +241,7 @@
         </pre>
 
         <pre class="out" message="xmpp.presence.unsubscribed">
-        socket.emit(
+        socket.send(
             'xmpp.presence.unsubscribed',
             {
                 "to": "user@evilprofessor.co.uk"
@@ -269,7 +269,7 @@
         <h3>Add user to roster</h3>
 
         <pre class="out callback" message="xmpp.roster.add">
-        socket.emit(
+        socket.send(
             'xmpp.roster.add',
             {
                 "jid": "user@evilprofessor.co.uk",
@@ -283,7 +283,7 @@
         <h3>Remove a user from roster</h3>
 
         <pre class="out callback" message="xmpp.roster.remove">
-        socket.emit(
+        socket.send(
             'xmpp.roster.remove',
             {
                 "jid": "user@evilprofessor.co.uk"
@@ -295,7 +295,7 @@
         <h3>Get</h3>
 
         <pre class="out callback" message="xmpp.roster.get">
-        socket.emit(
+        socket.send(
             'xmpp.roster.get',
             {},
             function(error, data) { console.log(error, data) }
@@ -340,7 +340,7 @@
         erased too if not provided.</p>
 
         <pre class="out callback" message="xmpp.roster.edit">
-        socket.emit(
+        socket.send(
             'xmpp.roster.edit',
             {
                 "jid": "user@evilprofessor.co.uk",

@@ -14,22 +14,22 @@
     "winston": "~0.7.2",
     "winston-config": "~0.4.2",
     "cloneextend": "0.0.3",
-    "xmpp-ftw": "latest",
-    "xmpp-ftw-disco": "latest",
-    "xmpp-ftw-muc": "latest",
-    "xmpp-ftw-pubsub": "latest",
-    "xmpp-ftw-register": "latest",
-    "xmpp-ftw-superfeedr": "latest",
-    "xmpp-ftw-buddycloud": "latest",
-    "xmpp-ftw-avatar": "latest",
-    "xmpp-ftw-search": "latest",
-    "xmpp-ftw-rpc": "latest",
-    "xmpp-ftw-fanout": "latest",
-    "xmpp-ftw-jingle": "latest",
-    "xmpp-ftw-mam": "latest"
+    "xmpp-ftw": "*",
+    "xmpp-ftw-disco": "*",
+    "xmpp-ftw-muc": "*",
+    "xmpp-ftw-pubsub": "*",
+    "xmpp-ftw-register": "*",
+    "xmpp-ftw-superfeedr": "*",
+    "xmpp-ftw-buddycloud": "*",
+    "xmpp-ftw-avatar": "*",
+    "xmpp-ftw-search": "*",
+    "xmpp-ftw-rpc": "*",
+    "xmpp-ftw-fanout": "*",
+    "xmpp-ftw-jingle": "*",
+    "xmpp-ftw-mam": "*"
   },
   "optionalDependencies": {
-    "node-stringprep": "latest"
+    "node-stringprep": "*"
   },
   "repository": {
     "type": "git",

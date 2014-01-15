@@ -54,40 +54,37 @@ an example so here we'll do a minimal ATOM post.</p>
 
 <pre class="example" title="JSON payload">
     {
-        to: "pubsub.evilprofessor.co.uk",
-        node: "xmpp-ftw updates",
-        content: {
-            atom: {
-                title: "XMPP-FTW is able to post simple ATOM posts!",
-                links: [
-                    { href: "http://tools.ietf.org/html/rfc4287" }
-                ],
-                summary: "XMPP-FTW"
+        atom: {
+            content: {
+                content: '&lt;p&gt;Where we're going we don't need roads!&lt;/p&gt;',
+                lang: 'en_GB',
+                base: 'http://doc.brown.org',
+                type: 'xhtml'
+            },
+            title: 'Back to the future quote of the day',
+            published: '2014-01-13T13:19:00.000Z',
+            author: {
+                name: 'Doc Brown'
             }
-            atom: {
-                    title: 'Back to the future quote of the day',
-                    published: '2014-01-13T13:19:00.000Z',
-                    content: {
-                        content: '&lt;p&gt;Where we\'re going we don\'t need roads!&lt;/p&gt;',
-                        lang: 'en_GB',
-                        base: 'http://doc.brown.org',
-                        type: 'xhtml'
-                    },
-                    author: {
-                        name: 'Doc Brown'
-                    }
-                },
-                target: {
-                    id: '12345',
-                    'object-type': 'comment'
-                },
-                'in-reply-to': {
-                    ref: 'item-12345-parent'
-                },
-                review: {
-                    rating: 5
-                }
+        },
+        'in-reply-to': {
+            ref: 'item-12345-parent'
+        },
+        activity: {
+            target: {
+                id: '12345',
+                'object-type': 'comment'
+            },
+            verb: 'rated',
+            object: {
+                'object-type': 'comment'
+            },
+            author: {
+                'object-type': 'person'
             }
+        },
+        review: {
+            rating: '5.0'
         }
     }
 </pre>
@@ -95,34 +92,37 @@ an example so here we'll do a minimal ATOM post.</p>
 <p>Which would build the following XML payload:</p>
 
 <pre class="example" title="XML payload">
-    &lt;iq type="set"
-        to="pubsub.evilprofessor.co.uk"
-        id="1"&gt;
-        &lt;pubsub xmlns="http://jabber.org/protocol/pubsub"&gt;
-            &lt;publish node="xmpp-ftw updates"&gt;
-                &lt;item&gt;
-                    &lt;item&gt;&lt;entry xmlns="http://www.w3.org/2005/Atom" 
-                        xmlns:thr="http://purl.org/syndication/thread/1.0" 
-                        xmlns:activity="http://activitystrea.ms/spec/1.0/" 
-                        xmlns:review="http://activitystrea.ms/schema/1.0/review"&gt;
-                        &lt;content xml:lang="en_GB" xml:base="http://doc.brown.org" type="xhtml"&gt;
-                            &lt;p&gt;Where we're going we don't need roads!&lt;/p&gt;
-                        &lt;/content&gt;
-                        &lt;title&gt;Back to the future quote of the day&lt;/title&gt;
-                        &lt;published&gt;2014-01-13T13:19:00.000Z&lt;/published&gt;
-                        &lt;author&gt;&lt;name&gt;Doc Brown&lt;/name&gt;&lt;/author&gt;
-                        &lt;thr:in-reply-to ref="item-12345-parent"/&gt;
-                        &lt;activity:target&gt;
-                            &lt;id&gt;12345&lt;/id&gt;
-                            &lt;object-type&gt;comment&lt;/object-type&gt;
-                        &lt;/activity:target&gt;
-                        &lt;review:rating&gt;5.0&lt;/review:rating&gt;
-                   &lt;/entry&gt;
-               &lt;/item&gt;
-
-           &lt;/publish&gt;
-       &lt;/pubsub&gt;
-   &lt;/iq&gt;
+    &lt;item&gt;
+        &lt;entry xmlns="http://www.w3.org/2005/Atom" 
+            xmlns:thr="http://purl.org/syndication/thread/1.0" 
+            xmlns:activity="http://activitystrea.ms/spec/1.0/" 
+            xmlns:review="http://activitystrea.ms/schema/1.0/review"&gt;
+            &lt;content xml:lang="en_GB" xml:base="http://doc.brown.org" type="xhtml"&gt;
+                &lt;p&gt;Where we\re going we don\t need roads!&lt;/p&gt;
+            &lt;/content&gt;
+            &lt;title&gt;Back to the future quote of the day&lt;/title&gt;
+            &lt;published&gt;2014-01-13T13:19:00.000Z&lt;/published&gt;
+            &lt;author&gt;
+                &lt;name&gt;Doc Brown&lt;/name&gt;
+                &lt;activity:object-type&gt;
+                    person
+                &lt;/activity:object-type&gt;
+            &lt;/author&gt;
+            &lt;thr:in-reply-to ref="item-12345-parent"/&gt;
+            &lt;activity:target&gt;
+                &lt;id&gt;12345&lt;/id&gt;
+                &lt;object-type&gt;comment&lt;/object-type&gt;
+            &lt;/activity:target&gt;
+            &lt;activity:verb&gt;rated
+                &lt;/activity:verb&gt;
+            &lt;activity:object&gt;
+                &lt;activity:object-type&gt;comment
+                    &lt;/activity:object-type&gt;
+            &lt;/activity:object&gt;
+            &lt;review:rating&gt;5.0
+                &lt;/review:rating&gt;
+        &lt;/entry&gt;
+    &lt;/item&gt;
 </pre>
 
 <p>In the above JSON payload the user was able to omit the <em>updated date</em> 

@@ -89,6 +89,12 @@ readme.setOptions({
     }
 })
 
+var addCorsHeaders = function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+  next()
+}
+
 app.configure(function() {
     app.disable('x-powered-by')
     app.use(express.static(__dirname + '/public'))
@@ -97,6 +103,7 @@ app.configure(function() {
     app.use(express.bodyParser())
     app.use(express.methodOverride())
     app.use(readme.run)
+    app.use(addCorsHeaders)
     app.use(app.router)
     app.use(express.logger);
     app.use(express.errorHandler({

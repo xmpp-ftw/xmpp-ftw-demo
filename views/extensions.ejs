@@ -1,52 +1,52 @@
-<% 
+<%
     body.id = ''
     pageTitle = "Extensions"
 %>
 <% include ./partials/head %>
-        
-        <p>This page covers additional extensions for XMPP-FTW. The first of these will be 
-        supporting <a href="http://www.superfeedr.com" target="_blank">SuperFeedr</a> with 
-        <a href="http://www.buddycloud.com" target="_blank">buddycloud</a> coming after 
+
+        <p>This page covers additional extensions for XMPP-FTW. The first of these will be
+        supporting <a href="http://www.superfeedr.com" target="_blank">SuperFeedr</a> with
+        <a href="http://www.buddycloud.com" target="_blank">buddycloud</a> coming after
         that.</p>
 
-        <p><strong>Note:</strong> It is planned that these extensions will be seperated 
-        from the main XMPP-FTW package, but in the short term they are included, but 
+        <p><strong>Note:</strong> It is planned that these extensions will be seperated
+        from the main XMPP-FTW package, but in the short term they are included, but
         not loaded by default.</p>
 
-        <p>These extensions are loaded into the XMPP-FTW 
-        <a href="/demo" title="XMPP-FTW Demo">demo client</a>. This document follows the 
-        <a href="/manual#colour-conventions">conventions</a> of the main 
-        <a href="/manual">manual page</a>.</p> 
-        
+        <p>These extensions are loaded into the XMPP-FTW
+        <a href="/demo" title="XMPP-FTW Demo">demo client</a>. This document follows the
+        <a href="/manual#colour-conventions">conventions</a> of the main
+        <a href="/manual">manual page</a>.</p>
+
         <div id="toc"></div>
-        
+
         <h2>SuperFeedr</h2>
 
-        <p>For more information about the Superfeedr XMPP API please see: 
+        <p>For more information about the Superfeedr XMPP API please see:
         <a href="http://superfeedr.com/documentation#pubsubhubbub" target="_blank">
         http://superfeedr.com/documentation#pubsubhubbub</a>.</p>
 
         <h3>Subscribe to a feed</h3>
-        
-        <p>Whilst superfeedr allows users to subscribe to multiple feeds in one request 
+
+        <p>Whilst superfeedr allows users to subscribe to multiple feeds in one request
         for simplicity this is restricted to a single subscription per request.</p>
 
         <pre class="out callback" message="xmpp.superfeedr.subscribe">
         socket.send(
             'xmpp.superfeedr.subscribe',
-            {                
+            {
                 "feed": "http://www.evilprofessor.co.uk/feed",
              /* "jid": "website@evilprofessor.co.uk" */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
-        <p>If no JID is provided this defaults to the jid used to log in to the 
+
+        <p>If no JID is provided this defaults to the jid used to log in to the
         server with.</p>
-        
+
         <p>If a subscription is successful then the response will look like the following:</p>
-        
+
         <pre class="example">
         {
             "feed": "http://www.evilprofessor.co.uk/feed",
@@ -65,9 +65,9 @@
             }
         }
         </pre>
-        
+
         <h3>Unsubscribe from a feed</h3>
-        
+
         <pre class="out callback" message="xmpp.superfeedr.unsubscribe">
         socket.send(
             'xmpp.superfeedr.unsubscribe',
@@ -78,7 +78,7 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
+
         <p>If there is no error `<em>data</em>` will simply be <b>true</b>.
 
         <h3>Get Subscriptions</h3>
@@ -125,18 +125,18 @@
             "id": "http://push-pub.appspot.com/feed/793002",
             "updated": "2013-05-12T15:34:15Z",
             "published": "2013-05-12T15:34:15Z",
-            "content": { 
+            "content": {
                 "type": "text",
                 "content": "Get a notification"
-            },  
+            },
             "links": [
                 {
                     "title": "Hello world",
                     "rel": "alternate",
                     "href": "http://push-pub.appspot.com/entry/793002",
                     "type": "text/html"
-                }   
-            ]   
+                }
+            ]
         }
         </pre>
 
@@ -162,7 +162,7 @@
         </pre>
 
         <h4>Item Retrieval</h4>
-        
+
         <pre class="out callback" message="xmpp.superfeedr.retrieve">
         socket.send(
             'xmpp.superfeedr.retrieve',
@@ -172,7 +172,7 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
+
         <p>Example response:</p>
 
         <pre class="example">
@@ -183,7 +183,7 @@
                     "last": "1955-11-05T06:30:11-08:00",
                     "next": "1985-10-27T01:22:38-08:00",
                     "period": "3600"
-                },  
+                },
                 "parsed": "1985-10-27T10:30:00-08:00",
                 "maintenance": "1985-10-27T09:59:00-08:00",
                 "message": "9718 bytes fetched in 1.462708s : 2 new entries."
@@ -198,16 +198,16 @@
 
         <p><strong>Note:</strong> Work in progress.</p>
 
-        <p><a href="http://www.buddycloud.com" target="_blank">buddycloud</a> 
-        is a open source/standards federated social network built on top 
-        of XMPP. For more information about the future of social networking 
-        please see the 
+        <p><a href="http://www.buddycloud.com" target="_blank">buddycloud</a>
+        is a open source/standards federated social network built on top
+        of XMPP. For more information about the future of social networking
+        please see the
         <a href="http://www.buddycloud.com" target="_blank">buddycloud website</a>.</p>
 
         <h3>Discover buddycloud server</h3>
 
-        <p>The first thing you must do is to discover your buddycloud 
-        server. <strong>Any attempted actions before the discovery 
+        <p>The first thing you must do is to discover your buddycloud
+        server. <strong>Any attempted actions before the discovery
         will result in an error response</strong>.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.discover">
@@ -218,44 +218,44 @@
         )
         </pre>
 
-        <p>If a server is discovered the `<em>data</em>` will contain the 
-        channel server host, if not `<em>error</em>` will be populated to 
+        <p>If a server is discovered the `<em>data</em>` will contain the
+        channel server host, if not `<em>error</em>` will be populated to
         tell you that no server was found.</p>
 
-        <p>Providing a `<em>server</em>` key allows the user to short cut 
+        <p>Providing a `<em>server</em>` key allows the user to short cut
         discovery by specifying the channel server they wish to use.</p>
 
         <h4>Disco requests</h4>
 
-        <p>For convenience, `<em>xmpp-ftw-buddycloud</em>` proxies disco requests 
-        for the user using the two events 
-        <strong>xmpp.buddycloud.discover.items</strong> and 
+        <p>For convenience, `<em>xmpp-ftw-buddycloud</em>` proxies disco requests
+        for the user using the two events
+        <strong>xmpp.buddycloud.discover.items</strong> and
         <strong>xmpp.buddycloud.discover.info</strong> (
-        <strong>xmpp.discover.items</strong> and 
+        <strong>xmpp.discover.items</strong> and
         <strong>xmpp.discover.info</strong> respectively).</p>
 
-        <p>These events are documented in 
+        <p>These events are documented in
         <a href="/manual/service-discovery" title="XEP-0030 service discovery">
-        service discovery</a>. <strong>Note:</strong> these events do not require 
+        service discovery</a>. <strong>Note:</strong> these events do not require
         that the channel server is discovered first.</p>
 
         <h3>Presence</h3>
 
-        <p>Presence must be sent to the buddycloud server in order to 
-        start receiving notifications. Default presence is set as 'online' 
+        <p>Presence must be sent to the buddycloud server in order to
+        start receiving notifications. Default presence is set as 'online'
         with a priority of -1, and a status of 'buddycloud'.</p>
 
-        <p>For more advanced priority setting it is suggested that you use 
+        <p>For more advanced priority setting it is suggested that you use
         '<em>xmpp.presence</em>'.</p>
- 
+
         <pre class="out" message="xmpp.buddycloud.presence">
         socket.send('xmpp.buddycloud.presence', {})
         </pre>
 
         <h3>Registration</h3>
 
-        <p>The first time you use a buddycloud server you should register with 
-        it in order to generate your personal nodes. Multiple registrations 
+        <p>The first time you use a buddycloud server you should register with
+        it in order to generate your personal nodes. Multiple registrations
         will not cause an error.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.register">
@@ -272,7 +272,7 @@
         { registered: true }
         </pre>
 
-        <p>In the unlikely event of an error upon registration these will formatted 
+        <p>In the unlikely event of an error upon registration these will formatted
         in the same style as <a href="/manual/in-band-registration">xmpp-ftw-register</a>.</p>
 
         <h3>Create a node</h3>
@@ -280,18 +280,18 @@
         <pre class="out callback" message="xmpp.buddycloud.create">
         socket.send(
             'xmpp.buddycloud.create',
-            { 
+            {
                 "node": "xmpp-ftw updates",
              /* "options": [] */
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
-        <p><strong>options</strong> should be formatted as a data form 
+
+        <p><strong>options</strong> should be formatted as a data form
         in order to add node configuration options at creation time.</p>
 
-        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
+        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and
         `<em>data</em>` will be <b>true</b>.</p>
 
         <h3>Publishing to a node</h3>
@@ -325,7 +325,7 @@
         )
         </pre>
 
-        <p>If a subscription is successful then the value of `<em>data</em>` 
+        <p>If a subscription is successful then the value of `<em>data</em>`
         will be as follows:</p>
 
         <pre class="example">
@@ -345,8 +345,8 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-      
-        <p>If there is no `<em>error</em>` then `<em>data</em>` will 
+
+        <p>If there is no `<em>error</em>` then `<em>data</em>` will
         simply be true.</p>
 
         <h4>Get subscriptions</h4>
@@ -363,21 +363,21 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
-        <p>Setting <strong>owner</strong> to true will return information 
-        about all subscriptions to that node. This is provided you are 
+
+        <p>Setting <strong>owner</strong> to true will return information
+        about all subscriptions to that node. This is provided you are
         the owner of the node, otherwise an error will be returned.</p>
 
         <p>A successful response will then be as follows:</p>
 
         <pre class="example">
         [
-            { 
-                node: "/user/lloyd@evilprofessor.co.uk/posts", 
+            {
+                node: "/user/lloyd@evilprofessor.co.uk/posts",
                 jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
                 subscription: "subscribed"
             },
-            { 
+            {
                 node: "/user/megan@evilprofessor.co.uk/posts",
                 jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
                 subscription: "pending"
@@ -387,7 +387,7 @@
 
         <h4>Updating a subscribers subscription</h4>
 
-        <p>As a node owner, or moderator, it is also possible to update 
+        <p>As a node owner, or moderator, it is also possible to update
         the subscription state of a user as follows:</p>
 
         <pre class="out callback" message="xmpp.buddycloud.subscription">
@@ -395,20 +395,20 @@
             'xmpp.buddycloud.subscription',
             {
                 "node":          "/user/lloyd@evilprofessor.co.uk/posts",
-                "jid":           "bad-person@evilprofessor.co.uk", 
+                "jid":           "bad-person@evilprofessor.co.uk",
                 "subscription" : "none"
             },
             function(error, data) { console.log(error, data) }
         )
         </pre>
 
-        <p>On success the <em>data</em> argument will simply be 
+        <p>On success the <em>data</em> argument will simply be
         <strong>true</strong>.</p>
 
         <h4>Notification of a subscription change</h4>
 
-        <p>In the event of a subscription change all node subscribers 
-        are informed via the `<em>xmpp.buddycloud.push.subscription</em>` 
+        <p>In the event of a subscription change all node subscribers
+        are informed via the `<em>xmpp.buddycloud.push.subscription</em>`
         event:</p>
 
         <pre class="in" message="xmpp.buddycloud.push.subscription">
@@ -419,13 +419,13 @@
                 user: "megan"
             },
             subscription: "subscribed",
-        }  
+        }
         </pre>
 
         <h4>Subscription authorisation request</h4>
 
-        <p>If required, and if supported by the server, a node owner, 
-        or moderator, will receive a subscription authorisation request 
+        <p>If required, and if supported by the server, a node owner,
+        or moderator, will receive a subscription authorisation request
         as follows:</p>
 
         <pre class="in callback" message="xmpp.buddycloud.push.authorisation">
@@ -434,7 +434,7 @@
             callback( /* see below */ )
         })
         </pre>
-  
+
         <p>With the data in the following format:</p>
 
         <pre class="example">
@@ -443,16 +443,16 @@
             form: {}
         }
         </pre>
-         
+
         <ul>
-          <li>The `<em>form</em>` property being parsed as a standard 
-          <a href="/data-form" title="Data form">data form</a>.</li>
-          <li>The data form will contain node information, therefore this 
+          <li>The `<em>form</em>` property being parsed as a standard
+          <a href="/manual/data-forms" title="Data form">data form</a>.</li>
+          <li>The data form will contain node information, therefore this
           is not included in the standard fields.</li>
         </ul>
 
-        <p>In order to reply to a subscription authorisation request the 
-        callback function should be used as follows (actual field data 
+        <p>In order to reply to a subscription authorisation request the
+        callback function should be used as follows (actual field data
         will depend on received data form):</p>
 
         <pre class="example">
@@ -464,9 +464,9 @@
         </pre>
 
         <h3>Affiliations</h3>
-        
+
         <h4>Get node affiliations</h4>
-        
+
         <p>This method supports RSM.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.affiliations">
@@ -479,16 +479,16 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
-        <p>Setting <strong>owner</strong> to true allows the user to 
-        get a list of all node affiliations provided they are the owner 
+
+        <p>Setting <strong>owner</strong> to true allows the user to
+        get a list of all node affiliations provided they are the owner
         of the node (otherwise an error is returned.</p>
 
         <p>A successful response will then be as follows:</p>
-        
+
         <pre class="example">
         [
-           { 
+           {
                 jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
                 affiliation: 'owner'
            },
@@ -500,7 +500,7 @@
         </pre>
 
         <h4>Set node affiliation</h4>
-      
+
         <pre class="out callback" message="xmpp.buddycloud.affiliation">
         socket.send(
             'xmpp.buddycloud.affiliation',
@@ -512,14 +512,14 @@
             function(error, data) { console.log(error, data) }
         )
         </pre>
-        
-        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and 
+
+        <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and
         `<em>data</em>` will be <b>true</b>.</p>
-        
-        <p><b>Note:</b> Whilst specification allows user to update several 
-        affiliation changes at once, only on per message is supported 
+
+        <p><b>Note:</b> Whilst specification allows user to update several
+        affiliation changes at once, only on per message is supported
         here. If required it can be added later.</p>
-        
+
         <h4>Notification of affiliation changes</h4>
 
         <p>The event name for these changes is `<em>xmpp.buddycloud.push.affiliation</em>`.</p>
@@ -539,8 +539,8 @@
 
         <h4>Retrieve items</h4>
 
-        <p>Retrieve items from a buddycloud node. For information about 
-        how RSM is supported please see 
+        <p>Retrieve items from a buddycloud node. For information about
+        how RSM is supported please see
         <a href="/manual/result-set-management">result set management</a>.</p>
 
         <pre class="out callback" message="xmpp.buddycloud.retrieve">
@@ -553,11 +553,11 @@
         )
         </pre>
 
-        <p>Items are parsed using `<a href="/manual/item-parser">xmpp-ftw-item-parser</a>` although it is 
-        possible to inject your own parser.  Additonal features of the 
+        <p>Items are parsed using `<a href="/manual/item-parser">xmpp-ftw-item-parser</a>` although it is
+        possible to inject your own parser.  Additonal features of the
         item will be come available as this project adds support.</p>
 
-        <p>Unlike `xmpp-ftw-pubsub` items will always include a 
+        <p>Unlike `xmpp-ftw-pubsub` items will always include a
         <strong>node</strong> key.</p>
 
         <h4>Notification of new messages</h4>
@@ -571,7 +571,7 @@
             console.log(data)
         })
         </pre>
-        
+
         <p>The item itself is parsed by `<em><a href="/manual/item-parser">xmpp-ftw-item-parser</a></em>`
         and is held in the <strong>item</strong> key.</p>
 
@@ -586,9 +586,9 @@
 
         <h4>Retrieve recent items</h4>
 
-        <p>Retrieve recent items for subscribed nodes by requesting using 
-        the following event name (this message supports 
-        <a href="/manual/result-set-management" 
+        <p>Retrieve recent items for subscribed nodes by requesting using
+        the following event name (this message supports
+        <a href="/manual/result-set-management"
            title="Result set management">RSM</a>):</p>
 
         <pre class="out callback" message="xmpp.buddycloud.items.recent">
@@ -602,10 +602,10 @@
         )
         </pre>
 
-        <p>Whilst both <em>max</em> and <em>since</em> are optional it is 
-        suggested values are provided. <em>max</em> will default to 
-        <strong>30</strong> if not set, whilst <em>since</em> will default 
-        to <strong>1st January 2000</strong> if not set. <em>since</em> will 
+        <p>Whilst both <em>max</em> and <em>since</em> are optional it is
+        suggested values are provided. <em>max</em> will default to
+        <strong>30</strong> if not set, whilst <em>since</em> will default
+        to <strong>1st January 2000</strong> if not set. <em>since</em> will
         accept any string which can be parsed by <code>Date.parse()</code>.</p>
 
         <p>Output data has the following format:</p>
@@ -626,7 +626,7 @@
                 node: '/user/lloyd@evilprofessor.co.uk/posts',
                 id: 'item-5',
                 entry: //... a parsed by xmpp-ftw-item-parser ...//
-            },      
+            },
 
         ]
         </pre>
@@ -677,7 +677,7 @@
 
         <pre class="example">
         [
-            { 
+            {
                 id: '1234-5678-9012-3457',
                 entry: //... as parsed by xmpp-ftw-item-parser ...//
                 node: "/user/lloyd@evilprofessor.co.uk/posts",
@@ -686,7 +686,7 @@
         </pre>
 
         <h4>Delete an item</h4>
-  
+
         <pre class="out callback" message="xmpp.buddycloud.item.delete">
         socket.send(
             'xmpp.buddycloud.item.delete',
@@ -695,15 +695,15 @@
                 "id": "1"
             },
             function(error, data) { console.log(error, data) }
-        )        
+        )
         </pre>
- 
-        <p>If the delete is successful then `<em>data</em>` will simply 
+
+        <p>If the delete is successful then `<em>data</em>` will simply
         be <strong>true</strong>.</p>
 
         <h5>Item deletion notification</h5>
 
-        <p>If an item is successfully deleted from a node then all 
+        <p>If an item is successfully deleted from a node then all
         subscribers will be notified of this event (configuration
         dependent).</p>
 
@@ -724,8 +724,8 @@
 
         <h3>Configuring a node</h3>
 
-        <p>Node configuration follows that of the 
-        <a href="/manual#node-configuration">standard pubsub setup</a> 
+        <p>Node configuration follows that of the
+        <a href="/manual#node-configuration">standard pubsub setup</a>
         with simply the event name changed.</p>
 
         <h4>Get node configuration</h4>
@@ -776,13 +776,13 @@
         </pre>
 
         <p><strong>configuration</strong> if provided will match the parsing
-        of other <a href="/data-forms" title="Data forms">data forms</a>.</p>
+        of other <a href="/manual/data-forms" title="Data forms">data forms</a>.</p>
 
         <h2>Fanout</h2>
 
         <h3>Log in</h3>
 
-        <p>If not using the fanout gateway, then anonymous login is 
+        <p>If not using the fanout gateway, then anonymous login is
         performed as follows:</p>
 
         <pre class="example">
@@ -792,7 +792,7 @@
         )
         </pre>
 
-        <p>If using the fanout gateway then the payload can simply be 
+        <p>If using the fanout gateway then the payload can simply be
         any empty object.</p>
 
         <h3>Subscribe</h3>
@@ -811,10 +811,10 @@
         )
         </pre>
 
-        <p>On successful subscription `<em>data</em>` wil simply be 
+        <p>On successful subscription `<em>data</em>` wil simply be
         <strong>true</strong>.</p>
 
-        <p>Not providing <em>to</em> key will default it to the value 
+        <p>Not providing <em>to</em> key will default it to the value
         in the example payload.</p>
 
         <h3>Unsubscribe</h3>
@@ -836,7 +836,7 @@
 
         <p>Not providing <em>to</em> key will default it to the value
         in the example payload.</p>
- 
+
         <h3>Event notifications</h3>
 
         <pre class="in" message="fanout.fpp.push">

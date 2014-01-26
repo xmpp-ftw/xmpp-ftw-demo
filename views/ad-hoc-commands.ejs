@@ -57,17 +57,40 @@
 
         <h3>Execute a command</h3>
 
-        <p>...tbc...</p>
+        <p>Executing a command is handled using the <em>xmpp.command.do</em> event.</p>
 
         <pre class="out callback" message="xmpp.command.do">
         socket.send(
             'xmpp.command.do'
             {
-                "of": "lloyd@evilprofessor.co.uk",
-                "id": " ...123456abcdef... "
+             /* "to": "evilprofessor.co.uk", */
+                "node": "config",
+             /* "action": "execute", */
+             /* "form": [] */
             },
             function(error, data) { console.log(error, data) }
         )
+        </pre>
+
+        <p>Where `<em>form</em>` is formatted as a standard
+        <a href="/manual/data-forms">data form</a>.</p>
+
+        <p>Example response:</p>
+
+        <pre class="example">
+        {
+           status: "completed",
+         /* note: {
+                type: 'info',
+                description: 'Server has been restarted'
+            }, */
+         /* actions: {
+                execute: 'next',
+                values: [ 'prev', 'next']
+            }, */
+         /* form: ...parsed as dataform */
+         /* oob: ...parsed as OOB data */
+        }
         </pre>
 
 <% include ./partials/footer %>

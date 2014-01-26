@@ -1,0 +1,73 @@
+<%
+    body.id = ''
+    pageTitle = "XEP-0050 Ad-Hoc Commands"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+
+        <h3>Get a list of commands</h3>
+
+        <p>Discovering a list of commands supported by the server use:</p>
+
+        <pre class="out callback" message="xmpp.command.list">
+        socket.send(
+            'xmpp.command.list'
+            {
+             /* "to": "evilprofessor.co.uk" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Not providing a `<em>to</em>` key results in the request being made
+        against the user's XMPP domain.</p>
+
+        <p>Example response:</p>
+
+        <pre class="example">
+        [
+          { node: 'config', name: 'Configure Service' },
+          { node: 'reset', name: 'Reset Configuration' }
+        ]
+        </pre>
+
+        <h3>Get information about a command</h3>
+
+        <pre class="out callback" message="xmpp.command.info">
+        socket.send(
+            'xmpp.command.info',
+            {
+                "node": "config",
+             /* "to": "evilprofessor.co.uk" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Example response:</p>
+
+        <pre class="example">
+        [
+           { kind: 'identity', type: 'command-node', name: 'Configure Service', category: 'automation' },
+           { kind: 'feature', var: 'http://jabber.org/protocol/commands' },
+           { kind: 'feature', var: 'jabber:x:data' }
+        ]
+        </pre>
+
+        <h3>Execute a command</h3>
+
+        <p>...tbc...</p>
+
+        <pre class="out callback" message="xmpp.command.do">
+        socket.send(
+            'xmpp.command.do'
+            {
+                "of": "lloyd@evilprofessor.co.uk",
+                "id": " ...123456abcdef... "
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+<% include ./partials/footer %>

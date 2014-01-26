@@ -26,10 +26,8 @@
     "xmpp-ftw-rpc": "*",
     "xmpp-ftw-fanout": "*",
     "xmpp-ftw-jingle": "*",
-    "xmpp-ftw-mam": "*"
-  },
-  "optionalDependencies": {
-    "node-stringprep": "*"
+    "xmpp-ftw-mam": "*",
+    "xmpp-ftw-command": "*"
   },
   "repository": {
     "type": "git",

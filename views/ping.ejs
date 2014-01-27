@@ -1,0 +1,59 @@
+<%
+    body.id = ''
+    pageTitle = "XEP-0199 XMPP Ping"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+
+        <h3>Send a ping request</h3>
+
+        <p>Ping requests are sent as follows, if you don't specify a '<em>to</em>' address
+        it will use the domain part of the user's JID:</p>
+
+        <pre class="out callback" message="xmpp.ping">
+        socket.send(
+            'xmpp.ping'
+            {
+             /* "to": "evilprofessor.co.uk" */
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>On success, `<em>data</em>` will simply be <strong>true</strong>.</p>
+
+        <h3>Publish avatar meta data</h3>
+
+        <pre class="in" message="xmpp.ping">
+        socket.on('xmpp.ping', function(data) { console.log(data) })
+        </pre>
+
+        <p>The data is delivered as follows:</p>
+
+        <pre class="example">
+        {
+            "from": "evilprofessor.co.uk",
+            "id": "abc-123"
+        }
+        </pre>
+
+        <h4>Responding to a ping request</h4>
+
+        <p>To respond to a ping request the <em>xmpp.ping.pong</em> event is used as follows:</p>
+
+        <pre class="out callback">
+        socket.send(
+            'xmpp.ping.pong',
+            {
+                "to": "evilprofessor.co.uk",
+                "id": "abc-123"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>The callback here is <strong>optional</strong> but if provided <em>data</em> will
+        simply be true on successful send.</p>
+
+<% include ./partials/footer %>

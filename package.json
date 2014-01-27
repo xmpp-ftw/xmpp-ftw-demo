@@ -27,7 +27,8 @@
     "xmpp-ftw-fanout": "*",
     "xmpp-ftw-jingle": "*",
     "xmpp-ftw-mam": "*",
-    "xmpp-ftw-command": "*"
+    "xmpp-ftw-command": "*",
+    "xmpp-ftw-ping": "*"
   },
   "repository": {
     "type": "git",

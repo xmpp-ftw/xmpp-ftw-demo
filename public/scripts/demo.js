@@ -261,6 +261,7 @@ $('#send').on('click', function() {
 /* jshint -W117 */
 $(window.document).ready(function() {
     console.log('Page loaded...')
+    getMessages('/manual/ping', 2000)
     getMessages('/manual/ad-hoc-commands', 2000)
     getMessages('/manual/message-archive-management', 2000)
     getMessages('/manual/service-discovery', 2000)

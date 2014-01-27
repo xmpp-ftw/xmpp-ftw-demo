@@ -61,6 +61,7 @@ var Fanout = require('xmpp-ftw-fanout')
 var Jingle = require('xmpp-ftw-jingle')
 var Mam = require('xmpp-ftw-mam')
 var Command = require('xmpp-ftw-command')
+var Ping = require('xmpp-ftw-ping')
 
 primus.on('connection', function(socket) {
         var xmppFtw = new xmpp.Xmpp(socket)
@@ -78,6 +79,7 @@ primus.on('connection', function(socket) {
         xmppFtw.addListener(new Jingle())
         xmppFtw.addListener(new Mam())
         xmppFtw.addListener(new Command())
+        xmppFtw.addListener(new Ping())
     }
 )
 

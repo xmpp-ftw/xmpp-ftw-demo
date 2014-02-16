@@ -72,7 +72,7 @@
 
         <h3>Send a message</h3>
 
-        <pre class="out" message="xmpp.chat.message">
+        <pre class="out callback" message="xmpp.chat.message">
         socket.send(
             'xmpp.chat.message',
             {
@@ -80,8 +80,19 @@
                 "content": "Hello world",
              /* "format": "plain", */
              /* "state": "composing" */
-            }
+            },
+            function(error, data) { console.log(error, data) }
         )
+        </pre>
+
+        <p>The callback here is entirely <strong>optional</strong> apart from under certain
+        circumstances (for example when using
+        <a href="#message-delivery-receipts">message delivery
+        receipts</a>. If provided then the value of `<em>data</em>` will be an object
+        containing the ID of the outgoing message stanza, e.g.:</p>
+
+        <pre class="example">
+        { "id": "1230" }
         </pre>
 
         <p>By setting the value of '<em>format</em>' to '<b>xhtml</b>' the
@@ -143,6 +154,55 @@
         <pre class="example">
         {
             state: 'active'
+        }
+        </pre>
+
+        <h3>Message delivery receipts</h3>
+
+        <p>It is possible to request a <a href="http://xmpp.org/extensions/xep-0184.html" title="XEP-0184 Message delivery receipt">message delivery receipt</a> using XMPP-FTW. In
+        order to do this a message must be sent using a callback (in order to determine the
+        outgoing message's ID), and the outgoing payload should also include a
+        key of `<em>receipt</em>` who's value should be <strong>true</strong>.</p>
+
+        <pre class="example">
+        {
+            "to": "megan@evilprofessor.co.uk/laptop",
+            "content": "Are you reading this?",
+            "receipt": true
+        }
+        </pre>
+
+        <p>Incoming chat messages will then also include the `<em>receipt</em>` key with
+        a value of <strong>true</strong>.</p>
+
+        <h4>Sending a message delivery receipt</h4>
+
+        <p>A message delivery receipt can be sent by using the `<em>xmpp.chat.receipt</em>`
+        event as follows:</p>
+
+        <pre class="out" message="xmpp.chat.receipt">
+        socket.send(
+            'xmpp.chat.receipt',
+            {
+                "to": "other@evilprofessor.co.uk/laptop",
+                "id": "message-number-5"
+            }
+        )
+        </pre>
+
+        <h4>Receiving a message delivery receipt</h4>
+
+        <p>Message delivery receipts are received via the `<em>xmpp.chat.receipt</em>` event:</p>
+
+        <pre class="in" message="xmpp.chat.receipt">
+        socket.on('xmpp.chat.receipt', function(data) {
+            console.log(data);
+            /*
+             * {
+             *   from: { domain: 'evilprofessor.co.uk', user: 'lloyd', resource: 'laptop' },
+             *   id: 'message-number-5'
+             * }
+             */
         }
         </pre>
 
@@ -336,7 +396,7 @@
         <h3>Edit a user</h3>
 
         <p><strong>Note:</strong> Existing groups will be erased, therefore
-        you must include all roster groups in this list. Existing name will be 
+        you must include all roster groups in this list. Existing name will be
         erased too if not provided.</p>
 
         <pre class="out callback" message="xmpp.roster.edit">

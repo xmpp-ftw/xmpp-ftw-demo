@@ -309,6 +309,17 @@
         )
         </pre>
 
+        <p>Unsubscribing from another entity's presence</p>
+
+        <pre class="out" message="xmpp.presence.unsubscribe">
+        socket.send(
+            'xmpp.presence.unsubscribe',
+            {
+                "to": "user@evilprofessor.co.uk"
+            }
+        )
+        </pre>
+
         <h3>Presence Errors</h3>
 
         <p>Presence errors are emitting using the

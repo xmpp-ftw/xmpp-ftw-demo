@@ -206,6 +206,24 @@
         }
         </pre>
 
+        <h3>Last message correction</h3>
+
+        <p>To send a <a href="http://xmpp.org/extensions/xep-0308.html"
+                        title="XEP-0308 Last message correction">last message correction</a>
+        simply include a `<em>replace</em>` key in your JSON payload with the ID of the message
+        you would like to correct.</p>
+
+        <pre class="example">
+        {
+            "to": "megan@evilprofessor.co.uk/mobile",
+            "content": "Will be home at 11pm",
+            "replace": "last-message-id"
+        }
+        </pre>
+
+        <p>Incoming message corrections will also include a `<em>replace</em>` key informing your
+        client which message is being corrected.</p>
+
         <h2>Presence</h2>
 
         <h3>Set presence</h3>

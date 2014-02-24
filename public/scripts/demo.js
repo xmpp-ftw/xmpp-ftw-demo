@@ -260,25 +260,26 @@ $('#send').on('click', function() {
 
 /* jshint -W117 */
 $(window.document).ready(function() {
-    console.log('Page loaded...')
-    getMessages('/manual/ping', 2000)
-    getMessages('/manual/ad-hoc-commands', 2000)
-    getMessages('/manual/message-archive-management', 2000)
-    getMessages('/manual/service-discovery', 2000)
-    getMessages('/manual/multi-user-chat', 2000)
-    getMessages('/manual/publish-subscribe', 2000)
-    getMessages('/manual/jabber-search', 2000)
-    getMessages('/manual/jabber-rpc', 2000)
-    getMessages('/manual/in-band-registration', 2000)
-    getMessages('/manual/extensions', 2000)
-    getMessages('/manual/core')
-    getMessages()
 
+    console.log('Page loaded...')
+            
     socket = new Primus('//' + window.document.location.host)
     socket.on('error', function(error) { console.log(error); })
 
-    socket.on('online', function(data) {
-        console.log('Connected', data)
+    socket.on('open', function(data) {
+        console.log('Connected')
+        getMessages('/manual/ping', 2000)
+        getMessages('/manual/ad-hoc-commands', 2000)
+        getMessages('/manual/message-archive-management', 2000)
+        getMessages('/manual/service-discovery', 2000)
+        getMessages('/manual/multi-user-chat', 2000)
+        getMessages('/manual/publish-subscribe', 2000)
+        getMessages('/manual/jabber-search', 2000)
+        getMessages('/manual/jabber-rpc', 2000)
+        getMessages('/manual/in-band-registration', 2000)
+        getMessages('/manual/extensions', 2000)
+        getMessages('/manual/core')
+        getMessages()
     })
 
     socket.on('timeout', function(reason) {

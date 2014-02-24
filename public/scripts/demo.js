@@ -266,7 +266,7 @@ $(window.document).ready(function() {
     socket = new Primus('//' + window.document.location.host)
     socket.on('error', function(error) { console.log(error); })
 
-    socket.on('open', function(data) {
+    socket.on('open', function() {
         console.log('Connected')
         getMessages('/manual/ping', 2000)
         getMessages('/manual/ad-hoc-commands', 2000)

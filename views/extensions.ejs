@@ -281,7 +281,7 @@
         socket.send(
             'xmpp.buddycloud.create',
             {
-                "node": "xmpp-ftw updates",
+                "node": "/user/weather@topics.evilprofessor.co.uk/posts",
              /* "options": [] */
             },
             function(error, data) { console.log(error, data) }
@@ -357,7 +357,7 @@
         socket.send(
             'xmpp.buddycloud.subscriptions',
             {
-             /* "node": "xmpp-ftw updates", */
+             /* "node": "/user/weather@topics.evilprofessor.co.uk/posts", */
              /* "owner": true */
             },
             function(error, data) { console.log(error, data) }
@@ -413,7 +413,7 @@
 
         <pre class="in" message="xmpp.buddycloud.push.subscription">
         {
-            node: "xmpp-ftw updates",
+            node: "/user/weather@topics.evilprofessor.co.uk/posts",
             jid: {
                 domain: "evilprofessor.co.uk",
                 user: "megan"
@@ -734,7 +734,7 @@
         socket.send(
             'xmpp.buddycloud.config.get',
             {
-                "node": "xmpp-ftw updates"
+                "node": "/user/weather@topics.evilprofessor.co.uk/posts"
             },
             function(error, data) { console.log(error, data) }
         )
@@ -746,7 +746,7 @@
         socket.send(
             'xmpp.buddycloud.config.set',
             {
-                "node": "xmpp-ftw updates",
+                "node": "/user/weather@topics.evilprofessor.co.uk/posts",
                 "form": []
             },
             function(error, data) { console.log(error, data) }
@@ -770,7 +770,7 @@
 
         <pre class="example">
         {
-            node: '/user/weather@topics.evilprofessor.co.uk',
+            node: '/user/weather@topics.evilprofessor.co.uk/posts',
             configuration: []
         }
         </pre>

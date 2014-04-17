@@ -437,3 +437,7 @@ div.link.install {
 div.link.demo {
     border-color: rgba(229, 106, 20, 0.4);
 }
+
+div.link.skeleton {
+    border-color: rgba(229, 106, 20, 0.4);
+}

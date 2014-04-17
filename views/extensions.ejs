@@ -604,7 +604,8 @@
             'xmpp.buddycloud.items.recent',
             {
               /* "max": 50, */
-              /* "since": "2013-07-01 16:02:00" */
+              /* "since": "2013-07-01 16:02:00", */
+              /* "parentOnly": true */
             },
             function(error, data, rsm) { console.log(error, data, rsm) }
         )
@@ -614,7 +615,9 @@
         suggested values are provided. <em>max</em> will default to
         <strong>30</strong> if not set, whilst <em>since</em> will default
         to <strong>1st January 2000</strong> if not set. <em>since</em> will
-        accept any string which can be parsed by <code>Date.parse()</code>.</p>
+        accept any string which can be parsed by <code>Date.parse()</code>. Setting 
+        <em>parentOnly</em> with something that evaluates to <strong>true</strong> 
+        will request only thread parents.</p>
 
         <p>Output data has the following format:</p>
 

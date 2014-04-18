@@ -23,8 +23,9 @@ module.exports = function(grunt) {
     // Load the plugins
     grunt.loadNpmTasks('grunt-contrib-jshint')
     grunt.loadNpmTasks('grunt-mocha-cli')
+    grunt.loadNpmTasks('grunt-nsp-package')
 
     // Configure tasks
     grunt.registerTask('default', ['test'])
-    grunt.registerTask('test', ['mochacli', 'jshint'])
+    grunt.registerTask('test', ['mochacli', 'jshint', 'validate-package'])
 }

@@ -1,6 +1,6 @@
 {
   "name": "xmpp-ftw-demo",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "XMPP-FTW Demo/Example System",
   "main": "index.js",
   "dependencies": {

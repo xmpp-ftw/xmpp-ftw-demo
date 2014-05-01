@@ -1,0 +1,134 @@
+<%
+    body.id = ''
+    pageTitle = "XEP-0070 Verifying HTTP requests using XMPP"
+%>
+<% include ./partials/head %>
+
+        <div id="toc"></div>
+
+        <p>For more information on the process of verifying HTTP requests it is suggested 
+        that you look at the documentation for XEP-0070: 
+        <a href="http://www.xmpp.org/extensions/xep-0070.html" target="_blank">
+        Verifying HTTP requests via XMPP</a>.</p>
+
+        <h3>Receive a HTTP verification request</h3>
+
+        <p>Requests are received as follows:</p>
+
+        <pre class="out callback" message="xmpp.http.confirm">
+        socket.on(
+            'xmpp.http.confirm',
+            function(data) { console.log(data) }
+        )
+        </pre>
+
+        <p>Requests can come in the form of <strong>&lt;iq/&gt;</strong> or 
+        <strong>&lt;message/&gt;</strong> there are some minor differences to how
+        the data is received and how a response is sent. These will be noted as required.</p>
+
+        <p>An example payload is as follows:</p>
+
+        <pre class="example">
+        {
+            from: { domain: 'media.evilprofessor.co.uk' }  /* ...JID object... */
+            id: 'abc-123',
+            type: 'message',
+            description: 'Did you request this file?',
+            request: {
+              method: 'GET',
+              url: 'https://media.evilprofessor.co.uk/secret.txt',
+              id: 'request-1'
+            }
+        }
+        </pre>
+
+        <p>Notes:</p>
+
+        <ul>
+        <li>The value of <em>type</em> can be either <strong>iq</strong> or 
+            <strong>message</strong> depending on the original request</li>
+        <li><em>description</em> is specific to a <strong>message</strong> type 
+            request, and is a human readable string</li>
+        <li>In the case of an <strong>iq</strong> type the <em>id</em> is the 
+            stanza ID. In the case of a <strong>message</strong> type the <em>id</em> 
+            value is from a <strong>&lt;thread/&gt;</strong> element, is optionally 
+            sent by the server but should be included in any response</li>
+        </ul>
+
+        <h3>Verifying a request</h3>
+
+        <pre class="out callback" message="xmpp.http.approve">
+        socket.send(
+            'xmpp.http.approve'
+            { 
+                "to": "media.evilprofessor.co.uk",
+                "id": "abc-123",
+                "type": "iq",
+                "request": {
+                    "url": "https://media.evilprofessor.co.uk/secret.txt",
+                    "method": "GET",
+                    "id": "request-1"
+                }
+
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Notes:</p>
+
+        <ul>
+            <li><em>type</em> is REQUIRED and must be either <strong>iq</strong>
+                or <strong>message</strong></li>
+            <li><em>id</em> is REQUIRED for <em>type</em> <strong>iq</strong> and SHOULD be 
+                provided for <em>type</em> <strong>message</strong> if sent in the 
+                original request</li>
+            <li>For <em>type</em> <strong>iq</strong> then providing <em>request</em> details 
+                in the response isn't required, but it is REQUIRED for responding to <em>type</em> 
+                <strong>message</strong></li>
+            <li>The callback function will be ignored for <em>type</em> <strong>message</strong> 
+                but will be used for <em>type</em> <strong>iq</strong>. In the case of 
+                <em>type</em> <strong>iq</strong> on success <em>data</em> will be 
+                <strong>true</strong>. Errors otherwise will be sent using the 
+                <em>xmpp.error.client</em> event</li>
+        </ul>
+
+        <h3>Denying a request</h3>
+
+        <pre class="out callback" message="xmpp.http.deny">
+        socket.send(
+            'xmpp.http.deny'
+            { 
+                "to": "media.evilprofessor.co.uk",
+                "id": "abc-123",
+                "type": "iq",
+                "request": {
+                    "url": "https://media.evilprofessor.co.uk/secret.txt",
+                    "method": "GET",
+                    "id": "request-1"
+                }
+
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>Notes:</p>
+
+        <ul>
+            <li><em>type</em> is REQUIRED and must be either <strong>iq</strong>
+                or <strong>message</strong></li>
+            <li><em>id</em> is REQUIRED for <em>type</em> <strong>iq</strong> and SHOULD be 
+                provided for <em>type</em> <strong>message</strong> if sent in the 
+                original request</li>
+            <li>For <em>type</em> <strong>iq</strong> then providing <em>request</em> details 
+                in the response isn't required, but it is REQUIRED for responding to <em>type</em> 
+                <strong>message</strong></li>
+            <li>The callback function will be ignored for <em>type</em> <strong>message</strong> 
+                but will be used for <em>type</em> <strong>iq</strong>. In the case of 
+                <em>type</em> <strong>iq</strong> on success <em>data</em> will be 
+                <strong>true</strong>. Errors otherwise will be sent using the 
+                <em>xmpp.error.client</em> event</li>
+        </ul>
+
+<% include ./partials/footer %>

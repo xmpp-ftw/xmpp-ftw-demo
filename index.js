@@ -9,6 +9,10 @@ var   xmpp          = require('xmpp-ftw')
     , helmet        = require('helmet')
     , winston       = require('winston')
     , winstonConfig = require('winston-config')
+    , bodyParser    = require('body-parser')
+    , methodOverride = require('method-override')
+    , morgan        = require('morgan')
+    , errorHandler  = require('errorhandler')
 
 var port = 3000
 
@@ -46,7 +50,7 @@ var options = {
 
 var primus = new Primus(server, options)
 primus.use('emitter', Emitter)
-primus.save(__dirname + '/public/scripts/primus.js');
+primus.save(__dirname + '/public/scripts/primus.js')
 
 var Muc = require('xmpp-ftw-muc')
 var Disco = require('xmpp-ftw-disco')
@@ -104,24 +108,21 @@ var addCorsHeaders = function(req, res, next) {
     next()
 }
 
-app.configure(function() {
-    app.disable('x-powered-by')
-    app.use(express.static(__dirname + '/public'))
-    app.set('views', __dirname + '/views')
-    app.set('view engine', 'ejs')
-    app.use(express.bodyParser())
-    app.use(express.methodOverride())
-    app.use(readme.run)
-    app.use(addCorsHeaders)
-    app.use(app.router)
-    app.use(express.logger);
-    app.use(express.errorHandler({
-        dumpExceptions: true,
-        showStack: true
-    }))
-})
+app.disable('x-powered-by')
+app.use(express.static(__dirname + '/public'))
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
+app.use(bodyParser())
+app.use(methodOverride())
+app.use(readme.run)
+app.use(addCorsHeaders)
+app.use(morgan())
+app.use(errorHandler({
+    dumpExceptions: true,
+    showStack: true
+}))
 
-app.engine('ejs', engine);
+app.engine('ejs', engine)
 
 var configuration = {
     ga: process.env.GOOGLE_ANALYTICS_ID || null,

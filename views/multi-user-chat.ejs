@@ -320,6 +320,33 @@
         })
         </pre>
 
+        <h4>Decline invitation</h4>
+
+        <pre class="out">
+        socket.send(
+            'xmpp.muc.invite.decline',
+            {
+                "room": "test@conference.evilprofessor.co.uk",
+                "to": "lloyd@evilprofessor.co.uk",
+                /* "reason": "I'm busy right now..." */
+            }
+        )
+        </pre>
+
+        <h4>Incoming invitation decline</h4>
+
+        <pre class="in" message="xmpp.muc.invite.decline">
+        socket.on('xmpp.muc.invite.decline', function(data) { 
+            console.log(data)
+            /* {
+                   room: "test@conference.evilprofessor.co.uk",
+                   from: { domain: "evilprofessor.co.uk", user: "megan" },
+                /* reason: "I'm busy right now...", */
+
+               } */
+        })
+        </pre>
+
         <h3>Update room configuration</h3>
         
         <h4>Get room configuration</h4>
@@ -358,7 +385,7 @@
         a reserved room. In order to cancel this request see 
         <a href="#cancel-request">cancel request</a>.</p>
 
-        <h4>Set room configurtion</h4>
+        <h4>Set room configuration</h4>
         
         <pre class="out callback" message="xmpp.muc.room.config.set">
         socket.send(

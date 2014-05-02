@@ -789,6 +789,94 @@
         <p><strong>configuration</strong> if provided will match the parsing
         of other <a href="/manual/data-forms" title="Data forms">data forms</a>.</p>
 
+        <h3>Discovering media servers</h3>
+
+        <p>Media servers can be discovered using the method below. Domain is the domain 
+        on which the channel you wish to post to lives. Note: If you are attempting to 
+        post to a topic channel you will need to run the discovery against the parent 
+        domain (usually a case of just removing the subdomain).</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.discover.media-server">
+        socket.send(
+            'xmpp.buddycloud.disover.media-server',
+            {
+                "domain": "evilprofessor.co.uk"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
+        <p>If a media server component can not be found then the error message will be 
+        an <em>item-not-found</em> error. A successful response is as follows:</p>
+
+        <pre class="example">
+        {
+            component: 'media.evilprofessor.co.uk',
+         /* endpoint: 'https://api.evilprofessor.co.uk/media' */
+        }
+        </pre>
+
+        <p>The <strong>endpoint</strong> will only be provided if the media server 
+        advertises it.</p>
+
+        <h3>Verifying HTTP requests</h3>
+
+        <p>If a media server has been discovered then <em>xmpp-ftw-buddycloud</em> will 
+        take over handling of HTTP verification requests from this server.</p>
+
+        <p>The HTTP verfication is detailed on the 
+        <a href="/manual/http-requests" title="XEP-0070 Verifying HTTP requests via XMPP">manual page</a> 
+        and here we simply show the related events.</p>
+
+        <p>An incoming verification request is picked up as follows:</p>
+
+        <pre class="in" message="xmpp.buddycloud.http.verify">
+        socket.on(
+            'xmpp.buddycloud.http.verify',
+            function(data) { console.log(data) }
+        )
+        </pre>
+
+        <p>This request can then either be confirmed or denied as follows. Approve:</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.http.confirm">
+        socket.send(
+            'xmpp.buddycloud.http.confirm',
+            { 
+                "to": "media.evilprofessor.co.uk",
+                "id": "abc-123",
+                "type": "iq",
+                "request": {
+                    "url": "https://media.evilprofessor.co.uk/secret.txt",
+                    "method": "GET",
+                    "id": "request-1"
+                }
+
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+   
+        <p>Deny:</p>
+
+        <pre class="out callback" message="xmpp.buddycloud.http.deny">
+        socket.send(
+            'xmpp.buddycloud.http.deny',
+            { 
+                "to": "media.evilprofessor.co.uk",
+                "id": "abc-123",
+                "type": "iq",
+                "request": {
+                    "url": "https://media.evilprofessor.co.uk/secret.txt",
+                    "method": "GET",
+                    "id": "request-1"
+                }
+
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+
         <h2>Fanout</h2>
 
         <h3>Log in</h3>

@@ -15,9 +15,9 @@
 
         <p>Requests are received as follows:</p>
 
-        <pre class="out callback" message="xmpp.http.confirm">
+        <pre class="out callback" message="xmpp.http.verify">
         socket.on(
-            'xmpp.http.confirm',
+            'xmpp.http.verify',
             function(data) { console.log(data) }
         )
         </pre>
@@ -59,7 +59,7 @@
 
         <pre class="out callback" message="xmpp.http.approve">
         socket.send(
-            'xmpp.http.approve'
+            'xmpp.http.approve',
             { 
                 "to": "media.evilprofessor.co.uk",
                 "id": "abc-123",
@@ -97,7 +97,7 @@
 
         <pre class="out callback" message="xmpp.http.deny">
         socket.send(
-            'xmpp.http.deny'
+            'xmpp.http.deny',
             { 
                 "to": "media.evilprofessor.co.uk",
                 "id": "abc-123",

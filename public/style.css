@@ -97,9 +97,9 @@ pre.in {
 
 #toc {
     position: relative
-    -moz-column-count: 2;
-    -webkit-column-count: 2;
-    column-count: 2;
+    -moz-column-count: 3;
+    -webkit-column-count: 3;
+    column-count: 3;
     position: -webkit-sticky;
     position: -moz-sticky;
     position: -ms-sticky;
@@ -108,6 +108,7 @@ pre.in {
     width: 900px;
     background-color: #fff;
     padding: 10px;
+    font-size: 11px;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;

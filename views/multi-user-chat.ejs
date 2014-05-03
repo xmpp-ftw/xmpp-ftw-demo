@@ -23,6 +23,33 @@
             }
         )
         </pre>
+
+        <h3>Retrieve reserved nickname</h3>
+
+        <p>A user may have a reserved nickname for a specific MUC room. In 
+        order to retrieve this we make a discovery request to the room.</p>
+
+        <pre class="out callback" message="xmpp.muc.room.nick">
+        socket.send(
+            'xmpp.muc.room.nick',
+            {
+                "room": "test@conference.evilprofessor.co.uk"
+            },
+            function(error, data) { console.log(error, data) }
+        )
+        </pre>
+ 
+        <p>If the user has a reserved nickname then the response will 
+        be as follows:</p>
+
+        <pre class="example">
+        {
+            nick: 'evilprofessor'
+        }
+        </pre>
+
+        <p>Should the user not have a reserved nickname then an error 
+        response of <em>item-not-found</em> will be returned.</p>
         
         <h3>Receive room roster</h3>
         

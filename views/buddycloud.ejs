@@ -1,20 +1,18 @@
 <%
     body.id = ''
-    pageTitle = "Extensions"
+    pageTitle = "Buddycloud extension for XMPP-FTW"
 %>
 <% include ./partials/head %>
 
 <div id="toc"></div>
 
-<h2>Buddycloud</h2>
-
-<p><a href="http://www.buddycloud.com" target="_blank">buddycloud</a>
+<p><a href="http://www.buddycloud.com" target="_blank">Buddycloud</a>
 is a open source/standards federated social network built on top
 of XMPP. For more information about the future of social networking
 please see the
 <a href="http://www.buddycloud.com" target="_blank">buddycloud website</a>.</p>
 
-<h3>Discover buddycloud server</h3>
+<h2>Discover buddycloud server</h2>
 
 <p>The first thing you must do is to discover your buddycloud
 server. <strong>Any attempted actions before the discovery
@@ -35,7 +33,7 @@ tell you that no server was found.</p>
 <p>Providing a `<em>server</em>` key allows the user to short cut
 discovery by specifying the channel server they wish to use.</p>
 
-<h4>Disco requests</h4>
+<h3>Disco requests</h3>
 
 <p>For convenience, `<em>xmpp-ftw-buddycloud</em>` proxies disco requests
 for the user using the two events
@@ -49,7 +47,7 @@ for the user using the two events
 service discovery</a>. <strong>Note:</strong> these events do not require
 that the channel server is discovered first.</p>
 
-<h3>Presence</h3>
+<h2>Presence</h2>
 
 <p>Presence must be sent to the buddycloud server in order to
 start receiving notifications. Default presence is set as 'online'
@@ -62,7 +60,7 @@ with a priority of -1, and a status of 'buddycloud'.</p>
 socket.send('xmpp.buddycloud.presence', {})
 </pre>
 
-<h3>Registration</h3>
+<h2>Registration</h2>
 
 <p>The first time you use a buddycloud server you should register with
 it in order to generate your personal nodes. Multiple registrations
@@ -85,7 +83,7 @@ socket.send(
 <p>In the unlikely event of an error upon registration these will formatted
 in the same style as <a href="/manual/in-band-registration">xmpp-ftw-register</a>.</p>
 
-<h3>Create a node</h3>
+<h2>Create a node</h2>
 
 <pre class="out callback" message="xmpp.buddycloud.create">
 socket.send(
@@ -104,7 +102,7 @@ in order to add node configuration options at creation time.</p>
 <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and
 `<em>data</em>` will be <b>true</b>.</p>
 
-<h3>Publishing to a node</h3>
+<h2>Publishing to a node</h2>
 
 <pre class="out callback" message="xmpp.buddycloud.publish">
 socket.send(
@@ -129,9 +127,9 @@ socket.send(
 }
 </pre>
 
-<h3>Subscriptions</h3>
+<h2>Subscriptions</h2>
 
-<h4>Subscribe to a node</h4>
+<h3>Subscribe to a node</h3>
 
 <pre class="out callback" message="xmpp.buddycloud.subscribe">
 socket.send(
@@ -152,7 +150,7 @@ will be as follows:</p>
 }
 </pre>
 
-<h4>Unsubscribe from a node</h4>
+<h3>Unsubscribe from a node</h3>
 
 <pre class="out callback" message="xmpp.buddycloud.unsubscribe">
 socket.send(
@@ -167,7 +165,7 @@ socket.send(
 <p>If there is no `<em>error</em>` then `<em>data</em>` will
 simply be true.</p>
 
-<h4>Get subscriptions</h4>
+<h3>Get subscriptions</h3>
 
 <p>This method supports RSM.</p>
 
@@ -203,7 +201,7 @@ the owner of the node, otherwise an error will be returned.</p>
 ]
 </pre>
 
-<h4>Updating a subscribers subscription</h4>
+<h3>Updating a subscribers subscription</h3>
 
 <p>As a node owner, or moderator, it is also possible to update
 the subscription state of a user as follows:</p>
@@ -223,7 +221,7 @@ socket.send(
 <p>On success the <em>data</em> argument will simply be
 <strong>true</strong>.</p>
 
-<h4>Notification of a subscription change</h4>
+<h3>Notification of a subscription change</h3>
 
 <p>In the event of a subscription change all node subscribers
 are informed via the `<em>xmpp.buddycloud.push.subscription</em>`
@@ -240,7 +238,7 @@ event:</p>
 }
 </pre>
 
-<h4>Subscription authorisation request</h4>
+<h3>Subscription authorisation request</h3>
 
 <p>If required, and if supported by the server, a node owner,
 or moderator, will receive a subscription authorisation request
@@ -281,9 +279,9 @@ will depend on received data form):</p>
 ]
 </pre>
 
-<h3>Affiliations</h3>
+<h2>Affiliations</h2>
 
-<h4>Get node affiliations</h4>
+<h3>Get node affiliations</h3>
 
 <p>This method supports RSM.</p>
 
@@ -317,7 +315,7 @@ of the node (otherwise an error is returned.</p>
 ]
 </pre>
 
-<h4>Set node affiliation</h4>
+<h3>Set node affiliation</h3>
 
 <pre class="out callback" message="xmpp.buddycloud.affiliation">
 socket.send(
@@ -338,7 +336,7 @@ socket.send(
 affiliation changes at once, only on per message is supported
 here. If required it can be added later.</p>
 
-<h4>Notification of affiliation changes</h4>
+<h3>Notification of affiliation changes</h3>
 
 <p>The event name for these changes is `<em>xmpp.buddycloud.push.affiliation</em>`.</p>
 
@@ -353,9 +351,9 @@ here. If required it can be added later.</p>
 }
 </pre>
 
-<h3>Items</h3>
+<h2>Items</h2>
 
-<h4>Retrieve items</h4>
+<h3>Retrieve items</h3>
 
 <p>Retrieve items from a buddycloud node. For information about
 how RSM is supported please see
@@ -378,7 +376,7 @@ item will be come available as this project adds support.</p>
 <p>Unlike `xmpp-ftw-pubsub` items will always include a
 <strong>node</strong> key.</p>
 
-<h4>Notification of new messages</h4>
+<h3>Notification of new messages</h3>
 
 <p>When an item is published to a node that your user is
 subscribed to then a message will be received with item
@@ -402,7 +400,7 @@ and is held in the <strong>item</strong> key.</p>
 }
 </pre>
 
-<h4>Retrieve recent items</h4>
+<h3>Retrieve recent items</h3>
 
 <p>Retrieve recent items for subscribed nodes by requesting using
 the following event name (this message supports
@@ -452,7 +450,7 @@ will request only thread parents.</p>
 ]
 </pre>
 
-<h4>Item Thread</h4>
+<h3>Item Thread</h3>
 
 <p>Retrieve a full post thread as follows (RSM supported):</p>
 
@@ -479,7 +477,7 @@ socket.send(
 ]
 </pre>
 
-<h4>Item Replies</h4>
+<h3>Item Replies</h3>
 
 <p>Retrieve all replies to a post as follows (RSM supported):</p>
 
@@ -506,7 +504,7 @@ socket.send(
 ]
 </pre>
 
-<h4>Delete an item</h4>
+<h3>Delete an item</h3>
 
 <pre class="out callback" message="xmpp.buddycloud.item.delete">
 socket.send(
@@ -522,7 +520,7 @@ socket.send(
 <p>If the delete is successful then `<em>data</em>` will simply
 be <strong>true</strong>.</p>
 
-<h5>Item deletion notification</h5>
+<h4>Item deletion notification</h4>
 
 <p>If an item is successfully deleted from a node then all
 subscribers will be notified of this event (configuration
@@ -543,13 +541,13 @@ socket.on('xmpp.buddycloud.push.retract', function(data) {
 }
 </pre>
 
-<h3>Configuring a node</h3>
+<h2>Configuring a node</h2>
 
 <p>Node configuration follows that of the
 <a href="/manual#node-configuration">standard pubsub setup</a>
 with simply the event name changed.</p>
 
-<h4>Get node configuration</h4>
+<h3>Get node configuration</h3>
 
 <pre class="out callback" message="xmpp.buddycloud.config.get">
 socket.send(
@@ -561,7 +559,7 @@ socket.send(
 )
 </pre>
 
-<h4>Set node configuration</h4>
+<h3>Set node configuration</h3>
 
 <pre class="out callback" message="xmpp.buddycloud.config.set">
 socket.send(
@@ -576,7 +574,7 @@ socket.send(
 
 <p>If configuration update is sucessful then `<em>data</em>` will simply be <b>true</b>.</p>
 
-<h5>Node configuration update notification</h5>
+<h4>Node configuration update notification</h4>
 
 <p>On update of a node's configuration then a notification will be
 sent to all node subscribers.</p>
@@ -599,7 +597,7 @@ socket.on('xmpp.buddycloud.push.configuration', function(data) {
 <p><strong>configuration</strong> if provided will match the parsing
 of other <a href="/manual/data-forms" title="Data forms">data forms</a>.</p>
 
-<h3>Discovering media servers</h3>
+<h2>Discovering media servers</h2>
 
 <p>Media servers can be discovered using the method below. Domain is the domain 
 on which the channel you wish to post to lives. Note: If you are attempting to 
@@ -629,7 +627,7 @@ an <em>item-not-found</em> error. A successful response is as follows:</p>
 <p>The <strong>endpoint</strong> will only be provided if the media server 
 advertises it.</p>
 
-<h3>Verifying HTTP requests</h3>
+<h2>Verifying HTTP requests</h2>
 
 <p>If a media server has been discovered then <em>xmpp-ftw-buddycloud</em> will 
 take over handling of HTTP verification requests from this server.</p>

@@ -278,6 +278,7 @@ $(window.document).ready(function() {
         getMessages('/manual/jabber-rpc', 2000)
         getMessages('/manual/in-band-registration', 2000)
         getMessages('/manual/extensions', 2000)
+        getMessages('/manual/extensions/buddycloud', 2000)
         getMessages('/manual/core')
         getMessages()
     })

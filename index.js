@@ -14,7 +14,7 @@ var   xmpp          = require('xmpp-ftw')
     , morgan        = require('morgan')
     , errorHandler  = require('errorhandler')
 
-var port = 3000
+var port = process.argv[2] || 3000
 
 helmet.defaults(app)
 /* jshint -W098 */

@@ -38,8 +38,8 @@ The main module XMPP-FTW has code for login, roster, and presence as well as a f
 
 # Run the demos locally
 
-* npm i xmpp-ftw-demo
-* `cd node_modules/xmpp-ftw-demo && npm start`
+* npm i -g xmpp-ftw-demo
+* xmpp-ftw-demo
 * Go to `http://localhost:3000/`
 
 To work on the code in 'development mode' (where process restarts as files change) run `npm run-script develop`.

@@ -117,6 +117,7 @@ app.use(methodOverride())
 app.use(readme.run)
 app.use(addCorsHeaders)
 app.use(morgan())
+app.set('strict routing', false)
 app.use(errorHandler({
     dumpExceptions: true,
     showStack: true

@@ -33,6 +33,12 @@ tell you that no server was found.</p>
 <p>Providing a `<em>server</em>` key allows the user to short cut
 discovery by specifying the channel server they wish to use.</p>
 
+<p>There is a default timeout of 8 seconds on the second part of the 
+discovery process (where we ask components for features/identity). If 
+a server is found before this time then xmpp-ftw will inform you immediately. 
+This value can be changed server-side by calling the <pre>setDiscoveryTimeout</pre> 
+method on a Buddycloud object.</p>
+
 <h3>Disco requests</h3>
 
 <p>For convenience, `<em>xmpp-ftw-buddycloud</em>` proxies disco requests
@@ -626,6 +632,12 @@ an <em>item-not-found</em> error. A successful response is as follows:</p>
 
 <p>The <strong>endpoint</strong> will only be provided if the media server 
 advertises it.</p>
+
+<p>There is a default timeout of 10 seconds on the second part of the 
+media server discovery process (where we ask components for features/identity). If 
+a server is found before this time then xmpp-ftw will inform you immediately. 
+This value can be changed server-side by calling the 
+<pre>setMediaServerDiscoveryTimeout</pre> method on a Buddycloud object.</p>
 
 <h2>Verifying HTTP requests</h2>
 

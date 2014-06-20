@@ -42,6 +42,16 @@
         })
         </pre>
 
+        <p>A failed login will be reported via the <strong>xmpp.error</strong> event as follows:</p>
+
+        <pre class="in" message="xmpp.error">
+        {
+            type: 'cancel',
+            condition: 'unknown',
+            description": "\"XMPP authentication failure\""
+        }
+        </pre>
+
         <h4>Anonymous Login</h4>
 
         <pre class="out" message="xmpp.login.anonymous">

@@ -472,27 +472,22 @@
 
         <h3>Create a room</h3>
 
-        <pre class="out callback" message="xmpp.muc.create">
+        <pre class="out" message="xmpp.muc.create">
         socket.send(
             'xmpp.muc.create',
             {
                 "room": "test@conference.evilprofessor.co.uk",
-             /* "form": [] */
-            },
-            function(error, data) { console.log(error, data) }
+             /* "instant": true */
+            }s
         )
         </pre>
 
-        <p>On success <em>data</em> will simply be true.</p>
+        <p>On success you will receive an '<em>xmpp.muc.roster</em>' event 
+        with a status of <strong>201</strong> for your own JID informing 
+        you that the room has been created. The room will be locked so you 
+        can then set configuration.</p>
 
-        <p>Not providing a <strong>form</strong> key will result 
-        in the creation of an instant room (default settings).</p>
-
-        <p>By providing a <strong>form</strong> key you are requesting 
-        a reserved room with a set configuration. In order to retrieve 
-        configurable values make a call using 
-        <a href="#get-room-configuration">xmpp.muc.config.get</a> to 
-        the JID of the room you wish to create.</p>
+        <p>Any errors will be delivered via '<em>xmpp.muc.error</em>' event.</p>
 
         <h3>Delete a room</h3>
 

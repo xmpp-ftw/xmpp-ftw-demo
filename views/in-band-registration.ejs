@@ -129,7 +129,7 @@
             },
             function(error, data) { console.log(error, data) }
         )
-        </pre>          
+        </pre>  
 
         <p>A successful response will come back as follows:</p>
 
@@ -149,6 +149,17 @@
                 /* ... standard data form ... */
             }   
         }   
+        </pre>
+
+        <p>For example with <a href="http://prosody.im">prosody</a> to successfully change a password 
+        the following payload will work (logged in as <em>lloyd@evilprofessor.co.uk</em>:</p>
+
+        <pre class="example">
+        {
+            "to": "evilprofessor.co.uk",
+            "username": "lloyd",
+            "password": "my-new-password"
+        }
         </pre>
 
         <h3>Out of band data</h3>

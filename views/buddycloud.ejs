@@ -203,6 +203,12 @@ the owner of the node, otherwise an error will be returned.</p>
         node: "/user/megan@evilprofessor.co.uk/posts",
         jid: { user: "lloyd", domain: "evilprofessor.co.uk" },
         subscription: "pending"
+    },
+    {
+        node: "/user/lloyd@evilprofessor.co.uk/posts",
+        jid: { user: "megan", domain: "evilprofessor.co.uk" },
+        invitedBy: { user: "lloyd", domain: "evilprofessor.co.uk" },
+        subscription: "invited"
     }
 ]
 </pre>
@@ -227,6 +233,25 @@ socket.send(
 <p>On success the <em>data</em> argument will simply be
 <strong>true</strong>.</p>
 
+<h3>Inviting a user to a node</h3>
+
+<p>As a subscriber it is possible to invite another user to a node as follows:</p>
+
+<pre class="example">
+socket.send(
+    'xmpp.buddycloud.subscription',
+    {
+        "node":          "/user/lloyd@evilprofessor.co.uk/posts",
+        "jid":           "megan@evilprofessor.co.uk",
+        "subscription" : "invited"
+    },
+    function(error, data) { console.log(error, data) }
+)
+</pre>
+
+<p>On success the <em>data</em> argument will simply be
+<strong>true</strong>.</p>
+
 <h3>Notification of a subscription change</h3>
 
 <p>In the event of a subscription change all node subscribers
@@ -241,6 +266,10 @@ event:</p>
         user: "megan"
     },
     subscription: "subscribed",
+ /* invitedBy: {
+        domain: "evilprofessor.co.uk",
+        user: "lloyd"
+    } */
 }
 </pre>
 

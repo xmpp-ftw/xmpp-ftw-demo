@@ -6,7 +6,7 @@ var manualPageRetrievalQueue = 0
 
 var outgoingMessages = []
 var outgoing         = []
-var incoming         = []
+var incoming         = {}
 
 var getEntryHtml = function(callback) {
     if (callback) {
@@ -35,7 +35,9 @@ var addMessage = function(message, direction, data, callback) {
     var id = messageCount
     html.attr('id', id)
     messageCount++
-    if (('in' === direction) && callback) {
+    var isCallback = (incoming[message] && (-1 !== incoming[message].indexOf('callback')))
+    
+    if (('in' === direction) && isCallback) {
 
         var callbackDiv = html.find('.callback')
         callbackDiv.attr('contenteditable', 'true')
@@ -97,7 +99,7 @@ var setupAutocomplete = function() {
 }
 
 var setupListener = function() {
-    incoming.forEach(function(message) {
+    Object.keys(incoming).forEach(function(message) {
         socket.on(message, function(data, callback) {
             addMessage(message, 'in', data, callback)
         })
@@ -113,7 +115,7 @@ var decreaseQueue = function() {
     if (manualPageRetrievalQueue > 0) return
     setupListener()
     setupAutocomplete()
-    console.log('Listening for the following messages', incoming)
+    console.log('Listening for the following messages', Object.keys(incoming))
     console.log('Logging the following outgoing messages', outgoingMessages)
     $('.messages-container').css('display', 'block')
 }
@@ -127,7 +129,7 @@ var parsePage = function(incomingData) {
         if ('container' !== $(ele).attr('id')) return
 
         $(ele).find('pre.in').each(function(i, message) {
-            incoming.push($(message).attr('message'))
+            incoming[$(message).attr('message')] = $(message).attr('class')
         })
 
         $(ele).find('pre.out').each(function(i, message) {

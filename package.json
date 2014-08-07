@@ -7,7 +7,7 @@
     "socket.io": "~0.9.13",
     "express-middleware-readme.md": "~0.3.0",
     "ejs-locals": "~1.0.2",
-    "express": "~4.1.1",
+    "express": "^4.8.2",
     "helmet": "~0.1.0",
     "winston": "~0.7.2",
     "winston-config": "~0.4.2",
@@ -29,10 +29,10 @@
     "xmpp-ftw-ping": "*",
     "primus-emitter": "~3.0.0",
     "primus": "~2.0.2",
-    "body-parser": "^1.6.2",
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
-    "errorhandler": "~1.0.1"
+    "errorhandler": "~1.0.1",
+    "body-parser": "^1.6.2"
   },
   "repository": {
     "type": "git",

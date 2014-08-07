@@ -485,6 +485,55 @@ will request only thread parents.</p>
 ]
 </pre>
 
+<h3>Retrieve user feed</h3>
+
+<p>Very similar to the recent items retrieval, except that it does not attempt to retrieve items from every channel regardless of age.  This 
+function returns a feed as if all items are in a single feed 
+(this message supports
+<a href="/manual/result-set-management"
+   title="Result set management">RSM</a>):</p>
+
+<pre class="out callback" message="xmpp.buddycloud.items.recent">
+socket.send(
+    'xmpp.buddycloud.items.feed',
+    {
+      /* "since": "2013-07-01 16:02:00", */
+      /* "parentOnly": true */
+    },
+    function(error, data, rsm) { console.log(error, data, rsm) }
+)
+</pre>
+
+<p>Whilst <em>since</em> are optional it is
+suggested the value is provided. <em>since</em> will default
+to <strong>1st January 2000</strong> if not set. <em>since</em> will
+accept any string which can be parsed by <code>Date.parse()</code>. Setting 
+<em>parentOnly</em> with something that evaluates to <strong>true</strong> 
+will request only thread parents.</p>
+
+<p>Output data has the following format:</p>
+
+<pre class="example">
+[
+    {
+        node: '/user/lloyd@evilprofessor.co.uk/posts',
+        id: 'item-1',
+        entry: //... a parsed by xmpp-ftw-item-parser ...//
+    },
+    {
+        node: '/user/megan@evilprofessor.co.uk/posts',
+        id: 'item-3',
+        entry: //... a parsed by xmpp-ftw-item-parser ...//
+    },
+    {
+        node: '/user/lloyd@evilprofessor.co.uk/posts',
+        id: 'item-5',
+        entry: //... a parsed by xmpp-ftw-item-parser ...//
+    },
+
+]
+</pre>
+
 <h3>Item Thread</h3>
 
 <p>Retrieve a full post thread as follows (RSM supported):</p>

@@ -399,4 +399,17 @@
         to ensure that a client → XMPP-FTW was discernible from a pure
         client → XMPP error.</p>
 
+        <h3>XMPP Server disconnection</h3>
+
+        <p>If your XMPP server closes the connection then you 
+        will be informed via <strong>xmpp.error</strong> as follows:</p>
+
+        <pre class="example">
+        {
+            type: "connection",
+            condition: "disconnected",
+            description: "XMPP client disconnected"
+        }
+        </pre>
+
 <% include ./partials/footer %>

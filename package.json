@@ -7,9 +7,9 @@
     "socket.io": "~0.9.13",
     "express-middleware-readme.md": "~0.3.0",
     "ejs-locals": "~1.0.2",
-    "express": "^4.8.2",
+    "express": "^4.8.3",
     "helmet": "~0.1.0",
-    "winston": "~0.7.2",
+    "winston": "^0.7.3",
     "winston-config": "~0.4.2",
     "cloneextend": "0.0.3",
     "xmpp-ftw": "*",
@@ -32,7 +32,7 @@
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
     "errorhandler": "~1.0.1",
-    "body-parser": "^1.6.2"
+    "body-parser": "^1.6.3"
   },
   "repository": {
     "type": "git",
@@ -65,7 +65,7 @@
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-mocha-cli": "~1.4.0",
     "node-xmpp-core": "^1.0.0-alpha3",
-    "grunt-nsp-package": "0.0.3"
+    "grunt-nsp-package": "0.0.5"
   },
   "bin": "./bin/xmpp-ftw-demo"
 }

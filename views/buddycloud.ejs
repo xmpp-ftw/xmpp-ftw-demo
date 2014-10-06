@@ -108,6 +108,7 @@ in order to add node configuration options at creation time.</p>
 <p>If the node is successfully created `<em>error</em>` will be <b>null</b> and
 `<em>data</em>` will be <b>true</b>.</p>
 
+<p><a href="#deleting-a-node">Deleting a node</a> is covered later</p>
 <h2>Publishing to a node</h2>
 
 <pre class="out callback" message="xmpp.buddycloud.publish">
@@ -620,7 +621,7 @@ socket.on('xmpp.buddycloud.push.retract', function(data) {
 
 <pre class="example">
 {
-    node: '/user/weather@topics.evilprofessor.co.uk',
+    node: '/user/weather@topics.evilprofessor.co.uk/posts',
     id: '222'
 }
 </pre>
@@ -680,6 +681,41 @@ socket.on('xmpp.buddycloud.push.configuration', function(data) {
 
 <p><strong>configuration</strong> if provided will match the parsing
 of other <a href="/manual/data-forms" title="Data forms">data forms</a>.</p>
+
+<h2>Deleting a node</h2>
+
+<pre class="out callback" message="xmpp.buddycloud.delete">
+socket.send(
+    'xmpp.buddycloud.delete',
+    {
+        "node": "/user/lloyd@buddycloud.org/posts"
+    },
+    function(error, data) { console.log(error, data) }
+)
+</pre>
+
+<p>If the delete is successful then `<em>data</em>` will simply
+be <strong>true</strong>.</p>
+
+<h4>Item deletion notification</h4>
+
+<p>If a node is successfully deleted then all
+subscribers will be notified of this event (configuration
+dependent).</p>
+
+<pre class="in" message="xmpp.buddycloud.push.delete">
+socket.on('xmpp.buddycloud.push.delete', function(data) {
+    console.log(data)
+})
+</pre>
+
+<p>With the payload as follows:</p>
+
+<pre class="example">
+{
+    node: '/user/weather@topics.evilprofessor.co.uk/posts'
+}
+</pre>
 
 <h2>Discovering media servers</h2>
 

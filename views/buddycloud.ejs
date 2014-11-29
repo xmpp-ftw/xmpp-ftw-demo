@@ -181,7 +181,8 @@ socket.send(
     'xmpp.buddycloud.subscriptions',
     {
      /* "node": "/user/weather@topics.evilprofessor.co.uk/posts", */
-     /* "owner": true */
+     /* "owner": true, */
+     /* "ephemeral": true */
     },
     function(error, data) { console.log(error, data) }
 )
@@ -190,6 +191,11 @@ socket.send(
 <p>Setting <strong>owner</strong> to true will return information
 about all subscriptions to that node. This is provided you are
 the owner of the node, otherwise an error will be returned.</p>
+
+<p>Setting <strong>ephemeral</strong> to 
+<span title="Well something truthy">true</span> will retrieve subscriptions 
+from ephemeral nodes only. Leaving it out will default to non-ephemeral 
+nodes only. Note: This only applies to user subscriptions.</p>
 
 <p>A successful response will then be as follows:</p>
 
@@ -326,7 +332,8 @@ socket.send(
     'xmpp.buddycloud.affiliations',
     {
      /* "node": "/user/lloyd@evilprofessor.co.uk/posts", */
-     /* "owner": true" */
+     /* "owner": true", */
+     /* "ephemeral": true */
     },
     function(error, data) { console.log(error, data) }
 )
@@ -335,6 +342,11 @@ socket.send(
 <p>Setting <strong>owner</strong> to true allows the user to
 get a list of all node affiliations provided they are the owner
 of the node (otherwise an error is returned.</p>
+
+<p>Setting <strong>ephemeral</strong> to 
+<span title="Well something truthy">true</span> will retrieve affiliations 
+from ephemeral nodes only. Leaving it out will default to non-ephemeral 
+nodes only. Note: This only applies to user affiliations.</p>
 
 <p>A successful response will then be as follows:</p>
 

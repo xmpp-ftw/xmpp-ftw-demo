@@ -411,7 +411,8 @@ how RSM is supported please see
 socket.send(
     'xmpp.buddycloud.retrieve',
     {
-        "node": "/user/lloyd@buddycloud.org/posts"
+        "node": "/user/lloyd@buddycloud.org/posts",
+     /* "parentOnly": false */
     },
     function(error, data) { console.log(error, data) }
 )
@@ -422,7 +423,7 @@ possible to inject your own parser.  Additonal features of the
 item will be come available as this project adds support.</p>
 
 <p>Unlike `xmpp-ftw-pubsub` items will always include a
-<strong>node</strong> key.</p>
+<strong>node</strong> key. <em>parentOnly</em> retrieves only the first post in each thread and does not include any replies.</p>
 
 <h3>Notification of new messages</h3>
 

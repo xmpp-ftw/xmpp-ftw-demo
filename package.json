@@ -64,7 +64,7 @@
     "should": "~1.3.0",
     "grunt-contrib-jshint": "~0.7.2",
     "grunt-mocha-cli": "~1.4.0",
-    "node-xmpp-core": "^1.0.0-alpha3",
+    "node-xmpp-core": "^4.2.0",
     "grunt-nsp-package": "0.0.5"
   },
   "bin": "./bin/xmpp-ftw-demo"

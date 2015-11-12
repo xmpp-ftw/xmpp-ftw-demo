@@ -11,7 +11,7 @@
     "express": "^4.10.4",
     "express-middleware-readme.md": "~0.3.0",
     "helmet": "~0.1.0",
-    "method-override": "~1.0.0",
+    "method-override": "~2.3.5",
     "morgan": "~1.0.0",
     "primus": "~2.0.2",
     "primus-emitter": "~3.0.0",

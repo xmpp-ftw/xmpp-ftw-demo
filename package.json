@@ -21,7 +21,7 @@
     "xmpp-ftw": "*",
     "xmpp-ftw-avatar": "*",
     "xmpp-ftw-buddycloud": "*",
-    "xmpp-ftw-command": "*",
+    "xmpp-ftw-command": "1.2.0",
     "xmpp-ftw-disco": "*",
     "xmpp-ftw-fanout": "*",
     "xmpp-ftw-jingle": "*",

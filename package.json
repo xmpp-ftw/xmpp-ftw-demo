@@ -16,7 +16,7 @@
     "primus": "~2.0.2",
     "primus-emitter": "~3.0.0",
     "socket.io": "~0.9.13",
-    "winston": "^0.8.3",
+    "winston": "^2.1.1",
     "winston-config": "~0.4.2",
     "xmpp-ftw": "*",
     "xmpp-ftw-avatar": "*",

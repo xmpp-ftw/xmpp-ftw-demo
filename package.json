@@ -4,7 +4,7 @@
   "description": "XMPP-FTW Demo/Example System",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.9.3",
+    "body-parser": "^1.15.2",
     "cloneextend": "0.0.3",
     "ejs-locals": "~1.0.2",
     "errorhandler": "~1.0.1",

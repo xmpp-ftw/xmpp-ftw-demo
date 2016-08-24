@@ -13,7 +13,7 @@
     "helmet": "~0.1.0",
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
-    "primus": "~4.0.2",
+    "primus": "~6.0.2",
     "primus-emitter": "~3.0.0",
     "socket.io": "~0.9.13",
     "winston": "^0.8.3",

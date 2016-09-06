@@ -41,6 +41,12 @@ message, the DOM will be updated to reflect your messages. The string you enter 
 
 <div id="modal"><pre class="example"></pre></div>
 
+<script type="text/javascript">
+  var protocol = location.protocol
+  if (protocol === 'http:') {
+    alert('Note: This site is using HTTP which is not secure.\n\nPlease use https://xmpp-ftw.herokuapp.com/demo for a secure endpoint')
+  }
+</script>
 <script type="text/javascript" src="/scripts/primus.js"></script>
 <script type="text/javascript" src="/scripts/demo.js"></script>
 <% include ./partials/footer %>

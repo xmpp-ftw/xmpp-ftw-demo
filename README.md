@@ -4,15 +4,15 @@ This repository runs a server which loads (xmpp-ftw)[https://github.com/xmpp-ftw
 
 The user is given acccess to both a demo system and the manual for `xmpp-ftw`.
 
-For more information on `xmpp-ftw` please see https://xmpp-ftw.jit.su.
+For more information on `xmpp-ftw` please see http://xmpp-ftw.org.
 
 # Try it out...
 
-The code is now up and running at https://xmpp-ftw.jit.su so you can try it out. Be aware that this
-setup is only for trying xmpp-ftw out and may be slow as we need to go client ↔ nodejitsu (east coast US) ↔  your XMPP server and back each time.
+The code is now up and running at http://xmpp-ftw.org so you can try it out. Be aware that this
+setup is only for trying xmpp-ftw out and may be slow as we need to go client ↔ heroku (east coast US) ↔  your XMPP server and back each time.
 
-* https://xmpp-ftw.jit.su/manual -- XMPP-FTW manual
-* https://xmpp-ftw.jit.su/demo -- Awesome demo tool, generated from manual
+* http://xmpp-ftw.org/manual -- XMPP-FTW manual
+* http://xmpp-ftw.org/demo -- Awesome demo tool, generated from manual
 
 # Build status
 

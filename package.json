@@ -18,7 +18,7 @@
     "socket.io": "~0.9.13",
     "winston": "^0.8.3",
     "winston-config": "~0.4.2",
-    "xmpp-ftw": "*",
+    "xmpp-ftw": "1.18.0",
     "xmpp-ftw-avatar": "*",
     "xmpp-ftw-buddycloud": "*",
     "xmpp-ftw-command": "*",

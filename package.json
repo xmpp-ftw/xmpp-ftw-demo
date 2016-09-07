@@ -23,7 +23,7 @@
     "xmpp-ftw-buddycloud": "*",
     "xmpp-ftw-command": "*",
     "xmpp-ftw-disco": "*",
-    "xmpp-ftw-fanout": "*",
+    "xmpp-ftw-fanout": "1.0.2",
     "xmpp-ftw-jingle": "*",
     "xmpp-ftw-mam": "*",
     "xmpp-ftw-muc": "*",

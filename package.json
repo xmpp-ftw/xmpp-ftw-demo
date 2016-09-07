@@ -32,7 +32,7 @@
     "xmpp-ftw-register": "*",
     "xmpp-ftw-rpc": "*",
     "xmpp-ftw-search": "*",
-    "xmpp-ftw-superfeedr": "*"
+    "xmpp-ftw-superfeedr": "1.2.1"
   },
   "repository": {
     "type": "git",

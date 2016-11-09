@@ -30,7 +30,7 @@
     "xmpp-ftw-ping": "*",
     "xmpp-ftw-pubsub": "*",
     "xmpp-ftw-register": "*",
-    "xmpp-ftw-rpc": "*",
+    "xmpp-ftw-rpc": "1.2.0",
     "xmpp-ftw-search": "*",
     "xmpp-ftw-superfeedr": "*"
   },

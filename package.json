@@ -31,7 +31,7 @@
     "xmpp-ftw-pubsub": "*",
     "xmpp-ftw-register": "*",
     "xmpp-ftw-rpc": "*",
-    "xmpp-ftw-search": "*",
+    "xmpp-ftw-search": "1.2.0",
     "xmpp-ftw-superfeedr": "*"
   },
   "repository": {

@@ -27,7 +27,7 @@
     "xmpp-ftw-jingle": "*",
     "xmpp-ftw-mam": "*",
     "xmpp-ftw-muc": "*",
-    "xmpp-ftw-ping": "*",
+    "xmpp-ftw-ping": "1.2.0",
     "xmpp-ftw-pubsub": "*",
     "xmpp-ftw-register": "*",
     "xmpp-ftw-rpc": "*",

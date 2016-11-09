@@ -25,7 +25,7 @@
     "xmpp-ftw-disco": "*",
     "xmpp-ftw-fanout": "*",
     "xmpp-ftw-jingle": "*",
-    "xmpp-ftw-mam": "*",
+    "xmpp-ftw-mam": "1.2.0",
     "xmpp-ftw-muc": "*",
     "xmpp-ftw-ping": "*",
     "xmpp-ftw-pubsub": "*",

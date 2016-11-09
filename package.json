@@ -29,7 +29,7 @@
     "xmpp-ftw-muc": "*",
     "xmpp-ftw-ping": "*",
     "xmpp-ftw-pubsub": "*",
-    "xmpp-ftw-register": "*",
+    "xmpp-ftw-register": "1.1.8",
     "xmpp-ftw-rpc": "*",
     "xmpp-ftw-search": "*",
     "xmpp-ftw-superfeedr": "*"

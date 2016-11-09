@@ -20,7 +20,7 @@
     "winston-config": "~0.4.2",
     "xmpp-ftw": "*",
     "xmpp-ftw-avatar": "*",
-    "xmpp-ftw-buddycloud": "*",
+    "xmpp-ftw-buddycloud": "1.17.0",
     "xmpp-ftw-command": "*",
     "xmpp-ftw-disco": "*",
     "xmpp-ftw-fanout": "*",

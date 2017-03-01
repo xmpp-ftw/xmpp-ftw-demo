@@ -8,7 +8,7 @@
     "cloneextend": "0.0.3",
     "ejs-locals": "~1.0.2",
     "errorhandler": "~1.0.1",
-    "express": "^4.10.4",
+    "express": "^4.15.0",
     "express-middleware-readme.md": "~0.3.0",
     "helmet": "~0.1.0",
     "method-override": "~1.0.0",

@@ -15,7 +15,7 @@
     "morgan": "~1.0.0",
     "primus": "~4.0.2",
     "primus-emitter": "~3.0.0",
-    "socket.io": "~0.9.13",
+    "socket.io": "~1.4.6",
     "winston": "^0.8.3",
     "winston-config": "~0.4.2",
     "xmpp-ftw": "1",

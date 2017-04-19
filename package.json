@@ -14,7 +14,7 @@
     "method-override": "~1.0.0",
     "morgan": "~1.0.0",
     "primus": "~4.0.2",
-    "primus-emitter": "~3.0.0",
+    "primus-emitter": "~3.1.1",
     "socket.io": "~0.9.13",
     "winston": "^0.8.3",
     "winston-config": "~0.4.2",

@@ -1,5 +1,7 @@
 # XMPP-FTW (For The Web/Win) Demo/Examples
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/xmpp-ftw/xmpp-ftw-demo.svg)](https://greenkeeper.io/)
+
 This repository runs a server which loads (xmpp-ftw)[https://github.com/xmpp-ftw/xmpp-ftw] and sets it up for experimentation/development.
 
 The user is given acccess to both a demo system and the manual for `xmpp-ftw`.
